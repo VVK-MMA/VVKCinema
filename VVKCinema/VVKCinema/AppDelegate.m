@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSLog(@"Vlado iska da skube na Trayana pod mishnicite");
+    NSLog(@"Test");
     // Override point for customization after application launch.
     return YES;
 }

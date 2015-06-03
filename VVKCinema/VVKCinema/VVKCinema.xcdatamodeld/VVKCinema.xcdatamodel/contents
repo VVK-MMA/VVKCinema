@@ -34,6 +34,7 @@
         <attribute name="poster" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="rate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="subtitled" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="actors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Actor" inverseName="movies" inverseEntity="Actor" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Country" inverseName="movies" inverseEntity="Country" syncable="YES"/>
         <relationship name="director" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Director" inverseName="movies" inverseEntity="Director" syncable="YES"/>
@@ -41,11 +42,6 @@
         <relationship name="halls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hall" inverseName="movies" inverseEntity="Hall" syncable="YES"/>
         <relationship name="language" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Language" inverseName="movies" inverseEntity="Language" syncable="YES"/>
         <relationship name="projections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Projection" inverseName="movie" inverseEntity="Projection" syncable="YES"/>
-        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovieType" inverseName="movies" inverseEntity="MovieType" syncable="YES"/>
-    </entity>
-    <entity name="MovieType" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="type" inverseEntity="Movie" syncable="YES"/>
     </entity>
     <entity name="Projection" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -75,18 +71,17 @@
         <relationship name="tickets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ticket" inverseName="ticketType" inverseEntity="Ticket" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="180" positionY="72" width="128" height="253"/>
-        <element name="Genre" positionX="-72" positionY="240" width="128" height="75"/>
-        <element name="Language" positionX="432" positionY="222" width="128" height="75"/>
-        <element name="Director" positionX="-72" positionY="126" width="128" height="90"/>
         <element name="Actor" positionX="387" positionY="9" width="128" height="90"/>
         <element name="Country" positionX="-47" positionY="27" width="128" height="75"/>
-        <element name="MovieType" positionX="-72" positionY="429" width="128" height="73"/>
-        <element name="Hall" positionX="441" positionY="117" width="128" height="88"/>
+        <element name="Director" positionX="-72" positionY="126" width="128" height="90"/>
+        <element name="Genre" positionX="-72" positionY="240" width="128" height="75"/>
+        <element name="Hall" positionX="432" positionY="119" width="128" height="88"/>
+        <element name="Language" positionX="432" positionY="234" width="128" height="75"/>
+        <element name="Movie" positionX="180" positionY="72" width="128" height="253"/>
         <element name="Projection" positionX="592" positionY="413" width="128" height="118"/>
+        <element name="ProjectionType" positionX="153" positionY="351" width="128" height="75"/>
         <element name="Seat" positionX="153" positionY="449" width="128" height="118"/>
         <element name="Ticket" positionX="-72" positionY="531" width="128" height="88"/>
         <element name="TicketType" positionX="153" positionY="594" width="128" height="73"/>
-        <element name="ProjectionType" positionX="153" positionY="351" width="128" height="75"/>
     </elements>
 </model>

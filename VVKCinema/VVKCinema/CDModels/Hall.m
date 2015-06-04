@@ -7,7 +7,6 @@
 //
 
 #import "Hall.h"
-#import "NSManagedObject.h"
 
 
 @implementation Hall

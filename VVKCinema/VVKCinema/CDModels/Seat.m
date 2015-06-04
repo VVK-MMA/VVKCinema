@@ -7,7 +7,6 @@
 //
 
 #import "Seat.h"
-#import "NSManagedObject.h"
 #import "Ticket.h"
 
 

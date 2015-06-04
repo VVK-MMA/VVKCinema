@@ -7,7 +7,6 @@
 //
 
 #import "Ticket.h"
-#import "NSManagedObject.h"
 
 
 @implementation Ticket

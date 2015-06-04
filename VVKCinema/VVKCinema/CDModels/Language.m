@@ -7,7 +7,6 @@
 //
 
 #import "Language.h"
-#import "NSManagedObject.h"
 
 
 @implementation Language

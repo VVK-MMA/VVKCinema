@@ -7,7 +7,6 @@
 //
 
 #import "Country.h"
-#import "NSManagedObject.h"
 
 
 @implementation Country

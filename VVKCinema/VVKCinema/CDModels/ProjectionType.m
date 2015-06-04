@@ -7,7 +7,6 @@
 //
 
 #import "ProjectionType.h"
-#import "NSManagedObject.h"
 
 
 @implementation ProjectionType

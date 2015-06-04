@@ -65,10 +65,17 @@
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="seat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Seat" inverseName="ticket" inverseEntity="Seat" syncable="YES"/>
         <relationship name="ticketType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TicketType" inverseName="tickets" inverseEntity="TicketType" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tickets" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="TicketType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tickets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ticket" inverseName="ticketType" inverseEntity="Ticket" syncable="YES"/>
+    </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tickets" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ticket" inverseName="user" inverseEntity="Ticket" syncable="YES"/>
     </entity>
     <elements>
         <element name="Actor" positionX="387" positionY="9" width="128" height="90"/>
@@ -81,7 +88,8 @@
         <element name="Projection" positionX="592" positionY="413" width="128" height="118"/>
         <element name="ProjectionType" positionX="153" positionY="351" width="128" height="75"/>
         <element name="Seat" positionX="153" positionY="449" width="128" height="118"/>
-        <element name="Ticket" positionX="-72" positionY="531" width="128" height="88"/>
+        <element name="Ticket" positionX="-72" positionY="531" width="128" height="103"/>
         <element name="TicketType" positionX="153" positionY="594" width="128" height="73"/>
+        <element name="User" positionX="171" positionY="252" width="128" height="105"/>
     </elements>
 </model>

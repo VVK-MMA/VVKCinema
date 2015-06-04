@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Actor" syncable="YES">
+    <entity name="Actor" representedClassName="Actor" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="actors" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="Country" syncable="YES">
+    <entity name="Country" representedClassName="Country" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="country" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="Director" syncable="YES">
+    <entity name="Director" representedClassName="Director" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="director" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="Genre" syncable="YES">
+    <entity name="Genre" representedClassName="Genre" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="genres" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="Hall" syncable="YES">
+    <entity name="Hall" representedClassName="Hall" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="halls" inverseEntity="Movie" syncable="YES"/>
         <relationship name="projections" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projection" inverseName="hall" inverseEntity="Projection" syncable="YES"/>
     </entity>
-    <entity name="Language" syncable="YES">
+    <entity name="Language" representedClassName="Language" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="language" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="Movie" syncable="YES">
+    <entity name="Movie" representedClassName="Movie" syncable="YES">
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -43,35 +43,35 @@
         <relationship name="language" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Language" inverseName="movies" inverseEntity="Language" syncable="YES"/>
         <relationship name="projections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Projection" inverseName="movie" inverseEntity="Projection" syncable="YES"/>
     </entity>
-    <entity name="Projection" syncable="YES">
+    <entity name="Projection" representedClassName="Projection" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="hall" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Hall" inverseName="projections" inverseEntity="Hall" syncable="YES"/>
         <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="projections" inverseEntity="Movie" syncable="YES"/>
         <relationship name="projectionType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectionType" inverseName="projections" inverseEntity="ProjectionType" syncable="YES"/>
         <relationship name="seats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Seat" inverseName="projection" inverseEntity="Seat" syncable="YES"/>
     </entity>
-    <entity name="ProjectionType" syncable="YES">
+    <entity name="ProjectionType" representedClassName="ProjectionType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="projections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Projection" inverseName="projectionType" inverseEntity="Projection" syncable="YES"/>
     </entity>
-    <entity name="Seat" syncable="YES">
+    <entity name="Seat" representedClassName="Seat" syncable="YES">
         <attribute name="busy" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="column" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="row" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="projection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projection" inverseName="seats" inverseEntity="Projection" syncable="YES"/>
         <relationship name="ticket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ticket" inverseName="seat" inverseEntity="Ticket" syncable="YES"/>
     </entity>
-    <entity name="Ticket" syncable="YES">
+    <entity name="Ticket" representedClassName="Ticket" syncable="YES">
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="seat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Seat" inverseName="ticket" inverseEntity="Seat" syncable="YES"/>
         <relationship name="ticketType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TicketType" inverseName="tickets" inverseEntity="TicketType" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tickets" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="TicketType" syncable="YES">
+    <entity name="TicketType" representedClassName="TicketType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="tickets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ticket" inverseName="ticketType" inverseEntity="Ticket" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>

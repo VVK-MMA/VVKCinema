@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>420093C3-63D7-4DBC-9CF7-6745E14B6B4D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>VVKCinema</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B3CC539120695272A314D86EA56E35E1E246C99D</key>
+		<string>https://github.com/VVK-MMA/VVKCinema.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>VVKCinema/VVKCinema.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B3CC539120695272A314D86EA56E35E1E246C99D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/VVK-MMA/VVKCinema.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B3CC539120695272A314D86EA56E35E1E246C99D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B3CC539120695272A314D86EA56E35E1E246C99D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>VVKCinema</string>
+		</dict>
+	</array>
+</dict>
+</plist>

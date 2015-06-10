@@ -20,6 +20,7 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+@property (nonatomic) BOOL initialLaunch;
 
 @end
 

@@ -16,6 +16,7 @@
 		31B20C381B2739E400247370 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B20C371B2739E400247370 /* AccountViewController.m */; };
 		31B20C3B1B273A7000247370 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B20C3A1B273A7000247370 /* LoginViewController.m */; };
 		31B20C3D1B274DAF00247370 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B20C3C1B274DAF00247370 /* Images.xcassets */; };
+		49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C88D5C1B28510300FCFFA8 /* GenreViewController.m */; };
 		950F18581B20A1AB008E075D /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18571B20A1AB008E075D /* Ticket.m */; };
 		950F185B1B20A1AC008E075D /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F185A1B20A1AC008E075D /* Language.m */; };
 		950F185E1B20A1AC008E075D /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F185D1B20A1AC008E075D /* Country.m */; };
@@ -66,6 +67,8 @@
 		31B20C391B273A7000247370 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31B20C3A1B273A7000247370 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		31B20C3C1B274DAF00247370 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49C88D5B1B28510300FCFFA8 /* GenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenreViewController.h; sourceTree = "<group>"; };
+		49C88D5C1B28510300FCFFA8 /* GenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreViewController.m; sourceTree = "<group>"; };
 		950F18561B20A1AB008E075D /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = CDModels/Ticket.h; sourceTree = "<group>"; };
 		950F18571B20A1AB008E075D /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = CDModels/Ticket.m; sourceTree = "<group>"; };
 		950F18591B20A1AC008E075D /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Language.h; path = CDModels/Language.h; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				313FA6191B2797FF0095A365 /* DaysViewController.m */,
 				313742B21B27FF2900E3DF58 /* TypeViewController.h */,
 				313742B31B27FF2900E3DF58 /* TypeViewController.m */,
+				49C88D5B1B28510300FCFFA8 /* GenreViewController.h */,
+				49C88D5C1B28510300FCFFA8 /* GenreViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -169,6 +174,15 @@
 				31B20C281B271DC500247370 /* RatingView.m */,
 			);
 			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		49C88D5A1B28439400FCFFA8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9517C3011B11FB3A00542CE1 /* AppDelegate.h */,
+				9517C3021B11FB3A00542CE1 /* AppDelegate.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		950F187D1B20A1B9008E075D /* CDModels */ = {
@@ -225,12 +239,11 @@
 		9517C2FC1B11FB3A00542CE1 /* VVKCinema */ = {
 			isa = PBXGroup;
 			children = (
-				950F187D1B20A1B9008E075D /* CDModels */,
-				9517C3011B11FB3A00542CE1 /* AppDelegate.h */,
-				9517C3021B11FB3A00542CE1 /* AppDelegate.m */,
 				9517C30A1B11FB3A00542CE1 /* Main.storyboard */,
 				9517C3041B11FB3A00542CE1 /* VVKCinema.xcdatamodeld */,
 				31B20C3C1B274DAF00247370 /* Images.xcassets */,
+				49C88D5A1B28439400FCFFA8 /* Controllers */,
+				950F187D1B20A1B9008E075D /* CDModels */,
 				313FA61F1B279E6B0095A365 /* View Controllers */,
 				313FA61E1B2798890095A365 /* Transition Animator */,
 				31B20C2D1B27206000247370 /* Cells */,
@@ -367,6 +380,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */,
 				950F185E1B20A1AC008E075D /* Country.m in Sources */,
 				950F186D1B20A1AC008E075D /* Director.m in Sources */,
 				950F18581B20A1AB008E075D /* Ticket.m in Sources */,

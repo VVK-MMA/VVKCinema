@@ -15,9 +15,15 @@
 #import "DaysViewController.h"
 #import "TypeViewController.h"
 #import "TransitionAnimator.h"
+#import "GenreViewController.h"
 
-@interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate>
+@interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate,NSFetchedResultsControllerDelegate>
+
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSPredicate *predicate;
 @property (weak, nonatomic) IBOutlet UICollectionView *moviesCollectionView;
+
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @end
 
@@ -27,10 +33,20 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    /*
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    self.context = appDelegate.managedObjectContext;
+    
+    NSError *error;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        [self alert]; */
+    
     self.moviesCollectionView.dataSource = self;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     
     self.title = @"VVK Cinema";
+    
+    
     
     //change the font of the view controller's title
     CGRect frame = CGRectZero;
@@ -58,6 +74,50 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         self.appDelegate.initialLaunch = NO;
     }
 }
+#pragma mark - Setters
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Movie"];
+    request.fetchBatchSize = 5;
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rate" ascending:YES];
+    request.sortDescriptors = @[sortDescriptor];
+    request.predicate = self.predicate;
+    
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
+    
+    _fetchedResultsController.delegate = self;
+    
+    return _fetchedResultsController;
+}
+#pragma mark - NSFetchResultsControllerDelegate
+
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.moviesCollectionView insertItemsAtIndexPaths:@[newIndexPath]];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.moviesCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self.moviesCollectionView reloadItemsAtIndexPaths:@[indexPath]];
+            break;
+        case NSFetchedResultsChangeMove: {
+            [self.moviesCollectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
+            break;
+        }
+    }
+}
+
 
 #pragma mark - IBActions
 
@@ -108,7 +168,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Days"] || [segue.identifier isEqualToString:@"Type"]) {
+    if ([segue.identifier isEqualToString:@"Days"] || [segue.identifier isEqualToString:@"Type"] || [segue.identifier isEqualToString:@"Genre"]) {
         UIViewController *toVC = segue.destinationViewController;
         toVC.modalPresentationStyle = UIModalPresentationCustom;
         toVC.transitioningDelegate = self;
@@ -141,6 +201,12 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         animator.appearing = YES;
         animator.duration = 0.35;
         animationController = animator;
+    }else if ([presented isKindOfClass:[UINavigationController class]] &&
+              [((UINavigationController *)presented).topViewController isKindOfClass:[GenreViewController class]]) {
+        TransitionAnimator *animator = [[TransitionAnimator alloc] init];
+        animator.appearing = YES;
+        animator.duration = 0.35;
+        animationController = animator;
     }
     
     return animationController;
@@ -163,8 +229,13 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         animator.appearing = NO;
         animator.duration = 0.35;
         animationController = animator;
+    }else if ([dismissed isKindOfClass:[UINavigationController class]] &&
+              [((UINavigationController *)dismissed).topViewController isKindOfClass:[GenreViewController class]]) {
+        TransitionAnimator *animator = [[TransitionAnimator alloc] init];
+        animator.appearing = NO;
+        animator.duration = 0.35;
+        animationController = animator;
     }
-    
     return animationController;
 }
 
@@ -245,6 +316,14 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         [drape2 removeFromSuperlayer];
     });
 }
+#pragma mark - Helper methods
 
+- (void)alert
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was a problem with the database. Fetch could not be performed!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 @end

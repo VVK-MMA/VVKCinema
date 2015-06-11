@@ -17,7 +17,7 @@
 #import "TransitionAnimator.h"
 #import "GenreViewController.h"
 
-@interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate,NSFetchedResultsControllerDelegate>
+@interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *moviesCollectionView;
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
+
 @end
 
 static NSString * const movieCellIdentifier = @"MovieCell";
@@ -91,6 +92,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     return _fetchedResultsController;
 }
+
 #pragma mark - NSFetchResultsControllerDelegate
 
 - (void)controller:(NSFetchedResultsController *)controller
@@ -115,7 +117,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         }
     }
 }
-
 
 #pragma mark - IBActions
 

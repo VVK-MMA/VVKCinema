@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,11 @@
     [application setStatusBarHidden:NO];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     self.initialLaunch = YES;
+    
+//    [[Parse sharedParse] getAllObjectsWithType:@"Movie" relatedToObjectWithClassName:@"Actor" objectId:@"Im26nkzfgO" andKeyName:@"movies"];
+    [[Parse sharedParse] getAllObjectsWithType:@"Movie"];
+//    [[Parse sharedParse] getObjectWithType:@"Movie" andObjectId:@"DvWDahelbS"];
+    
     return YES;
 }
 

@@ -37,6 +37,7 @@
 		9517C30C1B11FB3A00542CE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9517C30A1B11FB3A00542CE1 /* Main.storyboard */; };
 		9517C3111B11FB3A00542CE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9517C30F1B11FB3A00542CE1 /* LaunchScreen.xib */; };
 		9517C31D1B11FB3A00542CE1 /* VVKCinemaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517C31C1B11FB3A00542CE1 /* VVKCinemaTests.m */; };
+		95E727661B299DCC007C62AA /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* Parse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		9517C3161B11FB3A00542CE1 /* VVKCinemaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VVKCinemaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9517C31B1B11FB3A00542CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9517C31C1B11FB3A00542CE1 /* VVKCinemaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVKCinemaTests.m; sourceTree = "<group>"; };
+		95E727641B299DCC007C62AA /* Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parse.h; path = Controllers/Parse.h; sourceTree = "<group>"; };
+		95E727651B299DCC007C62AA /* Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parse.m; path = Controllers/Parse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 			children = (
 				9517C3011B11FB3A00542CE1 /* AppDelegate.h */,
 				9517C3021B11FB3A00542CE1 /* AppDelegate.m */,
+				95E727641B299DCC007C62AA /* Parse.h */,
+				95E727651B299DCC007C62AA /* Parse.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				31B20C291B271DC500247370 /* RatingView.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
 				950F18791B20A1AC008E075D /* Seat.m in Sources */,
+				95E727661B299DCC007C62AA /* Parse.m in Sources */,
 				31B20C3B1B273A7000247370 /* LoginViewController.m in Sources */,
 				9517C3001B11FB3A00542CE1 /* main.m in Sources */,
 			);

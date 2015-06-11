@@ -14,7 +14,7 @@
 		<string>https://github.com/VVK-MMA/VVKCinema.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>VVKCinema/VVKCinema.xcodeproj</string>
+	<string>VVKCinema/VVKCinema/VVKCinema.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>B3CC539120695272A314D86EA56E35E1E246C99D</key>
@@ -28,14 +28,6 @@
 	<string>B3CC539120695272A314D86EA56E35E1E246C99D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B3CC539120695272A314D86EA56E35E1E246C99D</string>
-			<key>IDESourceControlWCCName</key>
-			<string></string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

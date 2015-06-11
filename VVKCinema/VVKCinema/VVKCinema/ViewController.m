@@ -47,8 +47,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     self.title = @"VVK Cinema";
     
-    
-    
     //change the font of the view controller's title
     CGRect frame = CGRectZero;
     UILabel *viewControllerTitle = [[UILabel alloc] initWithFrame:frame];

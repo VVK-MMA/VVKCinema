@@ -68,7 +68,7 @@
 {
     MapViewController *ctvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Map"];
    
-    [self.navigationController pushViewController:ctvc animated:YES];
+    [self.navigationController presentViewController:ctvc animated:YES completion:nil];
 }
 
 - (IBAction)backToMovies:(UIBarButtonItem *)sender

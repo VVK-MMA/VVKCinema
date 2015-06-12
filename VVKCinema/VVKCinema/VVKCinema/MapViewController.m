@@ -22,7 +22,8 @@
 {
     [super viewDidLoad];
   
-        
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
     self.preferredContentSize = [self.mapView sizeThatFits:self.presentingViewController.view.bounds.size];
 }
 
@@ -54,7 +55,7 @@
         imageView = (UIImageView *)annotationView.leftCalloutAccessoryView;
     }
     if (imageView) {
-        imageView.image = [UIImage imageNamed:@"genre"];
+        imageView.image = [UIImage imageNamed:@"cinemaMap"];
     }
 }
 
@@ -89,5 +90,7 @@
     
     //when popover appears the annotation pin will be automatically selected
 }
-
-@end
+-(IBAction)goToProfile:(UIBarButtonItem *)sender
+{
+    [self dismissViewControllerAnimated:self completion:nil];
+}@end

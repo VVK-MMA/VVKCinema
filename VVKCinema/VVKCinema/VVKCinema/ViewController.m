@@ -34,6 +34,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     /*
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     self.context = appDelegate.managedObjectContext;

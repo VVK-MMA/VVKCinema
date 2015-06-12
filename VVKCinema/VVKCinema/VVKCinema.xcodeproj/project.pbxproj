@@ -17,6 +17,8 @@
 		31B20C3B1B273A7000247370 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B20C3A1B273A7000247370 /* LoginViewController.m */; };
 		31B20C3D1B274DAF00247370 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B20C3C1B274DAF00247370 /* Images.xcassets */; };
 		31BD42C01B2977BB0095770F /* TicketsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD42BF1B2977BB0095770F /* TicketsView.m */; };
+		49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4D0D51B2AAF20009E33BF /* MapViewController.m */; };
+		49C4D0D81B2AB2B5009E33BF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C4D0D71B2AB2B5009E33BF /* MapKit.framework */; };
 		49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C88D5C1B28510300FCFFA8 /* GenreViewController.m */; };
 		950F18581B20A1AB008E075D /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18571B20A1AB008E075D /* Ticket.m */; };
 		950F185B1B20A1AC008E075D /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F185A1B20A1AC008E075D /* Language.m */; };
@@ -71,6 +73,9 @@
 		31B20C3C1B274DAF00247370 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31BD42BE1B2977BB0095770F /* TicketsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsView.h; sourceTree = "<group>"; };
 		31BD42BF1B2977BB0095770F /* TicketsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsView.m; sourceTree = "<group>"; };
+		49C4D0D41B2AAF20009E33BF /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		49C4D0D51B2AAF20009E33BF /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		49C4D0D71B2AB2B5009E33BF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		49C88D5B1B28510300FCFFA8 /* GenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenreViewController.h; sourceTree = "<group>"; };
 		49C88D5C1B28510300FCFFA8 /* GenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreViewController.m; sourceTree = "<group>"; };
 		950F18561B20A1AB008E075D /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = CDModels/Ticket.h; sourceTree = "<group>"; };
@@ -121,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C4D0D81B2AB2B5009E33BF /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +166,8 @@
 				313742B31B27FF2900E3DF58 /* TypeViewController.m */,
 				49C88D5B1B28510300FCFFA8 /* GenreViewController.h */,
 				49C88D5C1B28510300FCFFA8 /* GenreViewController.m */,
+				49C4D0D41B2AAF20009E33BF /* MapViewController.h */,
+				49C4D0D51B2AAF20009E33BF /* MapViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 		9517C2F11B11FB3A00542CE1 = {
 			isa = PBXGroup;
 			children = (
+				49C4D0D71B2AB2B5009E33BF /* MapKit.framework */,
 				9517C2FC1B11FB3A00542CE1 /* VVKCinema */,
 				9517C3191B11FB3A00542CE1 /* VVKCinemaTests */,
 				9517C2FB1B11FB3A00542CE1 /* Products */,
@@ -413,6 +422,7 @@
 				9517C3091B11FB3A00542CE1 /* ViewController.m in Sources */,
 				31B20C381B2739E400247370 /* AccountViewController.m in Sources */,
 				31B20C291B271DC500247370 /* RatingView.m in Sources */,
+				49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
 				950F18791B20A1AC008E075D /* Seat.m in Sources */,
 				95E727661B299DCC007C62AA /* Parse.m in Sources */,

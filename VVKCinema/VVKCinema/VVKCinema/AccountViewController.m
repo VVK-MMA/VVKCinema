@@ -8,6 +8,8 @@
 
 #import "AccountViewController.h"
 #import "TicketsView.h"
+#import "MapViewController.h"
+
 
 #define TICKET_HEIGHT 200
 
@@ -24,8 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    UIBarButtonItem *map = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(map:)];
+    self.navigationItem.rightBarButtonItem = map;
+    [map setTintColor:[UIColor whiteColor]];
     
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     self.title = @"Profile";
     
     //change the font of the view controller's title
@@ -59,16 +64,23 @@
 }
 
 #pragma mark - IBActions
+- (void)map:(UIBarButtonItem *)button
+{
+    MapViewController *ctvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Map"];
+   
+    [self.navigationController presentViewController:ctvc animated:YES completion:nil];
+}
 
 - (IBAction)backToMovies:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:self completion:nil];
 }
 
-- (IBAction)logout:(UIBarButtonItem *)sender
+/*- (IBAction)logout:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:self completion:nil];
 }
+ */
 
 #pragma mark - TicketsViewDelegate
 

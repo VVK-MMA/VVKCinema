@@ -2,14 +2,18 @@
 //  Movie.m
 //  VVKCinema
 //
-//  Created by Valeri Manchev on 6/4/15.
+//  Created by Valeri Manchev on 6/12/15.
 //  Copyright (c) 2015 VVK. All rights reserved.
 //
 
 #import "Movie.h"
+#import "Actor.h"
 #import "Country.h"
+#import "Director.h"
+#import "Genre.h"
 #import "Hall.h"
 #import "Language.h"
+#import "Projection.h"
 
 
 @implementation Movie
@@ -21,6 +25,7 @@
 @dynamic rate;
 @dynamic releaseDate;
 @dynamic subtitled;
+@dynamic parseId;
 @dynamic actors;
 @dynamic country;
 @dynamic director;

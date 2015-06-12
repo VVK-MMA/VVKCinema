@@ -18,19 +18,6 @@
 		31B20C3D1B274DAF00247370 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B20C3C1B274DAF00247370 /* Images.xcassets */; };
 		31BD42C01B2977BB0095770F /* TicketsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD42BF1B2977BB0095770F /* TicketsView.m */; };
 		49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C88D5C1B28510300FCFFA8 /* GenreViewController.m */; };
-		950F18581B20A1AB008E075D /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18571B20A1AB008E075D /* Ticket.m */; };
-		950F185B1B20A1AC008E075D /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F185A1B20A1AC008E075D /* Language.m */; };
-		950F185E1B20A1AC008E075D /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F185D1B20A1AC008E075D /* Country.m */; };
-		950F18611B20A1AC008E075D /* Hall.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18601B20A1AC008E075D /* Hall.m */; };
-		950F18641B20A1AC008E075D /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18631B20A1AC008E075D /* Movie.m */; };
-		950F18671B20A1AC008E075D /* TicketType.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18661B20A1AC008E075D /* TicketType.m */; };
-		950F186A1B20A1AC008E075D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18691B20A1AC008E075D /* User.m */; };
-		950F186D1B20A1AC008E075D /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F186C1B20A1AC008E075D /* Director.m */; };
-		950F18701B20A1AC008E075D /* ProjectionType.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F186F1B20A1AC008E075D /* ProjectionType.m */; };
-		950F18731B20A1AC008E075D /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18721B20A1AC008E075D /* Actor.m */; };
-		950F18761B20A1AC008E075D /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18751B20A1AC008E075D /* Genre.m */; };
-		950F18791B20A1AC008E075D /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F18781B20A1AC008E075D /* Seat.m */; };
-		950F187C1B20A1AC008E075D /* Projection.m in Sources */ = {isa = PBXBuildFile; fileRef = 950F187B1B20A1AC008E075D /* Projection.m */; };
 		9517C3001B11FB3A00542CE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517C2FF1B11FB3A00542CE1 /* main.m */; };
 		9517C3031B11FB3A00542CE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517C3021B11FB3A00542CE1 /* AppDelegate.m */; };
 		9517C3061B11FB3A00542CE1 /* VVKCinema.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9517C3041B11FB3A00542CE1 /* VVKCinema.xcdatamodeld */; };
@@ -39,6 +26,19 @@
 		9517C3111B11FB3A00542CE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9517C30F1B11FB3A00542CE1 /* LaunchScreen.xib */; };
 		9517C31D1B11FB3A00542CE1 /* VVKCinemaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517C31C1B11FB3A00542CE1 /* VVKCinemaTests.m */; };
 		95E727661B299DCC007C62AA /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* Parse.m */; };
+		95E7276F1B29EB8C007C62AA /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7276E1B29EB8C007C62AA /* Country.m */; };
+		95E727721B29ED13007C62AA /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727711B29ED13007C62AA /* Director.m */; };
+		95E727751B29EE0A007C62AA /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727741B29EE0A007C62AA /* Language.m */; };
+		95E727781B2B21CF007C62AA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727771B2B21CF007C62AA /* Movie.m */; };
+		95E7277B1B2B27D2007C62AA /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7277A1B2B27D2007C62AA /* Actor.m */; };
+		95E727811B2B29D0007C62AA /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727801B2B29D0007C62AA /* Genre.m */; };
+		95E727841B2B2A8E007C62AA /* Hall.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727831B2B2A8E007C62AA /* Hall.m */; };
+		95E727871B2B306C007C62AA /* ProjectionType.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727861B2B306C007C62AA /* ProjectionType.m */; };
+		95E7278A1B2B33C2007C62AA /* Projection.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727891B2B33C2007C62AA /* Projection.m */; };
+		95E7278D1B2B3C2A007C62AA /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7278C1B2B3C2A007C62AA /* Seat.m */; };
+		95E727901B2B3F3C007C62AA /* TicketType.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7278F1B2B3F3C007C62AA /* TicketType.m */; };
+		95E727931B2B412C007C62AA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727921B2B412C007C62AA /* User.m */; };
+		95E727961B2B41E6007C62AA /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727951B2B41E6007C62AA /* Ticket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,32 +73,6 @@
 		31BD42BF1B2977BB0095770F /* TicketsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsView.m; sourceTree = "<group>"; };
 		49C88D5B1B28510300FCFFA8 /* GenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenreViewController.h; sourceTree = "<group>"; };
 		49C88D5C1B28510300FCFFA8 /* GenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreViewController.m; sourceTree = "<group>"; };
-		950F18561B20A1AB008E075D /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = CDModels/Ticket.h; sourceTree = "<group>"; };
-		950F18571B20A1AB008E075D /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = CDModels/Ticket.m; sourceTree = "<group>"; };
-		950F18591B20A1AC008E075D /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Language.h; path = CDModels/Language.h; sourceTree = "<group>"; };
-		950F185A1B20A1AC008E075D /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Language.m; path = CDModels/Language.m; sourceTree = "<group>"; };
-		950F185C1B20A1AC008E075D /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
-		950F185D1B20A1AC008E075D /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Country.m; path = CDModels/Country.m; sourceTree = "<group>"; };
-		950F185F1B20A1AC008E075D /* Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hall.h; path = CDModels/Hall.h; sourceTree = "<group>"; };
-		950F18601B20A1AC008E075D /* Hall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hall.m; path = CDModels/Hall.m; sourceTree = "<group>"; };
-		950F18621B20A1AC008E075D /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Movie.h; path = CDModels/Movie.h; sourceTree = "<group>"; };
-		950F18631B20A1AC008E075D /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Movie.m; path = CDModels/Movie.m; sourceTree = "<group>"; };
-		950F18651B20A1AC008E075D /* TicketType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketType.h; path = CDModels/TicketType.h; sourceTree = "<group>"; };
-		950F18661B20A1AC008E075D /* TicketType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketType.m; path = CDModels/TicketType.m; sourceTree = "<group>"; };
-		950F18681B20A1AC008E075D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = CDModels/User.h; sourceTree = "<group>"; };
-		950F18691B20A1AC008E075D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = CDModels/User.m; sourceTree = "<group>"; };
-		950F186B1B20A1AC008E075D /* Director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Director.h; path = CDModels/Director.h; sourceTree = "<group>"; };
-		950F186C1B20A1AC008E075D /* Director.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Director.m; path = CDModels/Director.m; sourceTree = "<group>"; };
-		950F186E1B20A1AC008E075D /* ProjectionType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectionType.h; path = CDModels/ProjectionType.h; sourceTree = "<group>"; };
-		950F186F1B20A1AC008E075D /* ProjectionType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectionType.m; path = CDModels/ProjectionType.m; sourceTree = "<group>"; };
-		950F18711B20A1AC008E075D /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Actor.h; path = CDModels/Actor.h; sourceTree = "<group>"; };
-		950F18721B20A1AC008E075D /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Actor.m; path = CDModels/Actor.m; sourceTree = "<group>"; };
-		950F18741B20A1AC008E075D /* Genre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Genre.h; path = CDModels/Genre.h; sourceTree = "<group>"; };
-		950F18751B20A1AC008E075D /* Genre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Genre.m; path = CDModels/Genre.m; sourceTree = "<group>"; };
-		950F18771B20A1AC008E075D /* Seat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Seat.h; path = CDModels/Seat.h; sourceTree = "<group>"; };
-		950F18781B20A1AC008E075D /* Seat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Seat.m; path = CDModels/Seat.m; sourceTree = "<group>"; };
-		950F187A1B20A1AC008E075D /* Projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projection.h; path = CDModels/Projection.h; sourceTree = "<group>"; };
-		950F187B1B20A1AC008E075D /* Projection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projection.m; path = CDModels/Projection.m; sourceTree = "<group>"; };
 		9517C2FA1B11FB3A00542CE1 /* VVKCinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VVKCinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9517C2FE1B11FB3A00542CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9517C2FF1B11FB3A00542CE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -114,6 +88,32 @@
 		9517C31C1B11FB3A00542CE1 /* VVKCinemaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVKCinemaTests.m; sourceTree = "<group>"; };
 		95E727641B299DCC007C62AA /* Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parse.h; path = Controllers/Parse.h; sourceTree = "<group>"; };
 		95E727651B299DCC007C62AA /* Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parse.m; path = Controllers/Parse.m; sourceTree = "<group>"; };
+		95E7276D1B29EB8C007C62AA /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
+		95E7276E1B29EB8C007C62AA /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Country.m; path = CDModels/Country.m; sourceTree = "<group>"; };
+		95E727701B29ED13007C62AA /* Director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Director.h; path = CDModels/Director.h; sourceTree = "<group>"; };
+		95E727711B29ED13007C62AA /* Director.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Director.m; path = CDModels/Director.m; sourceTree = "<group>"; };
+		95E727731B29EE0A007C62AA /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Language.h; path = CDModels/Language.h; sourceTree = "<group>"; };
+		95E727741B29EE0A007C62AA /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Language.m; path = CDModels/Language.m; sourceTree = "<group>"; };
+		95E727761B2B21CF007C62AA /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Movie.h; path = CDModels/Movie.h; sourceTree = "<group>"; };
+		95E727771B2B21CF007C62AA /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Movie.m; path = CDModels/Movie.m; sourceTree = "<group>"; };
+		95E727791B2B27D2007C62AA /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Actor.h; path = CDModels/Actor.h; sourceTree = "<group>"; };
+		95E7277A1B2B27D2007C62AA /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Actor.m; path = CDModels/Actor.m; sourceTree = "<group>"; };
+		95E7277F1B2B29D0007C62AA /* Genre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Genre.h; path = CDModels/Genre.h; sourceTree = "<group>"; };
+		95E727801B2B29D0007C62AA /* Genre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Genre.m; path = CDModels/Genre.m; sourceTree = "<group>"; };
+		95E727821B2B2A8E007C62AA /* Hall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Hall.h; path = CDModels/Hall.h; sourceTree = "<group>"; };
+		95E727831B2B2A8E007C62AA /* Hall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Hall.m; path = CDModels/Hall.m; sourceTree = "<group>"; };
+		95E727851B2B306C007C62AA /* ProjectionType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectionType.h; path = CDModels/ProjectionType.h; sourceTree = "<group>"; };
+		95E727861B2B306C007C62AA /* ProjectionType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectionType.m; path = CDModels/ProjectionType.m; sourceTree = "<group>"; };
+		95E727881B2B33C2007C62AA /* Projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projection.h; path = CDModels/Projection.h; sourceTree = "<group>"; };
+		95E727891B2B33C2007C62AA /* Projection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projection.m; path = CDModels/Projection.m; sourceTree = "<group>"; };
+		95E7278B1B2B3C2A007C62AA /* Seat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Seat.h; path = CDModels/Seat.h; sourceTree = "<group>"; };
+		95E7278C1B2B3C2A007C62AA /* Seat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Seat.m; path = CDModels/Seat.m; sourceTree = "<group>"; };
+		95E7278E1B2B3F3C007C62AA /* TicketType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketType.h; path = CDModels/TicketType.h; sourceTree = "<group>"; };
+		95E7278F1B2B3F3C007C62AA /* TicketType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketType.m; path = CDModels/TicketType.m; sourceTree = "<group>"; };
+		95E727911B2B412C007C62AA /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = CDModels/User.h; sourceTree = "<group>"; };
+		95E727921B2B412C007C62AA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = CDModels/User.m; sourceTree = "<group>"; };
+		95E727941B2B41E6007C62AA /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = CDModels/Ticket.h; sourceTree = "<group>"; };
+		95E727951B2B41E6007C62AA /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = CDModels/Ticket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,32 +198,32 @@
 		950F187D1B20A1B9008E075D /* CDModels */ = {
 			isa = PBXGroup;
 			children = (
-				950F187A1B20A1AC008E075D /* Projection.h */,
-				950F187B1B20A1AC008E075D /* Projection.m */,
-				950F18771B20A1AC008E075D /* Seat.h */,
-				950F18781B20A1AC008E075D /* Seat.m */,
-				950F18741B20A1AC008E075D /* Genre.h */,
-				950F18751B20A1AC008E075D /* Genre.m */,
-				950F18711B20A1AC008E075D /* Actor.h */,
-				950F18721B20A1AC008E075D /* Actor.m */,
-				950F186E1B20A1AC008E075D /* ProjectionType.h */,
-				950F186F1B20A1AC008E075D /* ProjectionType.m */,
-				950F186B1B20A1AC008E075D /* Director.h */,
-				950F186C1B20A1AC008E075D /* Director.m */,
-				950F18681B20A1AC008E075D /* User.h */,
-				950F18691B20A1AC008E075D /* User.m */,
-				950F18651B20A1AC008E075D /* TicketType.h */,
-				950F18661B20A1AC008E075D /* TicketType.m */,
-				950F18621B20A1AC008E075D /* Movie.h */,
-				950F18631B20A1AC008E075D /* Movie.m */,
-				950F185F1B20A1AC008E075D /* Hall.h */,
-				950F18601B20A1AC008E075D /* Hall.m */,
-				950F185C1B20A1AC008E075D /* Country.h */,
-				950F185D1B20A1AC008E075D /* Country.m */,
-				950F18591B20A1AC008E075D /* Language.h */,
-				950F185A1B20A1AC008E075D /* Language.m */,
-				950F18561B20A1AB008E075D /* Ticket.h */,
-				950F18571B20A1AB008E075D /* Ticket.m */,
+				95E727941B2B41E6007C62AA /* Ticket.h */,
+				95E727951B2B41E6007C62AA /* Ticket.m */,
+				95E727911B2B412C007C62AA /* User.h */,
+				95E727921B2B412C007C62AA /* User.m */,
+				95E7278E1B2B3F3C007C62AA /* TicketType.h */,
+				95E7278F1B2B3F3C007C62AA /* TicketType.m */,
+				95E7278B1B2B3C2A007C62AA /* Seat.h */,
+				95E7278C1B2B3C2A007C62AA /* Seat.m */,
+				95E727881B2B33C2007C62AA /* Projection.h */,
+				95E727891B2B33C2007C62AA /* Projection.m */,
+				95E727851B2B306C007C62AA /* ProjectionType.h */,
+				95E727861B2B306C007C62AA /* ProjectionType.m */,
+				95E727821B2B2A8E007C62AA /* Hall.h */,
+				95E727831B2B2A8E007C62AA /* Hall.m */,
+				95E7277F1B2B29D0007C62AA /* Genre.h */,
+				95E727801B2B29D0007C62AA /* Genre.m */,
+				95E727791B2B27D2007C62AA /* Actor.h */,
+				95E7277A1B2B27D2007C62AA /* Actor.m */,
+				95E727761B2B21CF007C62AA /* Movie.h */,
+				95E727771B2B21CF007C62AA /* Movie.m */,
+				95E727731B29EE0A007C62AA /* Language.h */,
+				95E727741B29EE0A007C62AA /* Language.m */,
+				95E727701B29ED13007C62AA /* Director.h */,
+				95E727711B29ED13007C62AA /* Director.m */,
+				95E7276D1B29EB8C007C62AA /* Country.h */,
+				95E7276E1B29EB8C007C62AA /* Country.m */,
 			);
 			name = CDModels;
 			sourceTree = "<group>";
@@ -390,33 +390,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95E7276F1B29EB8C007C62AA /* Country.m in Sources */,
+				95E727901B2B3F3C007C62AA /* TicketType.m in Sources */,
 				49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */,
-				950F185E1B20A1AC008E075D /* Country.m in Sources */,
-				950F186D1B20A1AC008E075D /* Director.m in Sources */,
-				950F18581B20A1AB008E075D /* Ticket.m in Sources */,
-				950F18701B20A1AC008E075D /* ProjectionType.m in Sources */,
-				950F18611B20A1AC008E075D /* Hall.m in Sources */,
-				950F18731B20A1AC008E075D /* Actor.m in Sources */,
+				95E727781B2B21CF007C62AA /* Movie.m in Sources */,
 				31B20C2C1B271EEC00247370 /* MovieCell.m in Sources */,
+				95E727841B2B2A8E007C62AA /* Hall.m in Sources */,
+				95E7278D1B2B3C2A007C62AA /* Seat.m in Sources */,
+				95E727961B2B41E6007C62AA /* Ticket.m in Sources */,
+				95E727931B2B412C007C62AA /* User.m in Sources */,
 				9517C3031B11FB3A00542CE1 /* AppDelegate.m in Sources */,
 				313FA61A1B2797FF0095A365 /* DaysViewController.m in Sources */,
 				9517C3061B11FB3A00542CE1 /* VVKCinema.xcdatamodeld in Sources */,
-				950F18671B20A1AC008E075D /* TicketType.m in Sources */,
-				950F186A1B20A1AC008E075D /* User.m in Sources */,
-				950F185B1B20A1AC008E075D /* Language.m in Sources */,
+				95E727751B29EE0A007C62AA /* Language.m in Sources */,
+				95E7278A1B2B33C2007C62AA /* Projection.m in Sources */,
 				313FA61D1B2798790095A365 /* TransitionAnimator.m in Sources */,
-				950F18641B20A1AC008E075D /* Movie.m in Sources */,
 				31BD42C01B2977BB0095770F /* TicketsView.m in Sources */,
+				95E727811B2B29D0007C62AA /* Genre.m in Sources */,
 				313742B41B27FF2900E3DF58 /* TypeViewController.m in Sources */,
-				950F187C1B20A1AC008E075D /* Projection.m in Sources */,
-				950F18761B20A1AC008E075D /* Genre.m in Sources */,
 				9517C3091B11FB3A00542CE1 /* ViewController.m in Sources */,
+				95E7277B1B2B27D2007C62AA /* Actor.m in Sources */,
 				31B20C381B2739E400247370 /* AccountViewController.m in Sources */,
 				31B20C291B271DC500247370 /* RatingView.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
-				950F18791B20A1AC008E075D /* Seat.m in Sources */,
 				95E727661B299DCC007C62AA /* Parse.m in Sources */,
+				95E727721B29ED13007C62AA /* Director.m in Sources */,
 				31B20C3B1B273A7000247370 /* LoginViewController.m in Sources */,
+				95E727871B2B306C007C62AA /* ProjectionType.m in Sources */,
 				9517C3001B11FB3A00542CE1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

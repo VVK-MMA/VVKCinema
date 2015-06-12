@@ -16,7 +16,7 @@
 
 - (NSDictionary *)getAllObjectsWithType:(NSString *)type relatedToObjectWithClassName:(NSString *)className objectId:(NSString *)objectId andKeyName:(NSString *)keyName;
 
-- (void)getAllObjectsWithType:(NSString *)type;
+- (void)transferFromServerToCoreDataAllObjectsWithType:(NSString *)type;
 
 - (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId;
 

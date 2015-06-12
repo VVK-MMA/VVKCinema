@@ -2,7 +2,7 @@
 //  Projection.h
 //  VVKCinema
 //
-//  Created by Valeri Manchev on 6/4/15.
+//  Created by Valeri Manchev on 6/12/15.
 //  Copyright (c) 2015 VVK. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Projection : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * parseId;
 @property (nonatomic, retain) Hall *hall;
 @property (nonatomic, retain) Movie *movie;
 @property (nonatomic, retain) ProjectionType *projectionType;

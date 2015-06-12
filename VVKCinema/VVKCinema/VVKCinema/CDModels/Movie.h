@@ -2,27 +2,28 @@
 //  Movie.h
 //  VVKCinema
 //
-//  Created by Valeri Manchev on 6/4/15.
+//  Created by Valeri Manchev on 6/12/15.
 //  Copyright (c) 2015 VVK. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Country, Hall, Language, NSManagedObject;
+@class Actor, Country, Director, Genre, Hall, Language, Projection;
 
 @interface Movie : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSString * info;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSData * poster;
+@property (nonatomic, retain) NSString * poster;
 @property (nonatomic, retain) NSNumber * rate;
 @property (nonatomic, retain) NSDate * releaseDate;
 @property (nonatomic, retain) NSNumber * subtitled;
+@property (nonatomic, retain) NSString * parseId;
 @property (nonatomic, retain) NSSet *actors;
 @property (nonatomic, retain) Country *country;
-@property (nonatomic, retain) NSManagedObject *director;
+@property (nonatomic, retain) Director *director;
 @property (nonatomic, retain) NSSet *genres;
 @property (nonatomic, retain) NSSet *halls;
 @property (nonatomic, retain) Language *language;
@@ -31,13 +32,13 @@
 
 @interface Movie (CoreDataGeneratedAccessors)
 
-- (void)addActorsObject:(NSManagedObject *)value;
-- (void)removeActorsObject:(NSManagedObject *)value;
+- (void)addActorsObject:(Actor *)value;
+- (void)removeActorsObject:(Actor *)value;
 - (void)addActors:(NSSet *)values;
 - (void)removeActors:(NSSet *)values;
 
-- (void)addGenresObject:(NSManagedObject *)value;
-- (void)removeGenresObject:(NSManagedObject *)value;
+- (void)addGenresObject:(Genre *)value;
+- (void)removeGenresObject:(Genre *)value;
 - (void)addGenres:(NSSet *)values;
 - (void)removeGenres:(NSSet *)values;
 
@@ -46,8 +47,8 @@
 - (void)addHalls:(NSSet *)values;
 - (void)removeHalls:(NSSet *)values;
 
-- (void)addProjectionsObject:(NSManagedObject *)value;
-- (void)removeProjectionsObject:(NSManagedObject *)value;
+- (void)addProjectionsObject:(Projection *)value;
+- (void)removeProjectionsObject:(Projection *)value;
 - (void)addProjections:(NSSet *)values;
 - (void)removeProjections:(NSSet *)values;
 

@@ -21,10 +21,19 @@
 {
     _movie = movie;
     
-    //test
-    self.movieCoverImageView.image = [UIImage imageNamed:@"entourage"];
-    self.movieTitleLabel.text = @"Entourage";
-    self.ratingView.numberOfStars = 4;
+    NSURL *posterUrl = [NSURL URLWithString:movie.poster];
+    
+    dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
+    dispatch_async(downloadQueue, ^{
+        NSData * imageData = [NSData dataWithContentsOfURL:posterUrl];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.movieCoverImageView.image = [UIImage imageWithData:imageData];
+        });
+    });
+    
+    self.movieTitleLabel.text = movie.name;
+    self.ratingView.numberOfStars = [movie.rate stringValue];
 }
 
 @end

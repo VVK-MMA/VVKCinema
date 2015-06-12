@@ -22,11 +22,38 @@
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     self.initialLaunch = YES;
     
-//    [[Parse sharedParse] getAllObjectsWithType:@"Movie" relatedToObjectWithClassName:@"Actor" objectId:@"Im26nkzfgO" andKeyName:@"movies"];
-    [[Parse sharedParse] getAllObjectsWithType:@"Movie"];
-//    [[Parse sharedParse] getObjectWithType:@"Movie" andObjectId:@"DvWDahelbS"];
+    // Transfer Movies From Server To Core Data
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Movie"];
+    });
+    
+    // Subscribe For Notifications For Transfering Data Between Server And Core Data
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferProjectionsFromServerToCoreData) name:@"MoviesAddedToCoreData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferTicketsFromServerToCoreData) name:@"ProjectionsAddedToCoreData" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferMoviesFromServerToCoreData) name:@"TicketsAddedToCoreData" object:nil];
     
     return YES;
+}
+
+-(void)transferProjectionsFromServerToCoreData
+{
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Projection"];
+    });
+}
+
+-(void)transferTicketsFromServerToCoreData
+{
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Ticket"];
+    });
+}
+
+-(void)transferMoviesFromServerToCoreData
+{
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Movie"];
+    });
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

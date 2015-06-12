@@ -819,7 +819,7 @@
         <image name="alphabet" width="64" height="55"/>
         <image name="arrow" width="163" height="243"/>
         <image name="calendar" width="59" height="64"/>
-        <image name="genre" width="240" height="159"/>
+        <image name="genre" width="584" height="363"/>
         <image name="moviepopcorn" width="600" height="405"/>
         <image name="popcorn" width="600" height="453"/>
         <image name="profile" width="15" height="24"/>

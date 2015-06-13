@@ -198,22 +198,29 @@
                     
                     Movie *newMovie = [NSEntityDescription insertNewObjectForEntityForName:@"Movie" inManagedObjectContext:[self getContext]];
                     
+                    newMovie.parseId = objectId;
+                    
                     NSNumber *duration = [movieDictionary objectForKey:@"duration"];
                     NSLog(@"%@", duration);
+                    newMovie.duration = duration;
                     
                     NSString *movieInfo = [movieDictionary objectForKey:@"info"];
                     NSLog(@"%@", movieInfo);
-                        
+                    newMovie.info = movieInfo;
+                    
                     NSString *name = [movieDictionary objectForKey:@"name"];
                     NSLog(@"%@", name);
-                        
+                    newMovie.name = name;
+                    
                     NSDictionary *posterDictionary = [movieDictionary objectForKey:@"poster"];
                     NSString *posterUrl = [posterDictionary objectForKey:@"url"];
                     NSLog(@"%@", posterUrl);
-                        
+                    newMovie.poster = posterUrl;
+                    
                     NSNumber *rate = [movieDictionary objectForKey:@"rate"];
                     NSLog(@"%@", rate);
-                        
+                    newMovie.rate = rate;
+                    
                     NSDictionary *releaseDateDictionary = [movieDictionary objectForKey:@"releaseDate"];
                     NSString *releaseDateIso = [releaseDateDictionary objectForKey:@"iso"];
                     NSLog(@"%@", releaseDateIso);
@@ -222,9 +229,11 @@
                     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
                     NSDate *capturedStartDate = [dateFormatter dateFromString:releaseDateIso];
                     NSLog(@"%@", capturedStartDate);
-                        
+                    newMovie.releaseDate = capturedStartDate;
+                    
                     NSNumber *subtitled = [movieDictionary objectForKey:@"subtitled"];
                     NSLog(@"%@", subtitled);
+                    newMovie.subtitled = subtitled;
                     
                     NSDictionary *countryDictionary = [movieDictionary objectForKey:@"country"];
                     NSString *countryId = [countryDictionary objectForKey:@"objectId"];
@@ -240,7 +249,7 @@
                         newCountry.parseId = countryId;
                         newCountry.name = countryName;
                             
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
                     
                     NSDictionary *directorDictionary = [movieDictionary objectForKey:@"director"];
@@ -260,7 +269,7 @@
                         newDirector.firstName = directorFirstName;
                         newDirector.lastName = directorLastName;
                             
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *languageDictionary = [movieDictionary objectForKey:@"language"];
@@ -277,7 +286,7 @@
                         newLanguage.parseId = languageId;
                         newLanguage.name = languageName;
                             
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *actorsResultsDictionary = [self getAllObjectsWithType:@"Actor" relatedToObjectWithClassName:@"Movie" objectId:objectId andKeyName:@"actors"];
@@ -300,7 +309,7 @@
                                 newActor.firstName = actorFirstName;
                                 newActor.lastName = actorLastName;
                                 
-                                [self saveContext:[self getContext]];
+//                                [self saveContext:[self getContext]];
                             
                                 [newMovie addActorsObject:newActor];
                             }
@@ -324,7 +333,7 @@
                                 newGenre.parseId = genreObjectId;
                                 newGenre.name = genreName;
                                     
-                                [self saveContext:[self getContext]];
+//                                [self saveContext:[self getContext]];
                                 
                                 [newMovie addGenresObject:newGenre];
                             }
@@ -348,23 +357,14 @@
                                 newHall.parseId = hallObjectId;
                                 newHall.name = hallName;
                                     
-                                [self saveContext:[self getContext]];
-                                    
+//                                [self saveContext:[self getContext]];
+                                
                                 [newMovie addHallsObject:newHall];
                             }
 
                         }
                     }
-                        
-                    newMovie.parseId = objectId;
-                    newMovie.duration = duration;
-                    newMovie.info = movieInfo;
-                    newMovie.name = name;
-                    newMovie.poster = posterUrl;
-                    newMovie.rate = rate;
-                    newMovie.releaseDate = capturedStartDate;
-                    newMovie.subtitled = subtitled;
-                        
+                    
                     NSArray *countryArray = [self fetchObjectWithEntityName:@"Country" objectId:countryId andContext:[self getContext]];
                         
                     if ( countryArray ) {
@@ -389,10 +389,12 @@
                         NSLog(@"%@", checkLanguage.name);
                     }
                         
-                    [self saveContext:[self getContext]];
+//                    [self saveContext:[self getContext]];
                 }
             }
-                
+            
+            [self saveContext:[self getContext]];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"MoviesAddedToCoreData" object:nil];
         } else if ( [type isEqualToString:@"Projection"] ) {
             for (id key in responseDictionary) {
@@ -407,7 +409,9 @@
                     }
                         
                     Projection *newProjection = [NSEntityDescription insertNewObjectForEntityForName:@"Projection" inManagedObjectContext:[self getContext]];
-                        
+                    
+                    newProjection.parseId = projectionObjectId;
+                    
                     NSDictionary *projectionDateDictionary = [projectionDictionary objectForKey:@"date"];
                     NSString *projectionDateIso = [projectionDateDictionary objectForKey:@"iso"];
                     NSLog(@"%@", projectionDateIso);
@@ -416,7 +420,8 @@
                     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
                     NSDate *capturedStartDate = [dateFormatter dateFromString:projectionDateIso];
                     NSLog(@"%@", capturedStartDate);
-                        
+                    newProjection.date = capturedStartDate;
+                    
                     NSDictionary *projectionHallDictionary = [projectionDictionary objectForKey:@"hall"];
                     NSString *projectionHallId = [projectionHallDictionary objectForKey:@"objectId"];
                     NSLog(@"%@", projectionHallId);
@@ -431,7 +436,7 @@
                         newHall.parseId = projectionHallId;
                         newHall.name = projectionHallName;
                             
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *projectionMovieDictionary = [projectionDictionary objectForKey:@"movie"];
@@ -452,12 +457,9 @@
                         newProjectionType.parseId = projectionProjectionTypeId;
                         newProjectionType.name = projectionProjectionTypeName;
                             
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
-                        
-                    newProjection.parseId = projectionObjectId;
-                    newProjection.date = capturedStartDate;
-                        
+                    
                     NSArray *hallArray = [self fetchObjectWithEntityName:@"Hall" objectId:projectionHallId andContext:[self getContext]];
                     
                     if ( hallArray ) {
@@ -482,10 +484,12 @@
                         NSLog(@"%@", checkProjectionType.name);
                     }
                         
-                    [self saveContext:[self getContext]];
+//                    [self saveContext:[self getContext]];
                 }
             }
-                
+            
+            [self saveContext:[self getContext]];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
         } else if ( [type isEqualToString:@"Ticket"] ) {
             for (id key in responseDictionary) {
@@ -500,7 +504,9 @@
                     }
                         
                     Ticket *newTicket = [NSEntityDescription insertNewObjectForEntityForName:@"Ticket" inManagedObjectContext:[self getContext]];
-                        
+                    
+                    newTicket.parseId = ticketObjectId;
+                    
                     NSDictionary *seatDictionary = [ticketDictionary objectForKey:@"seat"];
                     NSString *seatId = [seatDictionary objectForKey:@"objectId"];
                     NSLog(@"%@", seatId);
@@ -535,7 +541,7 @@
                             NSLog(@"%@", checkProjection.date);
                         }
                             
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *ticketTypeDictionary = [ticketDictionary objectForKey:@"ticketType"];
@@ -552,7 +558,7 @@
                         newTicketType.parseId = ticketTypeId;
                         newTicketType.name = ticketTypeName;
                         
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *userDictionary = [ticketDictionary objectForKey:@"user"];
@@ -577,10 +583,8 @@
                         newUser.password = userPassword;
                         newUser.email = userEmail;
                             
-                        [self saveContext:[self getContext]];
+//                        [self saveContext:[self getContext]];
                     }
-                        
-                    newTicket.parseId = ticketObjectId;
                     
                     NSArray *seatArray = [self fetchObjectWithEntityName:@"Seat" objectId:seatId andContext:[self getContext]];
                         
@@ -606,10 +610,12 @@
                         NSLog(@"%@", checkUser.username);
                     }
                         
-                    [self saveContext:[self getContext]];
+//                    [self saveContext:[self getContext]];
                 }
             }
-                
+            
+            [self saveContext:[self getContext]];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"TicketsAddedToCoreData" object:nil];
         }
         

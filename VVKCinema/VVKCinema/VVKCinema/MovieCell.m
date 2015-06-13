@@ -36,4 +36,8 @@
     self.ratingView.numberOfStars = [movie.rate stringValue];
 }
 
+-(void)prepareForReuse {
+    self.movieCoverImageView.image = nil;
+}
+
 @end

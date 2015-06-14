@@ -16,7 +16,7 @@
 #import "TypeViewController.h"
 #import "TransitionAnimator.h"
 #import "GenreViewController.h"
-
+#import "MapViewController.h"
 @interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -35,13 +35,21 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    /*
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    self.context = appDelegate.managedObjectContext;
+   //map settings
     
-    NSError *error;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        [self alert]; */
+    UIBarButtonItem *map = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"map"] style:UIBarButtonItemStylePlain target:self action:@selector(map:)];
+    map.tintColor = [UIColor whiteColor];
+    
+    
+    UIBarButtonItem *sorted = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sort"] style:UIBarButtonItemStylePlain target:self action:@selector(showSortVC:)];
+    sorted.tintColor = [UIColor whiteColor];
+      NSArray * buttons = [[NSArray alloc]initWithObjects:map,sorted, nil];
+    self.navigationItem.rightBarButtonItems = buttons;
+    
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.title = @"Profile";
+    
     
     self.moviesCollectionView.dataSource = self;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
@@ -147,21 +155,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
 #pragma mark - IBActions
 
-- (IBAction)showSortVC:(UIBarButtonItem *)sender
-{
-    SortOptionsViewController *sovc = [self.storyboard instantiateViewControllerWithIdentifier:@"SortVC"];
-    
-    UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView *beView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    beView.frame = self.view.bounds;
-    
-    sovc.view.frame = self.view.bounds;
-    sovc.view.backgroundColor = [UIColor clearColor];
-    [sovc.view insertSubview:beView atIndex:0];
-    sovc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    
-    [self presentViewController:sovc animated:NO completion:nil];
-}
 
 - (IBAction)showAccountVC:(UIBarButtonItem *)sender
 {
@@ -351,7 +344,27 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     });
 }
 #pragma mark - Helper methods
-
+- (void)showSortVC:(UIBarButtonItem *)sender
+{
+    SortOptionsViewController *sovc = [self.storyboard instantiateViewControllerWithIdentifier:@"SortVC"];
+    
+    UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *beView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    beView.frame = self.view.bounds;
+    
+    sovc.view.frame = self.view.bounds;
+    sovc.view.backgroundColor = [UIColor clearColor];
+    [sovc.view insertSubview:beView atIndex:0];
+    sovc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    
+    [self presentViewController:sovc animated:NO completion:nil];
+}
+- (void)map:(UIBarButtonItem *)button
+{
+    MapViewController *ctvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Map"];
+    
+    [self.navigationController presentViewController:ctvc animated:YES completion:nil];
+}
 - (void)alert
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was a problem with the database. Fetch could not be performed!" preferredStyle:UIAlertControllerStyleAlert];

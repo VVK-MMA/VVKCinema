@@ -26,14 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem *map = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStylePlain target:self action:@selector(map:)];
-    self.navigationItem.rightBarButtonItem = map;
-    [map setTintColor:[UIColor whiteColor]];
     
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    self.title = @"Profile";
-    
-    //change the font of the view controller's title
+        //change the font of the view controller's title
     CGRect frame = CGRectZero;
     UILabel *viewControllerTitle = [[UILabel alloc] initWithFrame:frame];
     viewControllerTitle.backgroundColor = [UIColor clearColor];
@@ -64,23 +59,17 @@
 }
 
 #pragma mark - IBActions
-- (void)map:(UIBarButtonItem *)button
-{
-    MapViewController *ctvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Map"];
-   
-    [self.navigationController presentViewController:ctvc animated:YES completion:nil];
-}
 
 - (IBAction)backToMovies:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:self completion:nil];
 }
 
-/*- (IBAction)logout:(UIBarButtonItem *)sender
+- (IBAction)logout:(UIBarButtonItem *)sender
 {
     [self dismissViewControllerAnimated:self completion:nil];
 }
- */
+
 
 #pragma mark - TicketsViewDelegate
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5m7-Pk-sAb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5m7-Pk-sAb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -355,6 +355,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tickets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-bb-8Eg">
+                                <rect key="frame" x="258" y="142" width="84" height="28"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CIm-Kj-Ky1" customClass="TicketsView">
+                                <rect key="frame" x="15" y="178" width="585" height="422"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="410" id="y9z-L5-Naa"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="y9z-L5-Naa"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMl-dx-D9g">
                                 <rect key="frame" x="0.0" y="64" width="600" height="70"/>
                                 <subviews>
@@ -395,24 +413,6 @@
                                     <constraint firstItem="Db9-zy-Vqf" firstAttribute="leading" secondItem="bOO-LP-hQS" secondAttribute="leading" id="rap-19-Zej"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tickets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-bb-8Eg">
-                                <rect key="frame" x="258" y="142" width="84" height="28"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CIm-Kj-Ky1" customClass="TicketsView">
-                                <rect key="frame" x="15" y="178" width="585" height="422"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="410" id="y9z-L5-Naa"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="y9z-L5-Naa"/>
-                                    </mask>
-                                </variation>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -433,6 +433,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="YaY-7O-dQs"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="Uff-RJ-pd8">
                         <barButtonItem key="leftBarButtonItem" image="tiles" id="kc5-Lo-GHF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -440,7 +443,11 @@
                                 <action selector="backToMovies:" destination="MAB-NS-EqG" id="gUN-yD-1S5"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="Tsb-ys-Uq4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailLabel" destination="Db9-zy-Vqf" id="GRP-uU-VMQ"/>
                         <outlet property="nameLabel" destination="bOO-LP-hQS" id="lVM-bu-E7M"/>
@@ -729,7 +736,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tQv-kr-p1e">
-                        <barButtonItem key="leftBarButtonItem" title="Profile" id="H9x-Nd-ytc">
+                        <barButtonItem key="leftBarButtonItem" image="tiles" id="H9x-Nd-ytc">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="goToProfile:" destination="Z3U-bj-aVo" id="g8n-sD-Vv1"/>
@@ -819,6 +826,7 @@
         <image name="alphabet" width="64" height="55"/>
         <image name="arrow" width="163" height="243"/>
         <image name="calendar" width="59" height="64"/>
+        <image name="exit" width="24" height="24"/>
         <image name="genre" width="584" height="363"/>
         <image name="moviepopcorn" width="600" height="405"/>
         <image name="popcorn" width="600" height="453"/>

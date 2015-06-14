@@ -8,7 +8,7 @@
 
 #import "DaysViewController.h"
 
-@interface DaysViewController() <UITableViewDataSource>
+@interface DaysViewController() <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *days;
 @property (strong, nonatomic) NSDateFormatter *weekdayFormatter;
@@ -91,6 +91,7 @@
     
     return cell;
 }
+
 
 #pragma mark - Helper methods
 

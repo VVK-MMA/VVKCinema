@@ -17,6 +17,7 @@
 #import "TransitionAnimator.h"
 #import "GenreViewController.h"
 #import "MapViewController.h"
+#import "VVKCinemaInfo.h"
 @interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -35,8 +36,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   //map settings
-    
+   // map settings
     UIBarButtonItem *map = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"map"] style:UIBarButtonItemStylePlain target:self action:@selector(map:)];
     map.tintColor = [UIColor whiteColor];
     
@@ -74,14 +74,35 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
 }
 
+-(void)performFetch
+{
+    NSError *error;
+    
+    self.fetchedResultsController = nil;
+    
+    [self.fetchedResultsController performFetch:&error];
+    [self.moviesCollectionView reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     if (self.appDelegate.initialLaunch) {
         [self setupBackground];
+        
         self.appDelegate.initialLaunch = NO;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedSortOption" object:nil];
 }
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedSortOption" object:nil];
+}
+
 #pragma mark - Setters
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -102,7 +123,11 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO];
+    
+    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] sortDescriptor] ) {
+        sortDescriptor = [[VVKCinemaInfo sharedVVKCinemaInfo] sortDescriptor];
+    }
     
     NSArray *sortDescriptors = @[sortDescriptor];
 

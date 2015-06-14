@@ -27,11 +27,12 @@
 		9517C30C1B11FB3A00542CE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9517C30A1B11FB3A00542CE1 /* Main.storyboard */; };
 		9517C3111B11FB3A00542CE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9517C30F1B11FB3A00542CE1 /* LaunchScreen.xib */; };
 		9517C31D1B11FB3A00542CE1 /* VVKCinemaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9517C31C1B11FB3A00542CE1 /* VVKCinemaTests.m */; };
+		956FFCE61B2E1EB200A429D8 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCE51B2E1EB200A429D8 /* Movie.m */; };
+		956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCE81B2E22C900A429D8 /* VVKCinemaInfo.m */; };
 		95E727661B299DCC007C62AA /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* Parse.m */; };
 		95E7276F1B29EB8C007C62AA /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7276E1B29EB8C007C62AA /* Country.m */; };
 		95E727721B29ED13007C62AA /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727711B29ED13007C62AA /* Director.m */; };
 		95E727751B29EE0A007C62AA /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727741B29EE0A007C62AA /* Language.m */; };
-		95E727781B2B21CF007C62AA /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727771B2B21CF007C62AA /* Movie.m */; };
 		95E7277B1B2B27D2007C62AA /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7277A1B2B27D2007C62AA /* Actor.m */; };
 		95E727811B2B29D0007C62AA /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727801B2B29D0007C62AA /* Genre.m */; };
 		95E727841B2B2A8E007C62AA /* Hall.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727831B2B2A8E007C62AA /* Hall.m */; };
@@ -91,6 +92,10 @@
 		9517C3161B11FB3A00542CE1 /* VVKCinemaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VVKCinemaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9517C31B1B11FB3A00542CE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9517C31C1B11FB3A00542CE1 /* VVKCinemaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVKCinemaTests.m; sourceTree = "<group>"; };
+		956FFCE41B2E1EB200A429D8 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Movie.h; path = CDModels/Movie.h; sourceTree = "<group>"; };
+		956FFCE51B2E1EB200A429D8 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Movie.m; path = CDModels/Movie.m; sourceTree = "<group>"; };
+		956FFCE71B2E22C900A429D8 /* VVKCinemaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VVKCinemaInfo.h; path = Controllers/VVKCinemaInfo.h; sourceTree = "<group>"; };
+		956FFCE81B2E22C900A429D8 /* VVKCinemaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VVKCinemaInfo.m; path = Controllers/VVKCinemaInfo.m; sourceTree = "<group>"; };
 		95E727641B299DCC007C62AA /* Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parse.h; path = Controllers/Parse.h; sourceTree = "<group>"; };
 		95E727651B299DCC007C62AA /* Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parse.m; path = Controllers/Parse.m; sourceTree = "<group>"; };
 		95E7276D1B29EB8C007C62AA /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
@@ -99,8 +104,6 @@
 		95E727711B29ED13007C62AA /* Director.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Director.m; path = CDModels/Director.m; sourceTree = "<group>"; };
 		95E727731B29EE0A007C62AA /* Language.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Language.h; path = CDModels/Language.h; sourceTree = "<group>"; };
 		95E727741B29EE0A007C62AA /* Language.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Language.m; path = CDModels/Language.m; sourceTree = "<group>"; };
-		95E727761B2B21CF007C62AA /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Movie.h; path = CDModels/Movie.h; sourceTree = "<group>"; };
-		95E727771B2B21CF007C62AA /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Movie.m; path = CDModels/Movie.m; sourceTree = "<group>"; };
 		95E727791B2B27D2007C62AA /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Actor.h; path = CDModels/Actor.h; sourceTree = "<group>"; };
 		95E7277A1B2B27D2007C62AA /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Actor.m; path = CDModels/Actor.m; sourceTree = "<group>"; };
 		95E7277F1B2B29D0007C62AA /* Genre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Genre.h; path = CDModels/Genre.h; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 				9517C3021B11FB3A00542CE1 /* AppDelegate.m */,
 				95E727641B299DCC007C62AA /* Parse.h */,
 				95E727651B299DCC007C62AA /* Parse.m */,
+				956FFCE71B2E22C900A429D8 /* VVKCinemaInfo.h */,
+				956FFCE81B2E22C900A429D8 /* VVKCinemaInfo.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -206,6 +211,8 @@
 		950F187D1B20A1B9008E075D /* CDModels */ = {
 			isa = PBXGroup;
 			children = (
+				956FFCE41B2E1EB200A429D8 /* Movie.h */,
+				956FFCE51B2E1EB200A429D8 /* Movie.m */,
 				95E727941B2B41E6007C62AA /* Ticket.h */,
 				95E727951B2B41E6007C62AA /* Ticket.m */,
 				95E727911B2B412C007C62AA /* User.h */,
@@ -224,8 +231,6 @@
 				95E727801B2B29D0007C62AA /* Genre.m */,
 				95E727791B2B27D2007C62AA /* Actor.h */,
 				95E7277A1B2B27D2007C62AA /* Actor.m */,
-				95E727761B2B21CF007C62AA /* Movie.h */,
-				95E727771B2B21CF007C62AA /* Movie.m */,
 				95E727731B29EE0A007C62AA /* Language.h */,
 				95E727741B29EE0A007C62AA /* Language.m */,
 				95E727701B29ED13007C62AA /* Director.h */,
@@ -401,8 +406,8 @@
 			files = (
 				95E7276F1B29EB8C007C62AA /* Country.m in Sources */,
 				95E727901B2B3F3C007C62AA /* TicketType.m in Sources */,
+				956FFCE61B2E1EB200A429D8 /* Movie.m in Sources */,
 				49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */,
-				95E727781B2B21CF007C62AA /* Movie.m in Sources */,
 				31B20C2C1B271EEC00247370 /* MovieCell.m in Sources */,
 				95E727841B2B2A8E007C62AA /* Hall.m in Sources */,
 				95E7278D1B2B3C2A007C62AA /* Seat.m in Sources */,
@@ -423,6 +428,7 @@
 				31B20C291B271DC500247370 /* RatingView.m in Sources */,
 				49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
+				956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */,
 				95E727661B299DCC007C62AA /* Parse.m in Sources */,
 				95E727721B29ED13007C62AA /* Director.m in Sources */,
 				31B20C3B1B273A7000247370 /* LoginViewController.m in Sources */,

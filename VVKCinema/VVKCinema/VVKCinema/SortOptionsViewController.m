@@ -7,11 +7,14 @@
 //
 
 #import "SortOptionsViewController.h"
+#import "VVKCinemaInfo.h"
 
 @interface SortOptionsViewController()
+
 @property (weak, nonatomic) IBOutlet UIButton *alphabetButton;
 @property (weak, nonatomic) IBOutlet UIButton *ratingButton;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
+
 @end
 
 @implementation SortOptionsViewController
@@ -37,6 +40,20 @@
 - (IBAction)dismissVC:(UITapGestureRecognizer *)sender
 {
     [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+- (IBAction)addSortOption:(id)sender {
+    if ( [sender tag] == 0 ) {
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
+    } else if ( [sender tag] == 1 ) {
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
+    } else if ( [sender tag] == 2 ) {
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO]];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
+    
+    [self dismissVC:sender];
 }
 
 @end

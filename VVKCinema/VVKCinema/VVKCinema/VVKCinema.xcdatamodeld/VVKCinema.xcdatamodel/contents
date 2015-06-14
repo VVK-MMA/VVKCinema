@@ -39,6 +39,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="poster" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="posterData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="rate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="subtitled" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -96,13 +97,13 @@
         <element name="Director" positionX="-72" positionY="126" width="128" height="103"/>
         <element name="Genre" positionX="-72" positionY="240" width="128" height="88"/>
         <element name="Hall" positionX="432" positionY="119" width="128" height="103"/>
-        <element name="Language" positionX="432" positionY="234" width="128" height="88"/>
-        <element name="Movie" positionX="180" positionY="72" width="128" height="268"/>
-        <element name="Projection" positionX="592" positionY="413" width="128" height="133"/>
+        <element name="Language" positionX="315" positionY="306" width="128" height="88"/>
+        <element name="Movie" positionX="153" positionY="18" width="128" height="283"/>
+        <element name="Projection" positionX="655" positionY="413" width="128" height="133"/>
         <element name="ProjectionType" positionX="153" positionY="351" width="128" height="88"/>
         <element name="Seat" positionX="153" positionY="449" width="128" height="133"/>
         <element name="Ticket" positionX="-72" positionY="531" width="128" height="118"/>
         <element name="TicketType" positionX="153" positionY="594" width="128" height="88"/>
-        <element name="User" positionX="171" positionY="252" width="128" height="118"/>
+        <element name="User" positionX="-83" positionY="369" width="128" height="118"/>
     </elements>
 </model>

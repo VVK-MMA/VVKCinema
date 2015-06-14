@@ -23,14 +23,18 @@
     
     NSURL *posterUrl = [NSURL URLWithString:movie.poster];
     
-    dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
-    dispatch_async(downloadQueue, ^{
-        NSData * imageData = [NSData dataWithContentsOfURL:posterUrl];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.movieCoverImageView.image = [UIImage imageWithData:imageData];
+    if ( movie.posterData ) {
+        self.movieCoverImageView.image = [UIImage imageWithData:movie.posterData];
+    } else {
+        dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
+        dispatch_async(downloadQueue, ^{
+            NSData * imageData = [NSData dataWithContentsOfURL:posterUrl];
+            
+            movie.posterData = imageData;
+            
+            self.movieCoverImageView.image = [UIImage imageWithData:movie.posterData];
         });
-    });
+    }
     
     self.movieTitleLabel.text = movie.name;
     self.ratingView.numberOfStars = [movie.rate stringValue];

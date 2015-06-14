@@ -2,7 +2,7 @@
 //  Movie.h
 //  VVKCinema
 //
-//  Created by Valeri Manchev on 6/12/15.
+//  Created by Valeri Manchev on 6/14/15.
 //  Copyright (c) 2015 VVK. All rights reserved.
 //
 
@@ -16,11 +16,12 @@
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSString * info;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * parseId;
 @property (nonatomic, retain) NSString * poster;
 @property (nonatomic, retain) NSNumber * rate;
 @property (nonatomic, retain) NSDate * releaseDate;
 @property (nonatomic, retain) NSNumber * subtitled;
-@property (nonatomic, retain) NSString * parseId;
+@property (nonatomic, retain) NSData * posterData;
 @property (nonatomic, retain) NSSet *actors;
 @property (nonatomic, retain) Country *country;
 @property (nonatomic, retain) Director *director;

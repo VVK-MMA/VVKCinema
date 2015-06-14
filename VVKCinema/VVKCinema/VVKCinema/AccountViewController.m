@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
         //change the font of the view controller's title
     CGRect frame = CGRectZero;
     UILabel *viewControllerTitle = [[UILabel alloc] initWithFrame:frame];

@@ -443,6 +443,9 @@
                                 <action selector="backToMovies:" destination="MAB-NS-EqG" id="gUN-yD-1S5"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="exit" id="Tsb-ys-Uq4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -733,7 +736,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tQv-kr-p1e">
-                        <barButtonItem key="leftBarButtonItem" title="Profile" id="H9x-Nd-ytc">
+                        <barButtonItem key="leftBarButtonItem" image="tiles" id="H9x-Nd-ytc">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="goToProfile:" destination="Z3U-bj-aVo" id="g8n-sD-Vv1"/>
@@ -823,6 +826,7 @@
         <image name="alphabet" width="64" height="55"/>
         <image name="arrow" width="163" height="243"/>
         <image name="calendar" width="59" height="64"/>
+        <image name="exit" width="24" height="24"/>
         <image name="genre" width="584" height="363"/>
         <image name="moviepopcorn" width="600" height="405"/>
         <image name="popcorn" width="600" height="453"/>

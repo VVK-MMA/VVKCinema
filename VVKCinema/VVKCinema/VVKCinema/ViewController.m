@@ -48,7 +48,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    self.title = @"Profile";
+    
     
     
     self.moviesCollectionView.dataSource = self;

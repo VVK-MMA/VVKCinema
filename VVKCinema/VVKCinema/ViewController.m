@@ -18,6 +18,7 @@
 #import "GenreViewController.h"
 #import "MapViewController.h"
 #import "VVKCinemaInfo.h"
+
 @interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -122,6 +123,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[appDelegate managedObjectContext]];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[[CoreDataInfo sharedVVKCinemaInfo] managedObjectContext]];
     
     [fetchRequest setEntity:entity];
     
@@ -167,6 +169,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[appDelegate managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
+//    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[CoreDataInfo sharedVVKCinemaInfo] managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
     
     aFetchedResultsController.delegate = self;
     

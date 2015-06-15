@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "Parse.h"
+#import "ParseInfo.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +24,7 @@
     
     // Transfer Movies From Server To Core Data
     dispatch_async(dispatch_get_global_queue(0,0), ^{
-        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Movie"];
+        [[ParseInfo sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Movie"];
     });
     
     // Subscribe For Notifications For Transfering Data Between Server And Core Data
@@ -38,21 +38,21 @@
 -(void)transferProjectionsFromServerToCoreData
 {
     dispatch_async(dispatch_get_global_queue(0,0), ^{
-        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Projection"];
+        [[ParseInfo sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Projection"];
     });
 }
 
 -(void)transferTicketsFromServerToCoreData
 {
     dispatch_async(dispatch_get_global_queue(0,0), ^{
-        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Ticket"];
+        [[ParseInfo sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Ticket"];
     });
 }
 
 -(void)transferMoviesFromServerToCoreData
 {
     dispatch_async(dispatch_get_global_queue(0,0), ^{
-        [[Parse sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Movie"];
+        [[ParseInfo sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Movie"];
     });
 }
 
@@ -77,6 +77,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    
     [self saveContext];
 }
 

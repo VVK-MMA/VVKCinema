@@ -98,7 +98,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedDayPredicate" object:nil];
     
-    //    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"UnwindToDays" sender:self];
 }
 
 

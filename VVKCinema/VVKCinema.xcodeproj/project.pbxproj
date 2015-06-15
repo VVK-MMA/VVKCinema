@@ -30,7 +30,8 @@
 		956FFCE61B2E1EB200A429D8 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCE51B2E1EB200A429D8 /* Movie.m */; };
 		956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCE81B2E22C900A429D8 /* VVKCinemaInfo.m */; };
 		956FFCEC1B2EE9B300A429D8 /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCEB1B2EE9B300A429D8 /* DayCell.m */; };
-		95E727661B299DCC007C62AA /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* Parse.m */; };
+		956FFCF21B2F0CE300A429D8 /* CoreDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCF11B2F0CE300A429D8 /* CoreDataInfo.m */; };
+		95E727661B299DCC007C62AA /* ParseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* ParseInfo.m */; };
 		95E7276F1B29EB8C007C62AA /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7276E1B29EB8C007C62AA /* Country.m */; };
 		95E727721B29ED13007C62AA /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727711B29ED13007C62AA /* Director.m */; };
 		95E727751B29EE0A007C62AA /* Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727741B29EE0A007C62AA /* Language.m */; };
@@ -99,8 +100,10 @@
 		956FFCE81B2E22C900A429D8 /* VVKCinemaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VVKCinemaInfo.m; path = Controllers/VVKCinemaInfo.m; sourceTree = "<group>"; };
 		956FFCEA1B2EE9B300A429D8 /* DayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DayCell.h; path = Cells/DayCell.h; sourceTree = "<group>"; };
 		956FFCEB1B2EE9B300A429D8 /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayCell.m; path = Cells/DayCell.m; sourceTree = "<group>"; };
-		95E727641B299DCC007C62AA /* Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parse.h; path = Controllers/Parse.h; sourceTree = "<group>"; };
-		95E727651B299DCC007C62AA /* Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parse.m; path = Controllers/Parse.m; sourceTree = "<group>"; };
+		956FFCF01B2F0CE300A429D8 /* CoreDataInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataInfo.h; path = Controllers/CoreDataInfo.h; sourceTree = "<group>"; };
+		956FFCF11B2F0CE300A429D8 /* CoreDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataInfo.m; path = Controllers/CoreDataInfo.m; sourceTree = "<group>"; };
+		95E727641B299DCC007C62AA /* ParseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseInfo.h; path = Controllers/ParseInfo.h; sourceTree = "<group>"; };
+		95E727651B299DCC007C62AA /* ParseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseInfo.m; path = Controllers/ParseInfo.m; sourceTree = "<group>"; };
 		95E7276D1B29EB8C007C62AA /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
 		95E7276E1B29EB8C007C62AA /* Country.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Country.m; path = CDModels/Country.m; sourceTree = "<group>"; };
 		95E727701B29ED13007C62AA /* Director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Director.h; path = CDModels/Director.h; sourceTree = "<group>"; };
@@ -205,10 +208,12 @@
 			children = (
 				9517C3011B11FB3A00542CE1 /* AppDelegate.h */,
 				9517C3021B11FB3A00542CE1 /* AppDelegate.m */,
-				95E727641B299DCC007C62AA /* Parse.h */,
-				95E727651B299DCC007C62AA /* Parse.m */,
+				95E727641B299DCC007C62AA /* ParseInfo.h */,
+				95E727651B299DCC007C62AA /* ParseInfo.m */,
 				956FFCE71B2E22C900A429D8 /* VVKCinemaInfo.h */,
 				956FFCE81B2E22C900A429D8 /* VVKCinemaInfo.m */,
+				956FFCF01B2F0CE300A429D8 /* CoreDataInfo.h */,
+				956FFCF11B2F0CE300A429D8 /* CoreDataInfo.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -433,9 +438,10 @@
 				31B20C291B271DC500247370 /* RatingView.m in Sources */,
 				956FFCEC1B2EE9B300A429D8 /* DayCell.m in Sources */,
 				49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */,
+				956FFCF21B2F0CE300A429D8 /* CoreDataInfo.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
 				956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */,
-				95E727661B299DCC007C62AA /* Parse.m in Sources */,
+				95E727661B299DCC007C62AA /* ParseInfo.m in Sources */,
 				95E727721B29ED13007C62AA /* Director.m in Sources */,
 				31B20C3B1B273A7000247370 /* LoginViewController.m in Sources */,
 				95E727871B2B306C007C62AA /* ProjectionType.m in Sources */,

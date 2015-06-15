@@ -7,9 +7,10 @@
 //
 
 #import "GenreViewController.h"
-#import "Parse.h"
+#import "ParseInfo.h"
 #import "Genre.h"
 #import "VVKCinemaInfo.h"
+#import "CoreDataInfo.h"
 
 @interface GenreViewController () <UITableViewDataSource>
 
@@ -45,7 +46,7 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor darkGrayColor];
     
-    NSArray *genresArray = [Parse fetchAllObjectsWithClassName:@"Genre"];
+    NSArray *genresArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllObjectsWithClassName:@"Genre"];
     
     self.genreArray = [NSMutableArray arrayWithCapacity:0];
     
@@ -78,7 +79,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( indexPath.row == 0 ) {
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:nil];
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setGenrePredicate:nil];
     } else {
         NSString *genre = self.genreArray[indexPath.row];
         
@@ -87,7 +88,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedGenrePredicate" object:nil];
     
-    //    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"UnwindToGenre" sender:self];
 }
 
 @end

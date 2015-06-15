@@ -7,9 +7,10 @@
 //
 
 #import "TypeViewController.h"
-#import "Parse.h"
+#import "ParseInfo.h"
 #import "ProjectionType.h"
 #import "VVKCinemaInfo.h"
+#import "CoreDataInfo.h"
 
 @interface TypeViewController() <UITableViewDataSource>
 
@@ -45,7 +46,7 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor darkGrayColor];
     
-    NSArray *typesArray = [Parse fetchAllObjectsWithClassName:@"Hall"];
+    NSArray *typesArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllObjectsWithClassName:@"Hall"];
     
     self.typeArray = [NSMutableArray arrayWithCapacity:0];
     
@@ -87,7 +88,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedTypePredicate" object:nil];
     
-//    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"UnwindToType" sender:self];
 }
 
 @end

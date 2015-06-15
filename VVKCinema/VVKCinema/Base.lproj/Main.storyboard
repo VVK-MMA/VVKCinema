@@ -502,7 +502,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="336"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayCell" textLabel="Vxz-7m-ppN" detailTextLabel="xvr-1O-eoE" style="IBUITableViewCellStyleValue1" id="WeA-ay-Tfl">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayCell" textLabel="Vxz-7m-ppN" detailTextLabel="xvr-1O-eoE" style="IBUITableViewCellStyleValue1" id="WeA-ay-Tfl" customClass="DayCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WeA-ay-Tfl" id="sp2-aL-djb">
@@ -522,6 +522,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detailLabel" destination="xvr-1O-eoE" id="UsE-0i-sMo"/>
+                                            <outlet property="titleLabel" destination="Vxz-7m-ppN" id="zNC-dv-gkz"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -558,7 +562,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="Fj9-mr-5QH">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="H7S-dk-6dP" kind="unwind" unwindAction="unwindToViewController:" id="Tmh-vg-Fdh"/>
+                                <segue destination="H7S-dk-6dP" kind="unwind" identifier="UnwindToDays" unwindAction="unwindToViewController:" id="Tmh-vg-Fdh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -635,7 +639,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="P8h-hT-fvf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="HDs-yD-ucj" kind="unwind" unwindAction="unwindToViewController:" id="iHr-4p-CBG"/>
+                                <segue destination="HDs-yD-ucj" kind="unwind" identifier="UnwindToType" unwindAction="unwindToViewController:" id="iHr-4p-CBG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -698,7 +702,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="ggh-Fu-cZL">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="D6F-TW-aGq" kind="unwind" unwindAction="unwindToViewController:" id="8x8-0Y-MXA"/>
+                                <segue destination="D6F-TW-aGq" kind="unwind" identifier="UnwindToGenre" unwindAction="unwindToViewController:" id="8x8-0Y-MXA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

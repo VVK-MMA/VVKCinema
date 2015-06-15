@@ -8,13 +8,12 @@
 
 #import "DaysViewController.h"
 #import "VVKCinemaInfo.h"
+#import "DayCell.h"
 
 @interface DaysViewController() <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *days;
-@property (strong, nonatomic) NSDateFormatter *weekdayFormatter;
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSDate *currentDay;
 
 @end
@@ -29,24 +28,6 @@
         _days = [[NSMutableArray alloc] init];
     }
     return _days;
-}
-
-- (NSDateFormatter *)weekdayFormatter
-{
-    if (!_weekdayFormatter) {
-        _weekdayFormatter = [[NSDateFormatter alloc] init];
-        [_weekdayFormatter setDateFormat:@"EEEE"];
-    }
-    return _weekdayFormatter;
-}
-
-- (NSDateFormatter *)dateFormatter
-{
-    if (!_dateFormatter) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    }
-    return _dateFormatter;
 }
 
 #pragma mark -ViewController Lifecycle
@@ -76,7 +57,7 @@
     
     [self.days addObject:@"All"];
 
-    [self.days addObjectsFromArray:[self lastSevenDays]];
+    [self.days addObjectsFromArray:[self lastThirtyDays]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -88,19 +69,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
+    DayCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
     
     self.currentDay = self.days[indexPath.row];
-    
-    if ( [self.currentDay isEqual:@"All"] ) {
-        cell.textLabel.text = @"All";
-        cell.detailTextLabel.text = @"";
-    } else {
-        cell.textLabel.text = [self.weekdayFormatter stringFromDate:self.currentDay];
-        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.currentDay];
-    }
+        
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+- (void)configureCell:(DayCell *)cell atIndexPath:(NSIndexPath *)indexPath {    
+    cell.date = self.currentDay;
 }
 
 
@@ -114,25 +93,25 @@
     } else {
         NSDate *day = self.days[indexPath.row];
         
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setDaysPredicate:[NSPredicate predicateWithFormat:@"releaseDate >= %@", day]];
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setDaysPredicate:[NSPredicate predicateWithFormat:@"releaseDate <= %@", day]];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedDayPredicate" object:nil];
     
-    //    [self dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:@"UnwindToDays" sender:self];
 }
 
 
 #pragma mark - Helper methods
 
-- (NSMutableArray *)lastSevenDays
+- (NSMutableArray *)lastThirtyDays
 {
     NSMutableArray *sevenDays = [[NSMutableArray alloc] init];
     
     NSDate *now = [NSDate date];
     [sevenDays addObject:now];
     
-    for (int i = 1; i < 7; i++) {
+    for (int i = 1; i < 30; i++) {
         NSDate *nextDate = [now dateByAddingTimeInterval: i*24*60*60];
         [sevenDays addObject:nextDate];
     }

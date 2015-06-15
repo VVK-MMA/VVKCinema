@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface Parse : NSObject
+@interface ParseInfo : NSObject
 
 @property (strong, nonatomic) NSDictionary *responseDictionary;
 
@@ -20,9 +20,5 @@
 - (void)transferFromServerToCoreDataAllObjectsWithType:(NSString *)type;
 
 - (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId;
-
-- (NSManagedObjectContext *)getContext;
-
-+ (NSArray *)fetchAllObjectsWithClassName:(NSString *)className;
 
 @end

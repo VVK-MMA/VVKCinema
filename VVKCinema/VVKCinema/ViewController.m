@@ -158,6 +158,12 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         [fetchRequest setPredicate:daysPredicate];
     }
     
+////    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate] ) {
+//    NSPredicate *daysPredicate = [NSPredicate predicateWithFormat:@"releaseDate >= %@", [NSDate date]];
+//    
+//        [fetchRequest setPredicate:daysPredicate];
+////    }
+    
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[appDelegate managedObjectContext] sectionNameKeyPath:nil cacheName:nil];

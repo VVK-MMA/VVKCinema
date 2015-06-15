@@ -97,6 +97,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedSortOption" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedTypePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedGenrePredicate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedDayPredicate" object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -105,6 +106,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedSortOption" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedTypePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedGenrePredicate" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedDayPredicate" object:nil];
 }
 
 #pragma mark - Setters
@@ -137,7 +139,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    // Create predicate
+    // Create predicates
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] typePredicate] ) {
         NSPredicate *pred = [[VVKCinemaInfo sharedVVKCinemaInfo] typePredicate];
         
@@ -148,6 +150,12 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         NSPredicate *genrePredicate = [[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate];
         
         [fetchRequest setPredicate:genrePredicate];
+    }
+    
+    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate] ) {
+        NSPredicate *daysPredicate = [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate];
+        
+        [fetchRequest setPredicate:daysPredicate];
     }
     
     // Edit the section name key path and cache name if appropriate.

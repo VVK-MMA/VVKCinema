@@ -198,7 +198,6 @@
                 
                 for (id movieDictionary in moviesDictionary) {
                     NSString *objectId = [movieDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", objectId);
                     
                     if ( [self isCoreDataContainsObjectWithClassName:@"Movie" WithId:objectId] ) {
                         continue;
@@ -209,49 +208,39 @@
                     newMovie.parseId = objectId;
                     
                     NSNumber *duration = [movieDictionary objectForKey:@"duration"];
-                    NSLog(@"%@", duration);
                     newMovie.duration = duration;
                     
                     NSString *movieInfo = [movieDictionary objectForKey:@"info"];
-                    NSLog(@"%@", movieInfo);
                     newMovie.info = movieInfo;
                     
                     NSString *name = [movieDictionary objectForKey:@"name"];
-                    NSLog(@"%@", name);
                     newMovie.name = name;
                     
                     NSDictionary *posterDictionary = [movieDictionary objectForKey:@"poster"];
                     NSString *posterUrl = [posterDictionary objectForKey:@"url"];
-                    NSLog(@"%@", posterUrl);
                     newMovie.poster = posterUrl;
                     
                     NSNumber *rate = [movieDictionary objectForKey:@"rate"];
-                    NSLog(@"%@", rate);
                     newMovie.rate = rate;
                     
                     NSDictionary *releaseDateDictionary = [movieDictionary objectForKey:@"releaseDate"];
                     NSString *releaseDateIso = [releaseDateDictionary objectForKey:@"iso"];
-                    NSLog(@"%@", releaseDateIso);
-                        
+                    
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
                     NSDate *capturedStartDate = [dateFormatter dateFromString:releaseDateIso];
-                    NSLog(@"%@", capturedStartDate);
                     newMovie.releaseDate = capturedStartDate;
                     
                     NSNumber *subtitled = [movieDictionary objectForKey:@"subtitled"];
-                    NSLog(@"%@", subtitled);
                     newMovie.subtitled = subtitled;
                     
                     NSDictionary *countryDictionary = [movieDictionary objectForKey:@"country"];
                     NSString *countryId = [countryDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", countryId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"Country" WithId:countryId] ) {
                         NSDictionary *countryDict = [self getObjectWithType:@"Country" andObjectId:countryId];
                         NSString *countryName = [countryDict objectForKey:@"name"];
-                        NSLog(@"%@", countryName);
-                            
+                        
                         Country *newCountry = [NSEntityDescription insertNewObjectForEntityForName:@"Country" inManagedObjectContext:[self getContext]];
                             
                         newCountry.parseId = countryId;
@@ -262,15 +251,13 @@
                     
                     NSDictionary *directorDictionary = [movieDictionary objectForKey:@"director"];
                     NSString *directorId = [directorDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", directorId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"Director" WithId:directorId] ) {
                         NSDictionary *directorDict = [self getObjectWithType:@"Director" andObjectId:directorId];
                         NSString *directorFirstName = [directorDict objectForKey:@"firstName"];
                         NSString *directorLastName = [directorDict objectForKey:@"lastName"];
                         NSString *directorName = [NSString stringWithFormat:@"%@ %@", directorFirstName, directorLastName];
-                        NSLog(@"%@", directorName);
-                            
+                        
                         Director *newDirector = [NSEntityDescription insertNewObjectForEntityForName:@"Director" inManagedObjectContext:[self getContext]];
                             
                         newDirector.parseId = directorId;
@@ -282,13 +269,11 @@
                         
                     NSDictionary *languageDictionary = [movieDictionary objectForKey:@"language"];
                     NSString *languageId = [languageDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", languageId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"Language" WithId:languageId] ) {
                         NSDictionary *languageDict = [self getObjectWithType:@"Language" andObjectId:languageId];
                         NSString *languageName = [languageDict objectForKey:@"name"];
-                        NSLog(@"%@", languageName);
-                            
+                        
                         Language *newLanguage = [NSEntityDescription insertNewObjectForEntityForName:@"Language" inManagedObjectContext:[self getContext]];
                         
                         newLanguage.parseId = languageId;
@@ -303,14 +288,12 @@
                             
                         for (id actorDictionary in actorsDictionary) {
                             NSString *actorObjectId = [actorDictionary objectForKey:@"objectId"];
-                            NSLog(@"%@", actorObjectId);
-                                
+                            
                             if ( ![self isCoreDataContainsObjectWithClassName:@"Actor" WithId:actorObjectId] ) {
                                 NSString *actorFirstName = [actorDictionary objectForKey:@"firstName"];
                                 NSString *actorLastName = [actorDictionary objectForKey:@"lastName"];
                                 NSString *actorName = [NSString stringWithFormat:@"%@ %@", actorFirstName, actorLastName];
-                                NSLog(@"%@", actorName);
-                                    
+                                
                                 Actor *newActor = [NSEntityDescription insertNewObjectForEntityForName:@"Actor" inManagedObjectContext:[self getContext]];
                                     
                                 newActor.parseId = actorObjectId;
@@ -330,12 +313,10 @@
                             
                         for (id genreDictionary in genresDictionary) {
                             NSString *genreObjectId = [genreDictionary objectForKey:@"objectId"];
-                            NSLog(@"%@", genreObjectId);
-                                
+                            
                             if ( ![self isCoreDataContainsObjectWithClassName:@"Genre" WithId:genreObjectId] ) {
                                 NSString *genreName = [genreDictionary objectForKey:@"name"];
-                                NSLog(@"%@", genreName);
-                                    
+                                
                                 Genre *newGenre = [NSEntityDescription insertNewObjectForEntityForName:@"Genre" inManagedObjectContext:[self getContext]];
                                 
                                 newGenre.parseId = genreObjectId;
@@ -354,12 +335,10 @@
                             
                         for (id hallDictionary in hallsDictionary) {
                             NSString *hallObjectId = [hallDictionary objectForKey:@"objectId"];
-                            NSLog(@"%@", hallObjectId);
-                                
+                            
                             if ( ![self isCoreDataContainsObjectWithClassName:@"Hall" WithId:hallObjectId] ) {
                                 NSString *hallName = [hallDictionary objectForKey:@"name"];
-                                NSLog(@"%@", hallName);
-                                    
+                                
                                 Hall *newHall = [NSEntityDescription insertNewObjectForEntityForName:@"Hall" inManagedObjectContext:[self getContext]];
                                     
                                 newHall.parseId = hallObjectId;
@@ -377,27 +356,19 @@
                         
                     if ( countryArray ) {
                         newMovie.country = countryArray[0];
-                        Country *checkCountry = newMovie.country;
-                        NSLog(@"%@", checkCountry.name);
                     }
                         
                     NSArray *directorArray = [self fetchObjectWithEntityName:@"Director" objectId:directorId andContext:[self getContext]];
                         
                     if ( directorArray ) {
                         newMovie.director = directorArray[0];
-                        Director *checkDirector = newMovie.director;
-                        NSLog(@"%@", checkDirector.firstName);
                     }
                         
                     NSArray *languageArray = [self fetchObjectWithEntityName:@"Language" objectId:languageId andContext:[self getContext]];
                         
                     if ( languageArray ) {
                         newMovie.language = languageArray[0];
-                        Language *checkLanguage = newMovie.language;
-                        NSLog(@"%@", checkLanguage.name);
                     }
-                        
-//                    [self saveContext:[self getContext]];
                 }
             }
             
@@ -410,8 +381,7 @@
                     
                 for (id projectionDictionary in projectionsDictionary) {
                     NSString *projectionObjectId = [projectionDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", projectionObjectId);
-                        
+                    
                     if ( [self isCoreDataContainsObjectWithClassName:@"Projection" WithId:projectionObjectId] ) {
                         continue;
                     }
@@ -422,77 +392,58 @@
                     
                     NSDictionary *projectionDateDictionary = [projectionDictionary objectForKey:@"date"];
                     NSString *projectionDateIso = [projectionDateDictionary objectForKey:@"iso"];
-                    NSLog(@"%@", projectionDateIso);
-                        
+                    
                     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
                     NSDate *capturedStartDate = [dateFormatter dateFromString:projectionDateIso];
-                    NSLog(@"%@", capturedStartDate);
                     newProjection.date = capturedStartDate;
                     
                     NSDictionary *projectionHallDictionary = [projectionDictionary objectForKey:@"hall"];
                     NSString *projectionHallId = [projectionHallDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", projectionHallId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"Hall" WithId:projectionHallId] ) {
                         NSDictionary *projectionHallDict = [self getObjectWithType:@"Hall" andObjectId:projectionHallId];
                         NSString *projectionHallName = [projectionHallDict objectForKey:@"name"];
-                        NSLog(@"%@", projectionHallName);
-                            
+                        
                         Hall *newHall = [NSEntityDescription insertNewObjectForEntityForName:@"Hall" inManagedObjectContext:[self getContext]];
                             
                         newHall.parseId = projectionHallId;
                         newHall.name = projectionHallName;
-                            
-//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *projectionMovieDictionary = [projectionDictionary objectForKey:@"movie"];
                     NSString *projectionMovieId = [projectionMovieDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", projectionMovieId);
-                        
+                    
                     NSDictionary *projectionProjectionTypeDictionary = [projectionDictionary objectForKey:@"projectionType"];
                     NSString *projectionProjectionTypeId = [projectionProjectionTypeDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", projectionProjectionTypeId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"ProjectionType" WithId:projectionProjectionTypeId] ) {
                         NSDictionary *projectionProjectionTypeDict = [self getObjectWithType:@"ProjectionType" andObjectId:projectionProjectionTypeId];
                         NSString *projectionProjectionTypeName = [projectionProjectionTypeDict objectForKey:@"name"];
-                        NSLog(@"%@", projectionProjectionTypeName);
-                            
+                        
                         ProjectionType *newProjectionType = [NSEntityDescription insertNewObjectForEntityForName:@"ProjectionType" inManagedObjectContext:[self getContext]];
                         
                         newProjectionType.parseId = projectionProjectionTypeId;
                         newProjectionType.name = projectionProjectionTypeName;
-                            
-//                        [self saveContext:[self getContext]];
                     }
                     
                     NSArray *hallArray = [self fetchObjectWithEntityName:@"Hall" objectId:projectionHallId andContext:[self getContext]];
                     
                     if ( hallArray ) {
                         newProjection.hall = hallArray[0];
-                        Hall *checkHall = newProjection.hall;
-                        NSLog(@"%@", checkHall.name);
                     }
                         
                     NSArray *movieArray = [self fetchObjectWithEntityName:@"Movie" objectId:projectionMovieId andContext:[self getContext]];
                         
                     if ( [movieArray count] > 0 ) {
                         newProjection.movie = movieArray[0];
-                        Movie *checkMovie = newProjection.movie;
-                        NSLog(@"%@", checkMovie.name);
                     }
                         
                     NSArray *projectionTypeArray = [self fetchObjectWithEntityName:@"ProjectionType" objectId:projectionProjectionTypeId andContext:[self getContext]];
                         
                     if ( projectionTypeArray ) {
                         newProjection.projectionType = projectionTypeArray[0];
-                        ProjectionType *checkProjectionType = newProjection.projectionType;
-                        NSLog(@"%@", checkProjectionType.name);
                     }
-                        
-//                    [self saveContext:[self getContext]];
                 }
             }
             
@@ -505,8 +456,7 @@
                 
                 for (id ticketDictionary in ticketsDictionary) {
                     NSString *ticketObjectId = [ticketDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", ticketObjectId);
-                        
+                    
                     if ( [self isCoreDataContainsObjectWithClassName:@"Ticket" WithId:ticketObjectId] ) {
                         continue;
                     }
@@ -517,23 +467,18 @@
                     
                     NSDictionary *seatDictionary = [ticketDictionary objectForKey:@"seat"];
                     NSString *seatId = [seatDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", seatId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"Seat" WithId:seatId] ) {
                         NSDictionary *seatDict = [self getObjectWithType:@"Seat" andObjectId:seatId];
                         NSNumber *seatBusy = [seatDict objectForKey:@"busy"];
-                        NSLog(@"%@", seatBusy);
-                            
+                        
                         NSNumber *seatColumn = [seatDict objectForKey:@"column"];
-                        NSLog(@"%@", seatColumn);
-                            
+                        
                         NSNumber *seatRow = [seatDict objectForKey:@"row"];
-                        NSLog(@"%@", seatRow);
-                            
+                        
                         NSDictionary *seatProjectionDictionary = [seatDict objectForKey:@"projection"];
                         NSString *seatProjectionId = [seatProjectionDictionary objectForKey:@"objectId"];
-                        NSLog(@"%@", seatProjectionId);
-                            
+                        
                         Seat *newSeat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[self getContext]];
                             
                         newSeat.parseId = seatId;
@@ -545,80 +490,58 @@
                             
                         if ( [seatProjectionArray count] > 0 ) {
                             newSeat.projection = seatProjectionArray[0];
-                            Projection *checkProjection = newSeat.projection;
-                            NSLog(@"%@", checkProjection.date);
                         }
-                            
-//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *ticketTypeDictionary = [ticketDictionary objectForKey:@"ticketType"];
                     NSString *ticketTypeId = [ticketTypeDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", ticketTypeId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"TicketType" WithId:ticketTypeId] ) {
                         NSDictionary *ticketTypeDict = [self getObjectWithType:@"TicketType" andObjectId:ticketTypeId];
                         NSString *ticketTypeName = [ticketTypeDict objectForKey:@"name"];
-                        NSLog(@"%@", ticketTypeName);
-                            
+                        
                         TicketType *newTicketType = [NSEntityDescription insertNewObjectForEntityForName:@"TicketType" inManagedObjectContext:[self getContext]];
                             
                         newTicketType.parseId = ticketTypeId;
                         newTicketType.name = ticketTypeName;
-                        
-//                        [self saveContext:[self getContext]];
                     }
                         
                     NSDictionary *userDictionary = [ticketDictionary objectForKey:@"user"];
                     NSString *userId = [userDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", userId);
-                        
+                    
                     if ( ![self isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
                         NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];
                         NSString *userUsername = [userDict objectForKey:@"username"];
-                        NSLog(@"%@", userUsername);
-                            
+                        
                         NSString *userPassword = [userDict objectForKey:@"password"];
-                        NSLog(@"%@", userPassword);
-                            
+                        
                         NSString *userEmail = [userDict objectForKey:@"email"];
-                        NSLog(@"%@", userEmail);
-                            
+                        
                         User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[self getContext]];
                             
                         newUser.parseId = userId;
                         newUser.username = userUsername;
                         newUser.password = userPassword;
                         newUser.email = userEmail;
-                            
-//                        [self saveContext:[self getContext]];
                     }
                     
                     NSArray *seatArray = [self fetchObjectWithEntityName:@"Seat" objectId:seatId andContext:[self getContext]];
                         
                     if ( seatArray ) {
                         newTicket.seat = seatArray[0];
-                        Seat *checkSeat = newTicket.seat;
-                        NSLog(@"%@", checkSeat.row);
                     }
                     
                     NSArray *ticketTypeArray = [self fetchObjectWithEntityName:@"TicketType" objectId:ticketTypeId andContext:[self getContext]];
                         
                     if ( [ticketTypeArray count] > 0 ) {
                         newTicket.ticketType = ticketTypeArray[0];
-                        TicketType *checkTicketType = newTicket.ticketType;
-                        NSLog(@"%@", checkTicketType.name);
                     }
                         
                     NSArray *userArray = [self fetchObjectWithEntityName:@"User" objectId:userId andContext:[self getContext]];
                         
                     if ( userArray ) {
                         newTicket.user = userArray[0];
-                        User *checkUser = newTicket.user;
-                        NSLog(@"%@", checkUser.username);
                     }
-                        
-//                    [self saveContext:[self getContext]];
                 }
             }
             

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSMutableArray *days;
 @property (strong, nonatomic) NSDateFormatter *weekdayFormatter;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSDate *currentDay;
 
 @end
 
@@ -89,14 +90,14 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DayCell" forIndexPath:indexPath];
     
-    NSDate *currentDay = self.days[indexPath.row];
+    self.currentDay = self.days[indexPath.row];
     
-    if ( [currentDay isEqual:@"All"] ) {
+    if ( [self.currentDay isEqual:@"All"] ) {
         cell.textLabel.text = @"All";
         cell.detailTextLabel.text = @"";
     } else {
-        cell.textLabel.text = [self.weekdayFormatter stringFromDate:currentDay];
-        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:currentDay];
+        cell.textLabel.text = [self.weekdayFormatter stringFromDate:self.currentDay];
+        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:self.currentDay];
     }
     
     return cell;
@@ -105,23 +106,21 @@
 
 #pragma mark - UITableViewDataSource
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [[VVKCinemaInfo sharedVVKCinemaInfo] setDaysPredicate:[NSPredicate predicateWithFormat:@"studyID Like %@",aStudyID];
-}
+#pragma mark - UITableViewDelegate
 
-//- (IBAction)addSortOption:(id)sender {
-//    if ( [sender tag] == 0 ) {
-//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
-//    } else if ( [sender tag] == 1 ) {
-//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
-//    } else if ( [sender tag] == 2 ) {
-//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO]];
-//    }
-//    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
-//    
-//    [self dismissVC:sender];
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.row == 0 ) {
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setDaysPredicate:nil];
+    } else {
+        NSDate *day = self.days[indexPath.row];
+        
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setDaysPredicate:[NSPredicate predicateWithFormat:@"releaseDate >= %@", day]];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedDayPredicate" object:nil];
+    
+    //    [self dismissViewControllerAnimated:NO completion:nil];
+}
 
 
 #pragma mark - Helper methods

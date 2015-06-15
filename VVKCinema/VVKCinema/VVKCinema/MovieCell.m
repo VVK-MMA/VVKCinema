@@ -10,9 +10,11 @@
 #import "RatingView.h"
 
 @interface MovieCell()
+
 @property (weak, nonatomic) IBOutlet UIImageView *movieCoverImageView;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
 @property (weak, nonatomic) IBOutlet RatingView *ratingView;
+
 @end
 
 @implementation MovieCell
@@ -37,11 +39,12 @@
     self.movieCoverImageView.image = [UIImage imageWithData:movie.posterData];
     
     self.movieTitleLabel.text = movie.name;
-    self.ratingView.numberOfStars = [movie.rate stringValue];
+    self.ratingView.numberOfStars = [movie.rate integerValue];
 }
 
 -(void)prepareForReuse {
     self.movieCoverImageView.image = nil;
+    self.ratingView = nil;
 }
 
 @end

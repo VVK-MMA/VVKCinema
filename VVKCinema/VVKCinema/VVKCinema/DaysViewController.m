@@ -7,12 +7,15 @@
 //
 
 #import "DaysViewController.h"
+#import "VVKCinemaInfo.h"
 
-@interface DaysViewController() <UITableViewDataSource,UITableViewDelegate>
+@interface DaysViewController() <UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *days;
 @property (strong, nonatomic) NSDateFormatter *weekdayFormatter;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
+
 @end
 
 @implementation DaysViewController
@@ -70,7 +73,9 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor darkGrayColor];
     
-    self.days = [self lastSevenDays];
+    [self.days addObject:@"All"];
+
+    [self.days addObjectsFromArray:[self lastSevenDays]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -86,11 +91,37 @@
     
     NSDate *currentDay = self.days[indexPath.row];
     
-    cell.textLabel.text = [self.weekdayFormatter stringFromDate:currentDay];
-    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:currentDay];
+    if ( [currentDay isEqual:@"All"] ) {
+        cell.textLabel.text = @"All";
+        cell.detailTextLabel.text = @"";
+    } else {
+        cell.textLabel.text = [self.weekdayFormatter stringFromDate:currentDay];
+        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:currentDay];
+    }
     
     return cell;
 }
+
+
+#pragma mark - UITableViewDataSource
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [[VVKCinemaInfo sharedVVKCinemaInfo] setDaysPredicate:[NSPredicate predicateWithFormat:@"studyID Like %@",aStudyID];
+}
+
+//- (IBAction)addSortOption:(id)sender {
+//    if ( [sender tag] == 0 ) {
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
+//    } else if ( [sender tag] == 1 ) {
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
+//    } else if ( [sender tag] == 2 ) {
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO]];
+//    }
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
+//    
+//    [self dismissVC:sender];
+//}
 
 
 #pragma mark - Helper methods

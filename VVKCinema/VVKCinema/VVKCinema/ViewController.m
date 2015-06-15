@@ -95,12 +95,16 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedSortOption" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedTypePredicate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedGenrePredicate" object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedSortOption" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedTypePredicate" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedGenrePredicate" object:nil];
 }
 
 #pragma mark - Setters
@@ -132,6 +136,19 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     NSArray *sortDescriptors = @[sortDescriptor];
 
     [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Create predicate
+    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] typePredicate] ) {
+        NSPredicate *pred = [[VVKCinemaInfo sharedVVKCinemaInfo] typePredicate];
+        
+        [fetchRequest setPredicate:pred];
+    }
+    
+    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate] ) {
+        NSPredicate *genrePredicate = [[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate];
+        
+        [fetchRequest setPredicate:genrePredicate];
+    }
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".

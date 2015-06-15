@@ -7,10 +7,15 @@
 //
 
 #import "GenreViewController.h"
+#import "Parse.h"
+#import "Genre.h"
+#import "VVKCinemaInfo.h"
 
 @interface GenreViewController () <UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *genreArray;
+@property (strong, nonatomic) NSMutableArray *genreArray;
+
 @end
 
 @implementation GenreViewController
@@ -40,7 +45,15 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor darkGrayColor];
     
-    self.genreArray = [NSArray arrayWithObjects:@"Comedy", @"Action", @"Horror", @"Thriller", nil];
+    NSArray *genresArray = [Parse fetchAllObjectsWithClassName:@"Genre"];
+    
+    self.genreArray = [NSMutableArray arrayWithCapacity:0];
+    
+    [self.genreArray addObject:@"All"];
+    
+    for (Genre *genre in genresArray) {
+        [self.genreArray addObject:genre.name];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -60,4 +73,21 @@
     
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.row == 0 ) {
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:nil];
+    } else {
+        NSString *genre = self.genreArray[indexPath.row];
+        
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setGenrePredicate:[NSPredicate predicateWithFormat:@"ANY genres.name like %@", genre]];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedGenrePredicate" object:nil];
+    
+    //    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 @end

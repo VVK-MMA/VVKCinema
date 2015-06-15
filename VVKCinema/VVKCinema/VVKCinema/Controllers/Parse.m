@@ -20,13 +20,13 @@
 #import "Seat.h"
 #import "TicketType.h"
 #import "User.h"
-#import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
-
-@implementation Parse
 
 #define X_Parse_Application_Id @"Pz64OL0zYyDKrlRPA8ULclYo9dr9dt2xtrb4aufU"
 #define X_Parse_REST_API_Key @"ZEA7E45RUzSJHg4ezCnn9B8fsYiAWUDNQW5bZsSC"
+
+@implementation Parse
+
 
 #pragma mark Class Methods
 
@@ -73,19 +73,11 @@
 }
 
 - (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className WithId:(NSString *)objectId {
-    NSManagedObjectContext *context = nil;
-    
-    id delegate = [[UIApplication sharedApplication] delegate];
-    
-    if ( [delegate performSelector:@selector(managedObjectContext)] ) {
-        context = [delegate managedObjectContext];
-    }
-    
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:className];
     
     NSError *error = nil;
     
-    NSArray *objects = [context executeFetchRequest:request error:&error];
+    NSArray *objects = [[[Parse sharedParse] getContext] executeFetchRequest:request error:&error];
     
     if (error != nil) {
         NSLog(@"Error: %@", [error localizedDescription]);
@@ -99,6 +91,22 @@
     }
     
     return  NO;
+}
+
++ (NSArray *)fetchAllObjectsWithClassName:(NSString *)className {
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:className];
+    
+    NSError *error = nil;
+    
+    NSArray *objects = [[[Parse sharedParse] getContext] executeFetchRequest:request error:&error];
+    
+    if ( error != nil ) {
+        NSLog(@"%@", error);
+        
+        return nil;
+    }
+    
+    return objects;
 }
 
 - (void)saveContext:(NSManagedObjectContext *)context {

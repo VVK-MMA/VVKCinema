@@ -11,6 +11,9 @@
 @interface VVKCinemaInfo : NSObject
 
 @property (strong, nonatomic) NSSortDescriptor *sortDescriptor;
+@property (strong, nonatomic) NSPredicate *daysPredicate;
+@property (strong, nonatomic) NSPredicate *typePredicate;
+@property (strong, nonatomic) NSPredicate *genrePredicate;
 
 + (id)sharedVVKCinemaInfo;
 

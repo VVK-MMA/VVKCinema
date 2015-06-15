@@ -7,10 +7,15 @@
 //
 
 #import "TypeViewController.h"
+#import "Parse.h"
+#import "ProjectionType.h"
+#import "VVKCinemaInfo.h"
 
 @interface TypeViewController() <UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *typeArray;
+@property (strong, nonatomic) NSMutableArray *typeArray;
+
 @end
 
 @implementation TypeViewController
@@ -40,7 +45,15 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor darkGrayColor];
     
-    self.typeArray = [NSArray arrayWithObjects:@"2D", @"REALD 3D", @"IMAX 3D", @"4DX", nil];
+    NSArray *typesArray = [Parse fetchAllObjectsWithClassName:@"Hall"];
+    
+    self.typeArray = [NSMutableArray arrayWithCapacity:0];
+    
+    [self.typeArray addObject:@"All"];
+
+    for (ProjectionType *type in typesArray) {
+        [self.typeArray addObject:type.name];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -59,6 +72,22 @@
     cell.textLabel.text = currentType;
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.row == 0 ) {
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:nil];
+    } else {
+        NSString *type = self.typeArray[indexPath.row];
+
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ANY halls.name like %@", type]];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedTypePredicate" object:nil];
+    
+//    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

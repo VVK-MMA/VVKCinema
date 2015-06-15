@@ -56,6 +56,7 @@
             [path fill];
             filledStars ++;
         }
+        
         currentXOffset += starWidth + 1;
     }
 }

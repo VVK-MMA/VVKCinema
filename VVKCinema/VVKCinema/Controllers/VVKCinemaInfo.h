@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSPredicate *daysPredicate;
 @property (strong, nonatomic) NSPredicate *typePredicate;
 @property (strong, nonatomic) NSPredicate *genrePredicate;
+@property (strong, nonatomic) NSString *selectedMovie;
 
 + (id)sharedVVKCinemaInfo;
 

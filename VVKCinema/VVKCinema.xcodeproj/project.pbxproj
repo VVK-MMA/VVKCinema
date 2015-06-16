@@ -31,6 +31,7 @@
 		956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCE81B2E22C900A429D8 /* VVKCinemaInfo.m */; };
 		956FFCEC1B2EE9B300A429D8 /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCEB1B2EE9B300A429D8 /* DayCell.m */; };
 		956FFCF21B2F0CE300A429D8 /* CoreDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCF11B2F0CE300A429D8 /* CoreDataInfo.m */; };
+		956FFCF51B30C99500A429D8 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCF41B30C99500A429D8 /* DetailsViewController.m */; };
 		95E727661B299DCC007C62AA /* ParseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* ParseInfo.m */; };
 		95E7276F1B29EB8C007C62AA /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7276E1B29EB8C007C62AA /* Country.m */; };
 		95E727721B29ED13007C62AA /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727711B29ED13007C62AA /* Director.m */; };
@@ -102,6 +103,8 @@
 		956FFCEB1B2EE9B300A429D8 /* DayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayCell.m; path = Cells/DayCell.m; sourceTree = "<group>"; };
 		956FFCF01B2F0CE300A429D8 /* CoreDataInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataInfo.h; path = Controllers/CoreDataInfo.h; sourceTree = "<group>"; };
 		956FFCF11B2F0CE300A429D8 /* CoreDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataInfo.m; path = Controllers/CoreDataInfo.m; sourceTree = "<group>"; };
+		956FFCF31B30C99500A429D8 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailsViewController.h; path = ViewControllers/DetailsViewController.h; sourceTree = "<group>"; };
+		956FFCF41B30C99500A429D8 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailsViewController.m; path = ViewControllers/DetailsViewController.m; sourceTree = "<group>"; };
 		95E727641B299DCC007C62AA /* ParseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseInfo.h; path = Controllers/ParseInfo.h; sourceTree = "<group>"; };
 		95E727651B299DCC007C62AA /* ParseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseInfo.m; path = Controllers/ParseInfo.m; sourceTree = "<group>"; };
 		95E7276D1B29EB8C007C62AA /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				49C88D5C1B28510300FCFFA8 /* GenreViewController.m */,
 				49C4D0D41B2AAF20009E33BF /* MapViewController.h */,
 				49C4D0D51B2AAF20009E33BF /* MapViewController.m */,
+				956FFCF31B30C99500A429D8 /* DetailsViewController.h */,
+				956FFCF41B30C99500A429D8 /* DetailsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 				31B20C291B271DC500247370 /* RatingView.m in Sources */,
 				956FFCEC1B2EE9B300A429D8 /* DayCell.m in Sources */,
 				49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */,
+				956FFCF51B30C99500A429D8 /* DetailsViewController.m in Sources */,
 				956FFCF21B2F0CE300A429D8 /* CoreDataInfo.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
 				956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */,

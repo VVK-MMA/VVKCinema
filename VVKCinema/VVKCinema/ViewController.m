@@ -51,8 +51,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     
-    
-    
     self.moviesCollectionView.dataSource = self;
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     
@@ -119,13 +117,11 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     }
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-//    CoreDataInfo *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[appDelegate managedObjectContext]];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Movie" inManagedObjectContext:[[CoreDataInfo sharedVVKCinemaInfo] managedObjectContext]];
     
     [fetchRequest setEntity:entity];
     
@@ -243,6 +239,12 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     cell.movie = movie;
     
     [self setupCell:cell];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Movie *selectedMovie = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedMovie:selectedMovie.parseId];    
 }
 
 #pragma mark - Navigation

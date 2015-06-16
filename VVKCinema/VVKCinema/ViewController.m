@@ -147,19 +147,19 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         
         [fetchRequest setPredicate:pred];
     }
-    
+
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate] ) {
         NSPredicate *genrePredicate = [[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate];
         
         [fetchRequest setPredicate:genrePredicate];
     }
-    
+
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate] ) {
         NSPredicate *daysPredicate = [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate];
         
         [fetchRequest setPredicate:daysPredicate];
     }
-    
+
 ////    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate] ) {
 //    NSPredicate *daysPredicate = [NSPredicate predicateWithFormat:@"releaseDate >= %@", [NSDate date]];
 //    

@@ -40,6 +40,11 @@
     
     self.movieTitleLabel.text = movie.name;
     self.ratingView.numberOfStars = [movie.rate integerValue];
+    
+//    NSLog(@"%@", @"----------------------------");
+//    for (NSManagedObject *genre in movie.genres) {
+//        NSLog(@"%@", [genre valueForKey:@"name"]);
+//    }
 }
 
 -(void)prepareForReuse {

@@ -83,7 +83,13 @@
     } else {
         NSString *type = self.typeArray[indexPath.row];
 
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ANY halls.name like %@", type]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ANY halls.name like %@", type]];
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ANY halls.name contains[c] %@", type]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ALL halls.name contains[c] 'X'"]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ANY halls.name = %@", type]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ANY halls.name contains %@", type]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ALL halls.name like 'IMAX'"]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:[NSPredicate predicateWithFormat:@"ANY halls.name = 'IMAX'"]];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedTypePredicate" object:nil];

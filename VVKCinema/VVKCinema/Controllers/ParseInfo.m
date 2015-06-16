@@ -258,6 +258,10 @@
                                 newGenre.name = genreName;
                                 
                                 [newMovie addGenresObject:newGenre];
+                            } else {
+                                Genre *newGenre = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Genre" objectId:genreObjectId andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
+                                
+                                [newMovie addGenresObject:newGenre];
                             }
                         }
                     }
@@ -278,8 +282,11 @@
                                 newHall.name = hallName;
                                 
                                 [newMovie addHallsObject:newHall];
+                            } else {
+                                Hall *newHall = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Hall" objectId:hallObjectId andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
+                                
+                                [newMovie addHallsObject:newHall];
                             }
-
                         }
                     }
                     
@@ -340,8 +347,14 @@
                             
                         newHall.parseId = projectionHallId;
                         newHall.name = projectionHallName;
-                    }
                         
+                        newProjection.hall = newHall;
+                    } else {
+                        Hall *newHall = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Hall" objectId:projectionHallId andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
+                        
+                        newProjection.hall = newHall;
+                    }
+                    
                     NSDictionary *projectionMovieDictionary = [projectionDictionary objectForKey:@"movie"];
                     NSString *projectionMovieId = [projectionMovieDictionary objectForKey:@"objectId"];
                     
@@ -356,6 +369,12 @@
                         
                         newProjectionType.parseId = projectionProjectionTypeId;
                         newProjectionType.name = projectionProjectionTypeName;
+                        
+                        newProjection.projectionType = newProjectionType;
+                    } else {
+                        ProjectionType *newProjectionType = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"ProjectionType" objectId:projectionProjectionTypeId andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
+                        
+                        newProjection.projectionType = newProjectionType;
                     }
                     
                     NSArray *hallArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Hall" objectId:projectionHallId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];

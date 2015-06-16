@@ -18,6 +18,7 @@
 #import "GenreViewController.h"
 #import "MapViewController.h"
 #import "VVKCinemaInfo.h"
+#import "CoreDataInfo.h"
 
 @interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate, NSFetchedResultsControllerDelegate>
 
@@ -113,11 +114,12 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 #pragma mark - Setters
 
 - (NSFetchedResultsController *)fetchedResultsController {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-
     if ( _fetchedResultsController != nil ) {
         return _fetchedResultsController;
     }
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+//    CoreDataInfo *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
@@ -142,34 +144,27 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Create predicates
+    NSMutableArray *predicatesArray = [NSMutableArray arrayWithCapacity:0];
+    
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] typePredicate] ) {
-        NSPredicate *pred = [[VVKCinemaInfo sharedVVKCinemaInfo] typePredicate];
-        
-        [fetchRequest setPredicate:pred];
+        [predicatesArray addObject:[[VVKCinemaInfo sharedVVKCinemaInfo] typePredicate]];
     }
 
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate] ) {
-        NSPredicate *genrePredicate = [[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate];
-        
-        [fetchRequest setPredicate:genrePredicate];
+        [predicatesArray addObject:[[VVKCinemaInfo sharedVVKCinemaInfo] genrePredicate]];
     }
 
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate] ) {
-        NSPredicate *daysPredicate = [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate];
-        
-        [fetchRequest setPredicate:daysPredicate];
+        [predicatesArray addObject:[[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate]];
     }
 
-////    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] daysPredicate] ) {
-//    NSPredicate *daysPredicate = [NSPredicate predicateWithFormat:@"releaseDate >= %@", [NSDate date]];
-//    
-//        [fetchRequest setPredicate:daysPredicate];
-////    }
+    NSPredicate *combinePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
+    
+    [fetchRequest setPredicate:combinePredicate];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[appDelegate managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
-//    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[[CoreDataInfo sharedVVKCinemaInfo] managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
     
     aFetchedResultsController.delegate = self;
     
@@ -203,7 +198,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
             [self.moviesCollectionView deleteItemsAtIndexPaths:@[indexPath]];
             break;
         case NSFetchedResultsChangeUpdate:
-            [self.moviesCollectionView reloadItemsAtIndexPaths:@[indexPath]];
+            [self.moviesCollectionView reloadItemsAtIndexPaths:@[indexPath]];            
             break;
         case NSFetchedResultsChangeMove: {
             [self.moviesCollectionView moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];

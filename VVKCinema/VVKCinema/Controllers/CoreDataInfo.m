@@ -110,7 +110,7 @@
     
     NSError *error = nil;
     
-    NSArray *entitiesArray = [context executeFetchRequest:request error:&error];
+    NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
     
     if ( error ) {
         NSLog(@"%@: Error fetching context: %@", [self class], [error localizedDescription]);

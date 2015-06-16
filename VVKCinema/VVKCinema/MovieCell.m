@@ -26,7 +26,7 @@
     NSURL *posterUrl = [NSURL URLWithString:movie.poster];
     
     if ( !movie.posterData ) {
-        dispatch_queue_t downloadQueue = dispatch_queue_create("com.myapp.processsmagequeue", NULL);
+        dispatch_queue_t downloadQueue = dispatch_queue_create("image downloader", NULL);
         dispatch_async(downloadQueue, ^{
             NSData * imageData = [NSData dataWithContentsOfURL:posterUrl];
             
@@ -49,7 +49,7 @@
 
 -(void)prepareForReuse {
     self.movieCoverImageView.image = nil;
-    self.ratingView = nil;
+    self.ratingView.backgroundColor = [UIColor whiteColor];
 }
 
 @end

@@ -89,7 +89,7 @@
         <attribute name="parseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tickets" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ticket" inverseName="user" inverseEntity="Ticket" syncable="YES"/>
+        <relationship name="tickets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ticket" inverseName="user" inverseEntity="Ticket" syncable="YES"/>
     </entity>
     <elements>
         <element name="Actor" positionX="387" positionY="9" width="128" height="103"/>

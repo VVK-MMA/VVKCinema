@@ -32,6 +32,7 @@
 		956FFCEC1B2EE9B300A429D8 /* DayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCEB1B2EE9B300A429D8 /* DayCell.m */; };
 		956FFCF21B2F0CE300A429D8 /* CoreDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCF11B2F0CE300A429D8 /* CoreDataInfo.m */; };
 		956FFCF51B30C99500A429D8 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCF41B30C99500A429D8 /* DetailsViewController.m */; };
+		956FFCF81B31970000A429D8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 956FFCF71B31970000A429D8 /* User.m */; };
 		95E727661B299DCC007C62AA /* ParseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* ParseInfo.m */; };
 		95E7276F1B29EB8C007C62AA /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7276E1B29EB8C007C62AA /* Country.m */; };
 		95E727721B29ED13007C62AA /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727711B29ED13007C62AA /* Director.m */; };
@@ -43,7 +44,6 @@
 		95E7278A1B2B33C2007C62AA /* Projection.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727891B2B33C2007C62AA /* Projection.m */; };
 		95E7278D1B2B3C2A007C62AA /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7278C1B2B3C2A007C62AA /* Seat.m */; };
 		95E727901B2B3F3C007C62AA /* TicketType.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7278F1B2B3F3C007C62AA /* TicketType.m */; };
-		95E727931B2B412C007C62AA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727921B2B412C007C62AA /* User.m */; };
 		95E727961B2B41E6007C62AA /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727951B2B41E6007C62AA /* Ticket.m */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +105,8 @@
 		956FFCF11B2F0CE300A429D8 /* CoreDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataInfo.m; path = Controllers/CoreDataInfo.m; sourceTree = "<group>"; };
 		956FFCF31B30C99500A429D8 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailsViewController.h; path = ViewControllers/DetailsViewController.h; sourceTree = "<group>"; };
 		956FFCF41B30C99500A429D8 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailsViewController.m; path = ViewControllers/DetailsViewController.m; sourceTree = "<group>"; };
+		956FFCF61B31970000A429D8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = CDModels/User.h; sourceTree = "<group>"; };
+		956FFCF71B31970000A429D8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = CDModels/User.m; sourceTree = "<group>"; };
 		95E727641B299DCC007C62AA /* ParseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseInfo.h; path = Controllers/ParseInfo.h; sourceTree = "<group>"; };
 		95E727651B299DCC007C62AA /* ParseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseInfo.m; path = Controllers/ParseInfo.m; sourceTree = "<group>"; };
 		95E7276D1B29EB8C007C62AA /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
@@ -127,8 +129,6 @@
 		95E7278C1B2B3C2A007C62AA /* Seat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Seat.m; path = CDModels/Seat.m; sourceTree = "<group>"; };
 		95E7278E1B2B3F3C007C62AA /* TicketType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketType.h; path = CDModels/TicketType.h; sourceTree = "<group>"; };
 		95E7278F1B2B3F3C007C62AA /* TicketType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketType.m; path = CDModels/TicketType.m; sourceTree = "<group>"; };
-		95E727911B2B412C007C62AA /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = CDModels/User.h; sourceTree = "<group>"; };
-		95E727921B2B412C007C62AA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = CDModels/User.m; sourceTree = "<group>"; };
 		95E727941B2B41E6007C62AA /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = CDModels/Ticket.h; sourceTree = "<group>"; };
 		95E727951B2B41E6007C62AA /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = CDModels/Ticket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,12 +226,12 @@
 		950F187D1B20A1B9008E075D /* CDModels */ = {
 			isa = PBXGroup;
 			children = (
+				956FFCF61B31970000A429D8 /* User.h */,
+				956FFCF71B31970000A429D8 /* User.m */,
 				956FFCE41B2E1EB200A429D8 /* Movie.h */,
 				956FFCE51B2E1EB200A429D8 /* Movie.m */,
 				95E727941B2B41E6007C62AA /* Ticket.h */,
 				95E727951B2B41E6007C62AA /* Ticket.m */,
-				95E727911B2B412C007C62AA /* User.h */,
-				95E727921B2B412C007C62AA /* User.m */,
 				95E7278E1B2B3F3C007C62AA /* TicketType.h */,
 				95E7278F1B2B3F3C007C62AA /* TicketType.m */,
 				95E7278B1B2B3C2A007C62AA /* Seat.h */,
@@ -427,7 +427,6 @@
 				95E727841B2B2A8E007C62AA /* Hall.m in Sources */,
 				95E7278D1B2B3C2A007C62AA /* Seat.m in Sources */,
 				95E727961B2B41E6007C62AA /* Ticket.m in Sources */,
-				95E727931B2B412C007C62AA /* User.m in Sources */,
 				9517C3031B11FB3A00542CE1 /* AppDelegate.m in Sources */,
 				313FA61A1B2797FF0095A365 /* DaysViewController.m in Sources */,
 				9517C3061B11FB3A00542CE1 /* VVKCinema.xcdatamodeld in Sources */,
@@ -437,6 +436,7 @@
 				31BD42C01B2977BB0095770F /* TicketsView.m in Sources */,
 				95E727811B2B29D0007C62AA /* Genre.m in Sources */,
 				313742B41B27FF2900E3DF58 /* TypeViewController.m in Sources */,
+				956FFCF81B31970000A429D8 /* User.m in Sources */,
 				9517C3091B11FB3A00542CE1 /* ViewController.m in Sources */,
 				95E7277B1B2B27D2007C62AA /* Actor.m in Sources */,
 				31B20C381B2739E400247370 /* AccountViewController.m in Sources */,

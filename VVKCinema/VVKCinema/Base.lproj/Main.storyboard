@@ -609,6 +609,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="exit" id="Tsb-ys-Uq4">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logout:" destination="MAB-NS-EqG" id="FeG-nx-qx6"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

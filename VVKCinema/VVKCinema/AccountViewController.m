@@ -9,7 +9,14 @@
 #import "AccountViewController.h"
 #import "TicketsView.h"
 #import "MapViewController.h"
-
+#import "User.h"
+#import "VVKCinemaInfo.h"
+#import "Ticket.h"
+#import "Seat.h"
+#import "TicketType.h"
+#import "Movie.h"
+#import "Projection.h"
+#import "Hall.h"
 
 #define TICKET_HEIGHT 200
 #define OFFSET 40
@@ -17,11 +24,14 @@
 #define SIDE_OFFSET 75
 
 @interface AccountViewController() <TicketsViewDelegate>
+
 @property (nonatomic) NSMutableArray *views;
+@property (nonatomic) NSMutableArray *tickets;
 @property (weak, nonatomic) IBOutlet TicketsView *ticketsView;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+
 @end
 
 @implementation AccountViewController
@@ -48,17 +58,35 @@
     //setup tickets view
     self.ticketsView.delegate = self;
     self.views = [[NSMutableArray alloc] init];
+    
     //maximum 7 tickets can be shown
-    for (int i=0;i<7;i++) {
+    for ( int i = 0; i < [[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] tickets] count]; i++ ) {
         UIView *thisView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.ticketsView.bounds.size.width + 20, TICKET_HEIGHT)];
+        
         [self.views addObject:thisView];
     }
     
     //test
     self.profileImageView.image = [UIImage imageNamed:@"photo"];
     [self prepareProfileImageView];
-    self.nameLabel.text = @"Vladimir Kadurin";
-    self.emailLabel.text = @"vladimirkadurin@gmail.com";
+    
+    User *currentUser = [[VVKCinemaInfo sharedVVKCinemaInfo] currentUser];
+    
+    self.nameLabel.text = currentUser.username;
+    self.emailLabel.text = currentUser.email;
+    
+    self.tickets = [NSMutableArray arrayWithCapacity:0];
+    
+    NSLog(@"%@", @"----------------------------");
+    if ( currentUser.tickets ) {
+        for ( Ticket *ticket in currentUser.tickets ) {
+            [self.tickets addObject:ticket];
+            
+            Seat *seat = ticket.seat;
+            
+//            NSLog(@"%@", seat.column);
+        }
+    }
 }
 
 #pragma mark - IBActions
@@ -70,6 +98,8 @@
 
 - (IBAction)logout:(UIBarButtonItem *)sender
 {
+    [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:nil];
+    
     [self dismissViewControllerAnimated:self completion:nil];
 }
 
@@ -78,6 +108,8 @@
 
 - (UIView *)ticketsView:(TicketsView *)ticketsView ticketForIndex:(NSInteger)index
 {
+//    NSLog(@"%ld", (long)index);
+    
     UIView *viewToAdd = [self.views objectAtIndex:index];
     viewToAdd.layer.masksToBounds = YES;
     viewToAdd.opaque = NO;
@@ -169,8 +201,22 @@
     dynamicPriceLabel.adjustsFontSizeToFitWidth = YES;
     dynamicPriceLabel.minimumScaleFactor = 0.8;
     
+    Ticket *ticket = [self.tickets objectAtIndex:index];
+    
+    Seat *seat = ticket.seat;
+    
+    TicketType *ticketType = ticket.ticketType;
+//    NSLog(@"%@", ticketType.name);
+    
+    Projection *projection = seat.projection;
+    
+    Movie *movie = projection.movie;
+//    NSLog(@"%@", movie.name);
+    
+    Hall *hall = projection.hall;
+
     //dynaic label
-    movieTitleLabel.text = @"Jurassic World";
+    movieTitleLabel.text = movie.name;
     [movieTitleLabel sizeToFit];
     movieTitleLabel.frame = CGRectMake(imageView.frame.size.width / 2 - movieTitleLabel.frame.size.width / 2, TOP_OFFSET, movieTitleLabel.frame.size.width, movieTitleLabel.frame.size.height);
     
@@ -201,24 +247,32 @@
     
     //--------------------------------
     //dynamic labels. CHANGE TEXT HERE!
-    dynamicHallLabel.text = @"4D";
+    dynamicHallLabel.text = hall.name;
     [dynamicHallLabel sizeToFit];
     dynamicHallLabel.frame = CGRectMake(hallLabel.frame.origin.x, hallLabel.frame.origin.y + hallLabel.frame.size.height + 3, dynamicHallLabel.frame.size.width, dynamicHallLabel.frame.size.height);
     
-    dynamicRowLabel.text = @"6";
+    dynamicRowLabel.text = [seat.row stringValue];
     [dynamicRowLabel sizeToFit];
     dynamicRowLabel.frame = CGRectMake(rowLabel.frame.origin.x, dynamicHallLabel.frame.origin.y, dynamicRowLabel.frame.size.width, dynamicRowLabel.frame.size.height);
     
-    dynamicSeatsLabel.text = @"3, 4, 5";
+    dynamicSeatsLabel.text = [seat.column stringValue];
     [dynamicSeatsLabel sizeToFit];
     dynamicSeatsLabel.frame = CGRectMake(seatLabel.frame.origin.x, dynamicHallLabel.frame.origin.y, dynamicSeatsLabel.frame.size.width, dynamicSeatsLabel.frame.size.height);
     
+    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+    [dateformat setDateFormat:@"dd.MM"]; // Date formater
+    NSString *date = [dateformat stringFromDate:projection.date]; // Convert date to string
+    
     //show only day and month without year because space is limited
-    dynamicDateLabel.text = @"17.06";
+    dynamicDateLabel.text = date;
     [dynamicDateLabel sizeToFit];
     dynamicDateLabel.frame = CGRectMake(dateLabel.frame.origin.x, dateLabel.frame.origin.y + dateLabel.frame.size.height + 3, dynamicDateLabel.frame.size.width, dynamicDateLabel.frame.size.height);
     
-    dynamicTimeLabel.text = @"11:40";
+    NSDateFormatter *dateformatTime = [[NSDateFormatter alloc] init];
+    [dateformatTime setDateFormat:@"hh.mm"]; // Date formater
+    NSString *time = [dateformatTime stringFromDate:projection.date]; // Convert date to string
+    
+    dynamicTimeLabel.text = time;
     [dynamicTimeLabel sizeToFit];
     dynamicTimeLabel.frame = CGRectMake(timeLabel.frame.origin.x, dynamicDateLabel.frame.origin.y, dynamicTimeLabel.frame.size.width, dynamicTimeLabel.frame.size.height);
     
@@ -250,7 +304,10 @@
 - (NSInteger)numberOfTicketsForTicketsView:(TicketsView *)ticketView
 {
     //maximum 7 tickets can be shown
-    return [self.views count];
+    NSInteger numberOfTickets = [[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] tickets] count];
+    
+//    return [self.views count];
+    return numberOfTickets;
 }
 
 #pragma mark - Helper methods

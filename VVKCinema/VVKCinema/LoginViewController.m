@@ -15,10 +15,24 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *facebookButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @end
 
 @implementation LoginViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.facebookButton.layer.cornerRadius = self.facebookButton.frame.size.height /2;
+    self.facebookButton.layer.masksToBounds = YES;
+    self.facebookButton.layer.borderWidth = 0;
+    
+    self.registerButton.layer.cornerRadius = self.registerButton.frame.size.height /2;
+    self.registerButton.layer.masksToBounds = YES;
+    self.registerButton.layer.borderWidth = 0;
+}
 
 #pragma mark - IBActions
 
@@ -28,17 +42,37 @@
 }
 
 - (IBAction)login:(id)sender {
+    if ( [self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""] ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"All fields are required!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+        
+        return;
+    }
+    
     NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithUsername:self.usernameTextField.text andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
     
     if ( userArray ) {
+        if ( [userArray count] == 0 ) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Non-existing user!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+            
+            return;
+        }
+        
         User *currentUser = userArray[0];
         
         if ( [currentUser.password isEqualToString:self.passwordTextField.text] ) {
             [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:currentUser];
             
-//            NSLog(@"%@", [[VVKCinemaInfo sharedVVKCinemaInfo] currentUser]);
-            
             [self dismissViewControllerAnimated:NO completion:nil];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Wrong Password!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+            
+            return;
         }
     }
     else {

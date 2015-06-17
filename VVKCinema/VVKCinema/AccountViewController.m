@@ -16,6 +16,7 @@
 #import "TicketType.h"
 #import "Movie.h"
 #import "Projection.h"
+#import "ProjectionType.h"
 #import "Hall.h"
 
 #define TICKET_HEIGHT 200
@@ -210,6 +211,8 @@
     
     Projection *projection = seat.projection;
     
+    ProjectionType *projectionType = projection.projectionType;
+    
     Movie *movie = projection.movie;
 //    NSLog(@"%@", movie.name);
     
@@ -261,6 +264,7 @@
     
     NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
     [dateformat setDateFormat:@"dd.MM"]; // Date formater
+    [dateformat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     NSString *date = [dateformat stringFromDate:projection.date]; // Convert date to string
     
     //show only day and month without year because space is limited
@@ -269,14 +273,35 @@
     dynamicDateLabel.frame = CGRectMake(dateLabel.frame.origin.x, dateLabel.frame.origin.y + dateLabel.frame.size.height + 3, dynamicDateLabel.frame.size.width, dynamicDateLabel.frame.size.height);
     
     NSDateFormatter *dateformatTime = [[NSDateFormatter alloc] init];
-    [dateformatTime setDateFormat:@"hh.mm"]; // Date formater
+    [dateformatTime setDateFormat:@"HH.mm"]; // Date formater
+    [dateformatTime setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     NSString *time = [dateformatTime stringFromDate:projection.date]; // Convert date to string
     
     dynamicTimeLabel.text = time;
     [dynamicTimeLabel sizeToFit];
     dynamicTimeLabel.frame = CGRectMake(timeLabel.frame.origin.x, dynamicDateLabel.frame.origin.y, dynamicTimeLabel.frame.size.width, dynamicTimeLabel.frame.size.height);
     
-    dynamicPriceLabel.text = @"7.00lv";
+    double projectionTypePrice = 0;
+    
+    if ( [projectionType.name isEqualToString:@"3D"] ) {
+        projectionTypePrice = 3;
+    }
+    
+    double hallPrice = 0;
+    
+    if ( [hall.name isEqualToString:@"IMAX"] ) {
+        hallPrice = 1;
+    }
+    
+    double ticketTypePrice = 0;
+    
+    if ( [ticketType.name isEqualToString:@"редовен"] ) {
+        ticketTypePrice = -2;
+    }
+    
+    double ticketPrice = 8.5 + projectionTypePrice + hallPrice + ticketTypePrice;
+    
+    dynamicPriceLabel.text = [NSString stringWithFormat:@"%.02fleva", ticketPrice];
     [dynamicPriceLabel sizeToFit];
     dynamicPriceLabel.frame = CGRectMake(priceLabel.frame.origin.x, dynamicDateLabel.frame.origin.y, dynamicPriceLabel.frame.size.width, dynamicPriceLabel.frame.size.height);
     //-------------------

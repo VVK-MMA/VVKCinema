@@ -365,7 +365,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     CGPoint startPt = CGPointMake(drape.bounds.size.width / 2,
                                   drapeImage.size.height / 2);
-    CGPoint endPt = CGPointMake(drape.bounds.size.width / -2,
+    CGPoint endPt = CGPointMake(-300,
                                 drape.position.y);
     
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -374,6 +374,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     anim.toValue = [NSValue valueWithCGPoint:endPt];
     anim.repeatCount = 1;
     anim.duration = 1.5;
+    anim.delegate = self;
     
     //second drape
     UIImage *drapeImage2 = [UIImage imageNamed:@"right.png"];
@@ -386,7 +387,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
                                   drapeImage2.size.height / 2);
     [self.view.layer addSublayer:drape2];
     
-    CGPoint endPt2 = CGPointMake(self.view.bounds.size.width + drape2.bounds.size.width / 2,
+    CGPoint endPt2 = CGPointMake(self.view.frame.size.width + 300,
                                  drape2.position.y);
     CGPoint startPt2 = CGPointMake(drape2.bounds.size.width / 2 - 20,
                                    drapeImage2.size.height / 2);
@@ -397,6 +398,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     anim2.toValue = [NSValue valueWithCGPoint:endPt2];
     anim2.repeatCount = 1;
     anim2.duration = 1.5;
+    anim2.delegate = self;
     
     double delayInSeconds1 = 0.5;
     dispatch_time_t popTime1 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds1 * NSEC_PER_SEC));

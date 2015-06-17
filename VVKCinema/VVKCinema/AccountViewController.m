@@ -78,14 +78,9 @@
     
     self.tickets = [NSMutableArray arrayWithCapacity:0];
     
-    NSLog(@"%@", @"----------------------------");
     if ( currentUser.tickets ) {
         for ( Ticket *ticket in currentUser.tickets ) {
             [self.tickets addObject:ticket];
-            
-            Seat *seat = ticket.seat;
-            
-//            NSLog(@"%@", seat.column);
         }
     }
 }

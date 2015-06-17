@@ -298,7 +298,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUf-J9-X95">
                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="255"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="slI-Ie-XDJ">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="slI-Ie-XDJ">
                                                             <rect key="frame" x="8" y="8" width="149" height="176"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="100" id="tRv-zU-A8u"/>
@@ -309,9 +309,9 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqr-Tl-EyA">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqr-Tl-EyA">
                                                             <rect key="frame" x="8" y="192" width="41" height="22"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -402,6 +402,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mainView" destination="8bC-Xf-vdC" id="ybG-0f-egM"/>
                         <outlet property="moviesCollectionView" destination="5A6-kx-STL" id="0vY-EV-98V"/>
                     </connections>
                 </viewController>

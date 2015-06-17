@@ -23,6 +23,7 @@
 
 @interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate, NSFetchedResultsControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSPredicate *predicate;
@@ -38,6 +39,10 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.moviesCollectionView.collectionViewLayout;
+    
+    layout.itemSize = CGSizeMake((self.mainView.frame.size.width - 30) / 2, 255);
     
    // map settings
     UIBarButtonItem *map = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"map"] style:UIBarButtonItemStylePlain target:self action:@selector(map:)];

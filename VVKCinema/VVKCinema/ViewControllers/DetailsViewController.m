@@ -11,6 +11,7 @@
 #import "Movie.h"
 #import "CoreDataInfo.h"
 #import "Director.h"
+#import "Projection.h"
 
 @interface DetailsViewController ()
 
@@ -62,6 +63,10 @@
     NSString *date = [dateformat stringFromDate:[NSDate date]]; // Convert date to string
 
     self.releaseDateLabel.text = [NSString stringWithFormat:@"%@ min * %@", selectedMovie.duration, date];
+    
+    for ( Projection *projection in selectedMovie.projections ) {
+        NSLog(@"%@", projection.date);
+    }
 }
 
 - (void)didReceiveMemoryWarning {

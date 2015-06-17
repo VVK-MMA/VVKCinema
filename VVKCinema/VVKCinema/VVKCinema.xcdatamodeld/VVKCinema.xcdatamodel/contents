@@ -86,6 +86,7 @@
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
@@ -104,6 +105,6 @@
         <element name="Seat" positionX="153" positionY="449" width="128" height="133"/>
         <element name="Ticket" positionX="-72" positionY="531" width="128" height="118"/>
         <element name="TicketType" positionX="153" positionY="594" width="128" height="88"/>
-        <element name="User" positionX="-83" positionY="369" width="128" height="118"/>
+        <element name="User" positionX="-83" positionY="369" width="128" height="133"/>
     </elements>
 </model>

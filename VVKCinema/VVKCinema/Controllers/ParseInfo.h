@@ -21,4 +21,6 @@
 
 - (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId;
 
+- (void)sendSignUpRequestToParseWithUsername:(NSString *)username password:(NSString *)password andEmail:(NSString *)email;
+
 @end

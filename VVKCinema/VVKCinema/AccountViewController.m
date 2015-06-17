@@ -73,7 +73,7 @@
     
     User *currentUser = [[VVKCinemaInfo sharedVVKCinemaInfo] currentUser];
     
-    self.nameLabel.text = currentUser.username;
+    self.nameLabel.text = currentUser.name;
     self.emailLabel.text = currentUser.email;
     
     self.tickets = [NSMutableArray arrayWithCapacity:0];

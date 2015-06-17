@@ -122,12 +122,12 @@
     return entitiesArray;
 }
 
-- (NSArray *)fetchUserWithUsername:(NSString *)username andContext:(NSManagedObjectContext *)context {
+- (NSArray *)fetchUserWithEmail:(NSString *)email andContext:(NSManagedObjectContext *)context {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     
     [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"username = '%@'", username]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"email = '%@'", email]];
     
     [request setPredicate:predicate];
     

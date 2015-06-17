@@ -13,7 +13,7 @@
 
 @interface LoginViewController()
 
-@property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
@@ -42,7 +42,7 @@
 }
 
 - (IBAction)login:(id)sender {
-    if ( [self.usernameTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""] ) {
+    if ( [self.emailTextField.text isEqualToString:@""] || [self.passwordTextField.text isEqualToString:@""] ) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"All fields are required!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [alert show];
@@ -50,7 +50,7 @@
         return;
     }
     
-    NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithUsername:self.usernameTextField.text andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+    NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithEmail:self.emailTextField.text andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
     
     if ( userArray ) {
         if ( [userArray count] == 0 ) {
@@ -74,25 +74,6 @@
             
             return;
         }
-    }
-    else {
-//        for (User *user in users) {
-//            if ( [user.userName isEqualToString:self.userNameTextField.text] ) {
-//                if ( [user.password isEqualToString:self.passwordTextField.text] ) {
-//                    //                    NSLog(@"Existing user");
-//                    
-//                    [[RentApartmentsInfo sharedRentApartmentsInfo] setUser:user];
-//                    
-//                    break;
-//                }
-//            }
-//        }
-//        
-//        if ( [[RentApartmentsInfo sharedRentApartmentsInfo] user] == nil ) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wrong User!" message:@"The user is invalid!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            
-//            [alert show];
-//        }
     }
 }
 

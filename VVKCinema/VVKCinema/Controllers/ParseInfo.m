@@ -467,12 +467,15 @@
                         
                         NSString *userEmail = [userDict objectForKey:@"email"];
                         
+                        NSString *name = [userDict objectForKey:@"name"];
+                        
                         User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
                             
                         newUser.parseId = userId;
                         newUser.username = userUsername;
                         newUser.password = userPassword;
                         newUser.email = userEmail;
+                        newUser.name = name;
                     }
                     
                     NSArray *seatArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Seat" objectId:seatId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
@@ -499,8 +502,47 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"TicketsAddedToCoreData" object:nil];
         }
-        
     }
+}
+
+- (void)sendSignUpRequestToParseWithUsername:(NSString *)username password:(NSString *)password andEmail:(NSString *)email {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/users/"]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    // Set HTTP headers
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [request setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [request setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
+    
+    NSDictionary *dict = @{@"username":username, @"password":password, @"email":email};
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    
+    [request setHTTPBody:jsonData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+         if ( !data ) {
+//             [self.delegate userDidSignUpSuccessfully:NO];
+             
+             return;
+         }
+         
+         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+         
+         if ( [httpResponse statusCode] == 201 ) {
+             NSLog(@"Registration successful!");
+//             [self.delegate userDidSignUpSuccessfully:YES];
+         } else {
+             NSLog(@"Registration failed!");
+             NSLog(@"%@", response);
+//             [self.delegate userDidSignUpSuccessfully:NO];
+         }
+     }];
 }
 
 @end

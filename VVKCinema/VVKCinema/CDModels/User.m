@@ -2,7 +2,7 @@
 //  User.m
 //  VVKCinema
 //
-//  Created by Valeri Manchev on 6/17/15.
+//  Created by Valeri Manchev on 6/18/15.
 //  Copyright (c) 2015 VVK. All rights reserved.
 //
 
@@ -16,6 +16,7 @@
 @dynamic parseId;
 @dynamic password;
 @dynamic username;
+@dynamic name;
 @dynamic tickets;
 
 @end

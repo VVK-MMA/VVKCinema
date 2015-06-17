@@ -72,12 +72,18 @@
     
     cell.textLabel.text = currentType;
     
+    if ( indexPath.row == [[[VVKCinemaInfo sharedVVKCinemaInfo] currentType] integerValue] ) {
+        [cell setBackgroundColor:[UIColor lightGrayColor]];
+    }
+    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentType:[NSNumber numberWithInteger:indexPath.row]];
+
     if ( indexPath.row == 0 ) {
         [[VVKCinemaInfo sharedVVKCinemaInfo] setTypePredicate:nil];
     } else {

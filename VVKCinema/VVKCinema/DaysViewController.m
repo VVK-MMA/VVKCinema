@@ -75,6 +75,10 @@
         
     [self configureCell:cell atIndexPath:indexPath];
     
+    if ( indexPath.row == [[[VVKCinemaInfo sharedVVKCinemaInfo] currentDay] integerValue] ) {
+        [cell setBackgroundColor:[UIColor lightGrayColor]];
+    }
+    
     return cell;
 }
 
@@ -88,6 +92,8 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentDay:[NSNumber numberWithInteger:indexPath.row]];
+
     if ( indexPath.row == 0 ) {
         [[VVKCinemaInfo sharedVVKCinemaInfo] setDaysPredicate:nil];
     } else {

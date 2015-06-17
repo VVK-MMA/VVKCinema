@@ -14,8 +14,11 @@
 @property (strong, nonatomic) NSSortDescriptor *sortDescriptor;
 @property (strong, nonatomic) NSString *sort;
 @property (strong, nonatomic) NSPredicate *daysPredicate;
+@property (strong, nonatomic) NSNumber *currentDay;
 @property (strong, nonatomic) NSPredicate *typePredicate;
+@property (strong, nonatomic) NSNumber *currentType;
 @property (strong, nonatomic) NSPredicate *genrePredicate;
+@property (strong, nonatomic) NSNumber *currentGenre;
 @property (strong, nonatomic) NSString *selectedMovie;
 @property (strong, nonatomic) User *currentUser;
 

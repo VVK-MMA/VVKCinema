@@ -28,11 +28,14 @@
         self.titleLabel.text = [self.weekdayFormatter stringFromDate:date];
         self.detailLabel.text = [self.dateFormatter stringFromDate:date];
     }
+    
+    self.detailTextLabel.textColor = [UIColor blackColor];
 }
 
 -(void)prepareForReuse {
     self.titleLabel.text = @"All";
     self.detailLabel.text = @"";
+    [self setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (NSDateFormatter *)weekdayFormatter

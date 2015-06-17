@@ -65,6 +65,7 @@
     self.releaseDateLabel.text = [NSString stringWithFormat:@"%@ min * %@", selectedMovie.duration, date];
     
     for ( Projection *projection in selectedMovie.projections ) {
+        NSLog(@"%@", projection.parseId);
         NSLog(@"%@", projection.date);
     }
 }

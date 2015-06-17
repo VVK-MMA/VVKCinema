@@ -19,6 +19,7 @@
 #import "MapViewController.h"
 #import "VVKCinemaInfo.h"
 #import "CoreDataInfo.h"
+#import "LoginViewController.h"
 
 @interface ViewController () <UICollectionViewDataSource, UIViewControllerTransitioningDelegate, NSFetchedResultsControllerDelegate>
 
@@ -41,7 +42,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
    // map settings
     UIBarButtonItem *map = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"map"] style:UIBarButtonItemStylePlain target:self action:@selector(map:)];
     map.tintColor = [UIColor whiteColor];
-    
+
     
     UIBarButtonItem *sorted = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"sort"] style:UIBarButtonItemStylePlain target:self action:@selector(showSortVC:)];
     sorted.tintColor = [UIColor whiteColor];
@@ -135,6 +136,14 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         sortDescriptor = [[VVKCinemaInfo sharedVVKCinemaInfo] sortDescriptor];
     }
     
+//    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] sort] ) {
+//        if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"name"] ) {
+//            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+//        } else {
+//            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:[NSString stringWithFormat:@"%@", [[VVKCinemaInfo sharedVVKCinemaInfo] sort]] ascending:NO];
+//        }
+//    }
+    
     NSArray *sortDescriptors = @[sortDescriptor];
 
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -208,9 +217,13 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 
 - (IBAction)showAccountVC:(UIBarButtonItem *)sender
 {
-    UINavigationController *avc = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountNC"];
-    avc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:avc animated:YES completion:nil];
+    if ( ![[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] ) {
+        [self showLoginVC];
+    } else {
+        UINavigationController *avc = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountNC"];
+        avc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentViewController:avc animated:YES completion:nil];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -399,7 +412,10 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         [drape2 removeFromSuperlayer];
     });
 }
+
+
 #pragma mark - Helper methods
+
 - (void)showSortVC:(UIBarButtonItem *)sender
 {
     SortOptionsViewController *sovc = [self.storyboard instantiateViewControllerWithIdentifier:@"SortVC"];
@@ -415,12 +431,30 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     [self presentViewController:sovc animated:NO completion:nil];
 }
+
+- (void)showLoginVC
+{
+    LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginVC"];
+    
+    UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *beView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    beView.frame = self.view.bounds;
+    
+    loginVC.view.frame = self.view.bounds;
+    loginVC.view.backgroundColor = [UIColor clearColor];
+    [loginVC.view insertSubview:beView atIndex:0];
+    loginVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    
+    [self presentViewController:loginVC animated:NO completion:nil];
+}
+
 - (void)map:(UIBarButtonItem *)button
 {
     MapViewController *ctvc = [self.storyboard instantiateViewControllerWithIdentifier:@"Map"];
     
     [self.navigationController presentViewController:ctvc animated:YES completion:nil];
 }
+
 - (void)alert
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"There was a problem with the database. Fetch could not be performed!" preferredStyle:UIAlertControllerStyleAlert];

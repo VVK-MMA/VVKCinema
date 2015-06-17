@@ -10,4 +10,11 @@
 
 @implementation LoginViewController
 
+#pragma mark - IBActions
+
+- (IBAction)dismissVC:(UITapGestureRecognizer *)sender
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 @end

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5m7-Pk-sAb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5m7-Pk-sAb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -136,6 +136,70 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1766" y="-1049"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="TPI-wl-wvF">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="IOu-gx-VM0" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c4u-AW-pcg"/>
+                        <viewControllerLayoutGuide type="bottom" id="h7c-9z-d9A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sfi-DI-OWO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Uj-wE-WlP">
+                                <rect key="frame" x="200" y="158" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="2Qv-la-afb"/>
+                                    <constraint firstAttribute="height" constant="30" id="Yvc-NB-ukN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ha3-Un-GqV">
+                                <rect key="frame" x="281" y="196" width="38" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="GOf-TL-djz"/>
+                                    <constraint firstAttribute="height" constant="30" id="i9Z-xV-fBq"/>
+                                </constraints>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DcQ-Sj-ny5">
+                                <rect key="frame" x="200" y="120" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="31B-Vn-zSY"/>
+                                    <constraint firstAttribute="height" constant="30" id="ryJ-du-11m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="DcQ-Sj-ny5" secondAttribute="centerX" id="3Ql-7n-eeJ"/>
+                            <constraint firstItem="ha3-Un-GqV" firstAttribute="top" secondItem="5Uj-wE-WlP" secondAttribute="bottom" constant="8" id="5yb-tT-c3b"/>
+                            <constraint firstItem="5Uj-wE-WlP" firstAttribute="top" secondItem="DcQ-Sj-ny5" secondAttribute="bottom" constant="8" id="Bp4-u8-TOe"/>
+                            <constraint firstAttribute="centerX" secondItem="5Uj-wE-WlP" secondAttribute="centerX" id="FDX-5j-eak"/>
+                            <constraint firstAttribute="centerX" secondItem="ha3-Un-GqV" secondAttribute="centerX" id="R6q-Xm-gYm"/>
+                            <constraint firstItem="DcQ-Sj-ny5" firstAttribute="top" secondItem="c4u-AW-pcg" secondAttribute="bottom" constant="100" id="kVh-bt-7OI"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="GT4-F1-cAA" appends="YES" id="rzm-Ew-8RR"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gS1-wP-YMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GT4-F1-cAA">
+                    <connections>
+                        <action selector="dismissVC:" destination="IOu-gx-VM0" id="9B0-Jg-3ZF"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2437" y="-1049"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -448,7 +512,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tickets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-bb-8Eg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tickets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-bb-8Eg">
                                 <rect key="frame" x="259" y="142" width="84" height="28"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

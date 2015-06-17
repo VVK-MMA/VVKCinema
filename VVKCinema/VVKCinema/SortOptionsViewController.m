@@ -45,10 +45,15 @@
 - (IBAction)addSortOption:(id)sender {
     if ( [sender tag] == 0 ) {
         [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"releaseDate"];
     } else if ( [sender tag] == 1 ) {
         [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
+//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"name"];
     } else if ( [sender tag] == 2 ) {
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO]];
+        if ( ![[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"rate"] ) {
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO]];
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"rate"];
+        }
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];

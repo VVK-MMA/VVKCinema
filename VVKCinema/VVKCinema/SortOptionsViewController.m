@@ -25,14 +25,25 @@
     self.alphabetButton.layer.cornerRadius = self.alphabetButton.frame.size.height /2;
     self.alphabetButton.layer.masksToBounds = YES;
     self.alphabetButton.layer.borderWidth = 0;
+    self.alphabetButton.backgroundColor = [UIColor grayColor];
     
     self.ratingButton.layer.cornerRadius = self.alphabetButton.frame.size.height /2;
     self.ratingButton.layer.masksToBounds = YES;
     self.ratingButton.layer.borderWidth = 0;
+    self.ratingButton.backgroundColor = [UIColor grayColor];
     
     self.dateButton.layer.cornerRadius = self.alphabetButton.frame.size.height /2;
     self.dateButton.layer.masksToBounds = YES;
     self.dateButton.layer.borderWidth = 0;
+    self.dateButton.backgroundColor = [UIColor grayColor];
+    
+    if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"releaseDate"] ) {
+        self.dateButton.backgroundColor = [UIColor orangeColor];
+    } else if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"name"] ) {
+        self.alphabetButton.backgroundColor = [UIColor orangeColor];
+    } else if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"rate"] ) {
+        self.ratingButton.backgroundColor = [UIColor orangeColor];
+    }
 }
 
 #pragma mark - IBActions
@@ -45,10 +56,10 @@
 - (IBAction)addSortOption:(id)sender {
     if ( [sender tag] == 0 ) {
         [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
-//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"releaseDate"];
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"releaseDate"];
     } else if ( [sender tag] == 1 ) {
         [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
-//        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"name"];
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"name"];
     } else if ( [sender tag] == 2 ) {
         if ( ![[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"rate"] ) {
             [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO]];

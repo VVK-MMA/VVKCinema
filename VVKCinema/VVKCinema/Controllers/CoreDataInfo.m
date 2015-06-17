@@ -122,4 +122,27 @@
     return entitiesArray;
 }
 
+- (NSArray *)fetchUserWithUsername:(NSString *)username andContext:(NSManagedObjectContext *)context {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"username = '%@'", username]];
+    
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    
+    NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
+    
+    if ( error ) {
+        NSLog(@"%@: Error fetching context: %@", [self class], [error localizedDescription]);
+        NSLog(@"entitiesArray: %@",entitiesArray);
+        
+        return nil;
+    }
+    
+    return entitiesArray;
+}
+
 @end

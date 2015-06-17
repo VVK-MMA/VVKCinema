@@ -25,4 +25,6 @@
 
 - (NSArray *)fetchObjectWithEntityName:(NSString *)entityName objectId:(NSString *)objectId andContext:(NSManagedObjectContext *)context;
 
+- (NSArray *)fetchUserWithUsername:(NSString *)username andContext:(NSManagedObjectContext *)context;
+
 @end

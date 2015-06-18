@@ -127,7 +127,7 @@
     
     [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"email = '%@'", email]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"username = '%@'", email]];
     
     [request setPredicate:predicate];
     

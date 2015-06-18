@@ -73,6 +73,11 @@
     
     User *currentUser = [[VVKCinemaInfo sharedVVKCinemaInfo] currentUser];
     
+//    NSLog(@"%@", currentUser.name);
+//    NSLog(@"%@", currentUser.username);
+//    NSLog(@"%@", currentUser.parseId);
+//    NSLog(@"%@", currentUser.tickets);
+    
     self.nameLabel.text = currentUser.name;
     self.emailLabel.text = currentUser.email;
     

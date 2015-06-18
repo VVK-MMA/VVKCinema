@@ -106,7 +106,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedTypePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedGenrePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedDayPredicate" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startDrapeAnimation) name:@"TicketsAddedToCoreData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startDrapeAnimation) name:@"MoviesAddedToCoreData" object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {

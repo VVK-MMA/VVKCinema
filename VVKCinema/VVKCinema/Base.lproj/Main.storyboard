@@ -373,6 +373,7 @@
                     <connections>
                         <outlet property="avatarButton" destination="LF6-3Y-pLF" id="MZu-sC-pkZ"/>
                         <outlet property="emailTextField" destination="6gI-TJ-oCK" id="p2N-WY-C4n"/>
+                        <outlet property="mainView" destination="sfV-VW-9lN" id="OGC-tG-oO7"/>
                         <outlet property="nameTextField" destination="gMb-kR-LyT" id="LOz-1E-PKI"/>
                         <outlet property="passwordTextField" destination="jEX-1X-Sfm" id="MDz-uS-BGO"/>
                     </connections>

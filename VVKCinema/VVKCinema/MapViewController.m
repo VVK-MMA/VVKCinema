@@ -26,6 +26,16 @@
 
 - (void)viewDidLoad
 {
+    //Setting up barButtons
+    UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"route"] style:UIBarButtonItemStylePlain target:self action:@selector(handleRoutePressed:)];
+    search.tintColor = [UIColor whiteColor];
+    
+    
+    UIBarButtonItem *iosMaps = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"map"] style:UIBarButtonItemStylePlain target:self action:@selector(iosMaps:)];
+    iosMaps.tintColor = [UIColor whiteColor];
+    NSArray * buttons = [[NSArray alloc]initWithObjects:search,iosMaps, nil];
+    self.navigationItem.rightBarButtonItems = buttons;
+    
     [super viewDidLoad];
     //Ask for Authorization
     self.locationManager = [[CLLocationManager alloc]init];
@@ -57,13 +67,22 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
-#pragma mark - IBActions
+
+-(void)iosMaps:(UIBarButtonItem *)button{
+    NSString* versionNum = [[UIDevice currentDevice] systemVersion];
+    NSString *nativeMapScheme = @"maps.apple.com";
+    if ([versionNum compare:@"6.0" options:NSNumericSearch] == NSOrderedAscending){
+        nativeMapScheme = @"maps.google.com";
+    }
+    NSString* url = [NSString stringWithFormat: @"http://%@/maps?saddr=%f,%f&daddr=%f,%f", nativeMapScheme, 42.654783, 23.370199,
+                     42.688226, 23.318539];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]]; ;
+}
 - (IBAction)exitToMain:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)handleRoutePressed:(id)sender {
-    
+- (void)handleRoutePressed:(UIBarButtonItem *)sender {
     
     // Make a directions request
     MKDirectionsRequest *directionsRequest = [MKDirectionsRequest new];
@@ -101,6 +120,7 @@
     MKPointAnnotation *point = [MKPointAnnotation new];
     point.title = @"VVK Cinema";
     point.coordinate = destinationCoords;
+    
     [self.mapView addAnnotation:point];
 }
 

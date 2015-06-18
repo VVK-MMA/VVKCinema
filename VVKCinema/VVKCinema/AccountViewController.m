@@ -20,7 +20,6 @@
 #import "Hall.h"
 
 #define TICKET_HEIGHT 200
-#define OFFSET 40
 #define TOP_OFFSET 25
 #define SIDE_OFFSET 75
 
@@ -32,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (nonatomic) NSInteger offset;
 
 @end
 
@@ -82,6 +82,14 @@
         for ( Ticket *ticket in currentUser.tickets ) {
             [self.tickets addObject:ticket];
         }
+    }
+    
+    //labels offset depending on screen size
+    NSInteger screenSize = [UIScreen mainScreen].bounds.size.width;
+    if (screenSize == 320) { //iPhone 5 or 5S
+        self.offset = 20;
+    } else if (screenSize > 320) { //iPhone 6 or 6S
+        self.offset = 40;
     }
 }
 
@@ -225,11 +233,11 @@
     
     rowLabel.text = @"ROW";
     [rowLabel sizeToFit];
-    rowLabel.frame = CGRectMake(hallLabel.frame.origin.x + hallLabel.frame.size.width + OFFSET, hallLabel.frame.origin.y, rowLabel.frame.size.width, rowLabel.frame.size.height);
+    rowLabel.frame = CGRectMake(hallLabel.frame.origin.x + hallLabel.frame.size.width + self.offset, hallLabel.frame.origin.y, rowLabel.frame.size.width, rowLabel.frame.size.height);
     
     seatLabel.text = @"SEAT";
     [seatLabel sizeToFit];
-    seatLabel.frame = CGRectMake(rowLabel.frame.origin.x + rowLabel.frame.size.width + OFFSET, hallLabel.frame.origin.y, seatLabel.frame.size.width, seatLabel.frame.size.height);
+    seatLabel.frame = CGRectMake(rowLabel.frame.origin.x + rowLabel.frame.size.width + self.offset, hallLabel.frame.origin.y, seatLabel.frame.size.width, seatLabel.frame.size.height);
     
     dateLabel.text = @"DATE";
     [dateLabel sizeToFit];

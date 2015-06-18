@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *moviesCollectionView;
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) CALayer *drape;
+@property (nonatomic, strong) CALayer *drape2;
 
 @end
 
@@ -104,6 +106,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedTypePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedGenrePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedDayPredicate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startDrapeAnimation) name:@"TicketsAddedToCoreData" object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -113,6 +116,10 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedTypePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedGenrePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedDayPredicate" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"TicketsAddedToCoreData" object:nil];
+    
+    [self.drape removeFromSuperlayer];
+    [self.drape2 removeFromSuperlayer];
 }
 
 #pragma mark - Setters
@@ -360,66 +367,66 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     //first drape
     UIImage *drapeImage = [UIImage imageNamed:@"left.png"];
     
-    CALayer *drape = [CALayer layer];
-    drape.opaque = NO;
-    drape.contents = (id)drapeImage.CGImage;
-    drape.bounds = CGRectMake(0, 0, drapeImage.size.width, drapeImage.size.height);
-    drape.position = CGPointMake(drape.bounds.size.width / 2,
+    self.drape = [CALayer layer];
+    self.drape.opaque = NO;
+    self.drape.contents = (id)drapeImage.CGImage;
+    self.drape.bounds = CGRectMake(0, 0, drapeImage.size.width, drapeImage.size.height);
+    self.drape.position = CGPointMake(self.drape.bounds.size.width / 2,
                                  drapeImage.size.height / 2);
-    [self.view.layer addSublayer:drape];
-    
-    CGPoint startPt = CGPointMake(drape.bounds.size.width / 2,
-                                  drapeImage.size.height / 2);
-    CGPoint endPt = CGPointMake(-400,
-                                drape.position.y);
-    
-    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"position"];
-    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    anim.fromValue = [NSValue valueWithCGPoint:startPt];
-    anim.toValue = [NSValue valueWithCGPoint:endPt];
-    anim.repeatCount = 1;
-    anim.duration = 1.5;
-    anim.delegate = self;
+    [self.view.layer addSublayer:self.drape];
     
     //second drape
     UIImage *drapeImage2 = [UIImage imageNamed:@"right.png"];
     
-    CALayer *drape2 = [CALayer layer];
-    drape2.opaque = NO;
-    drape2.contents = (id)drapeImage2.CGImage;
-    drape2.bounds = CGRectMake(0, 0, drapeImage2.size.width, drapeImage2.size.height);
-    drape2.position = CGPointMake(drape2.bounds.size.width / 2 - 20,
+    self.drape2 = [CALayer layer];
+    self.drape2.opaque = NO;
+    self.drape2.contents = (id)drapeImage2.CGImage;
+    self.drape2.bounds = CGRectMake(0, 0, drapeImage2.size.width, drapeImage2.size.height);
+    self.drape2.position = CGPointMake(self.drape2.bounds.size.width / 2 - 20,
                                   drapeImage2.size.height / 2);
-    [self.view.layer addSublayer:drape2];
-    
-    CGPoint endPt2 = CGPointMake(self.view.frame.size.width + 400,
-                                 drape2.position.y);
-    CGPoint startPt2 = CGPointMake(drape2.bounds.size.width / 2 - 20,
-                                   drapeImage2.size.height / 2);
-    
-    CABasicAnimation *anim2 = [CABasicAnimation animationWithKeyPath:@"position"];
-    anim2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    anim2.fromValue = [NSValue valueWithCGPoint:startPt2];
-    anim2.toValue = [NSValue valueWithCGPoint:endPt2];
-    anim2.repeatCount = 1;
-    anim2.duration = 1.5;
-    anim2.delegate = self;
-    
-    double delayInSeconds1 = 4.5;
-    dispatch_time_t popTime1 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds1 * NSEC_PER_SEC));
-    dispatch_after(popTime1, dispatch_get_main_queue(), ^(void){
-        [drape addAnimation:anim forKey:@"position"];
-        [drape2 addAnimation:anim2 forKey:@"position"];
-    });
-    
-    double delayInSeconds = 5.7;
-    dispatch_time_t popTime2 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime2, dispatch_get_main_queue(), ^(void){
-        [drape removeFromSuperlayer];
-        [drape2 removeFromSuperlayer];
-    });
+    [self.view.layer addSublayer:self.drape2];
 }
 
+- (void)startDrapeAnimation
+{
+    CGPoint startPt = CGPointMake(self.drape.bounds.size.width / 2,
+                                  self.drape.position.y);
+    CGPoint endPt = CGPointMake(-300,
+                                self.drape.position.y);
+    
+    CABasicAnimation *leftDrapeAnim = [CABasicAnimation animationWithKeyPath:@"position"];
+    leftDrapeAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    leftDrapeAnim.fromValue = [NSValue valueWithCGPoint:startPt];
+    leftDrapeAnim.toValue = [NSValue valueWithCGPoint:endPt];
+    leftDrapeAnim.repeatCount = 1;
+    leftDrapeAnim.duration = 1.5;
+    leftDrapeAnim.delegate = self;
+    leftDrapeAnim.fillMode = kCAFillModeForwards;
+    leftDrapeAnim.removedOnCompletion = NO;
+
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.drape addAnimation:leftDrapeAnim forKey:@"position"];
+    });
+    
+    CGPoint endPt2 = CGPointMake(self.view.frame.size.width + 300,
+                                 self.drape2.position.y);
+    CGPoint startPt2 = CGPointMake(self.drape2.bounds.size.width / 2 - 20,
+                                   self.drape2.position.y);
+    
+    CABasicAnimation *rightDrapeAnim = [CABasicAnimation animationWithKeyPath:@"position"];
+    rightDrapeAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    rightDrapeAnim.fromValue = [NSValue valueWithCGPoint:startPt2];
+    rightDrapeAnim.toValue = [NSValue valueWithCGPoint:endPt2];
+    rightDrapeAnim.repeatCount = 1;
+    rightDrapeAnim.duration = 1.5;
+    rightDrapeAnim.delegate = self;
+    rightDrapeAnim.fillMode = kCAFillModeForwards;
+    rightDrapeAnim.removedOnCompletion = NO;
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.drape2 addAnimation:rightDrapeAnim forKey:@"position"];
+    });
+}
 
 #pragma mark - Helper methods
 

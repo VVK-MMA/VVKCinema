@@ -31,11 +31,7 @@
 
 - (void)userDidSignUpSuccessfully:(BOOL)isSuccessful {
     if ( isSuccessful ) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SUCCESS!" message:@"Registration successful!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        
-        [self dismissViewControllerAnimated:NO completion:nil];
-        
-//        [alert show];
+        [self dismissViewControllerAnimated:NO completion:nil];        
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Invalid register parameters!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         

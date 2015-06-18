@@ -433,6 +433,7 @@
         } else if ( [type isEqualToString:@"Ticket"] ) {
             for (id key in responseDictionary) {
                 NSDictionary *ticketsDictionary = responseDictionary[key];
+//                NSLog(@"%@", ticketsDictionary);
                 
                 for (id ticketDictionary in ticketsDictionary) {
                     NSString *ticketObjectId = [ticketDictionary objectForKey:@"objectId"];
@@ -489,6 +490,7 @@
 //                    NSDictionary *userDictionary = [ticketDictionary objectForKey:@"user"];
                     NSDictionary *userDictionary = [ticketDictionary objectForKey:@"userId"];
                     NSString *userId = [userDictionary objectForKey:@"objectId"];
+                    NSLog(@"%@", userId);
                     
 //                    if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
 //                        NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];

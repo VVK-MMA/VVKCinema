@@ -67,12 +67,6 @@
         NSLog(@"Error: %@", [error localizedDescription]);
     }
     else {
-//        for (Movie *object in objects) {
-//            if ( [object.parseId isEqualToString:objectId] ) {
-//                return YES;
-//            }
-//        }
-        
         for ( NSManagedObject *object in objects ) {
             if ( [[object valueForKey:@"parseId"] isEqualToString:objectId] ) {
                 return YES;

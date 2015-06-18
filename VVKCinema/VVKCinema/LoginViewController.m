@@ -47,35 +47,6 @@
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] ) {
         [self dismissViewControllerAnimated:NO completion:nil];
     }
-    
-//    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-//    loginButton.frame = CGRectMake((self.mainView.frame.size.width / 2) - 45, 270, 90, 90);
-//    loginButton.layer.cornerRadius = loginButton.frame.size.height /2;
-//    loginButton.layer.masksToBounds = YES;
-//    loginButton.layer.borderWidth = 0;
-//    
-//    UILabel *dynamicFacebookLabel = [[UILabel alloc] init];
-//    dynamicFacebookLabel.textColor = [UIColor whiteColor];
-//    dynamicFacebookLabel.frame = CGRectMake((self.mainView.frame.size.width / 2) - 34, 368, 68, 18);
-//    dynamicFacebookLabel.text = @"Facebook";
-//    dynamicFacebookLabel.font = [UIFont systemFontOfSize:15];
-//    [dynamicFacebookLabel setTextAlignment:NSTextAlignmentCenter];
-    
-//    loginButton.imageView.image = [UIImage imageNamed:@"facebook"];
-//    loginButton.backgroundColor = [UIColor whiteColor];
-//    loginButton.center = self.view.center;
-    
-//    [self.view addSubview:loginButton];
-//    [self.view addSubview:dynamicFacebookLabel];
-//    
-//    if ([FBSDKAccessToken currentAccessToken]) {
-//        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
-//         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-//             if (!error) {
-//                 NSLog(@"fetched user:%@", result);
-//             }
-//         }];
-//    }
 }
 
 - (IBAction)loginButtonClicked:(id)sender {
@@ -90,90 +61,48 @@
             NSLog(@"Cancelled");
         } else {
             if ([result.grantedPermissions containsObject:@"email"]) {
-                // Do work
                 [self fetchUserInfo];
-//                [self dismissViewControllerAnimated:NO completion:nil];
             }
         }
     }];
 }
 
 - (void)userDidSignUpSuccessfully:(BOOL)isSuccessful {
-//    if ( isSuccessful ) {
-        if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsUserWithClassName:@"User" andEmail:fbEmail] ) {
-            NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithEmail:fbEmail andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+    if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsUserWithClassName:@"User" andEmail:fbEmail] ) {
+        NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithEmail:fbEmail andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             
-            [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:userArray[0]];
-        } else {
-            User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:userArray[0]];
+    } else {
+        User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             
-            newUser.parseId = fbPassword;
-            newUser.name = fbName;
-            newUser.password = fbPassword;
-            newUser.email = fbEmail;
-            //    newUser.createdAt = createdAt;
-            //    newUser.sessionToken = sessionToken;
-            //    newUser.updatedAt = updatedAt;
+        newUser.parseId = fbPassword;
+        newUser.name = fbName;
+        newUser.password = fbPassword;
+        newUser.email = fbEmail;
             
-            [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+        [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
-            
-            [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
-        }
-//    }
-    
-//    AccountViewController *accountVC = [[AccountViewController alloc] init];
-//    
-//    [self presentModalViewController:accountVC animated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
+        
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)fetchUserInfo {
     if ( [FBSDKAccessToken currentAccessToken] ) {
-        NSLog(@"Token is available");
-        
         [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
          startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
              if ( !error ) {
-                 NSLog(@"Fetched User Information:%@", result);
-                 
                  fbEmail = [result objectForKey:@"email"];
-                 NSLog(@"%@", fbEmail);
-                 
                  fbName = [result objectForKey:@"name"];
-                 NSLog(@"%@", fbName);
-                 
                  fbPassword = [result objectForKey:@"id"];
-                 NSLog(@"%@", fbPassword);
                  
                  ParseInfo *parseInfoClass = [ParseInfo sharedParse];
                  parseInfoClass.delegate = self;
                  
                  [parseInfoClass sendSignUpRequestToParseWithName:fbName password:fbPassword andEmail:fbEmail];
-                 
-//                 if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsUserWithClassName:@"User" andEmail:email] ) {
-//                     NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithEmail:email andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-//                     
-//                     [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:userArray[0]];
-//                 } else {
-//                     User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-//                     
-//                     newUser.parseId = password;
-//                     newUser.name = name;
-//                     newUser.password = password;
-//                     newUser.email = email;
-//                     //    newUser.createdAt = createdAt;
-//                     //    newUser.sessionToken = sessionToken;
-//                     //    newUser.updatedAt = updatedAt;
-//                     
-//                     [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-//                     
-//                     [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
-//                     
-//                     [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
-//                 }
              }
              else {
                  NSLog(@"Error %@",error);
@@ -201,7 +130,6 @@
     }
     
     NSDictionary *userDictionary = [[ParseInfo sharedParse] loginUserWithUsername:self.emailTextField.text andPassword:self.passwordTextField.text];
-    NSLog(@"%@", userDictionary);
     
     if ( [[userDictionary objectForKey:@"code"] integerValue] == 101 ) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Invalid login parameters!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -212,25 +140,9 @@
     }
 
     NSString *objectId = [userDictionary objectForKey:@"objectId"];
-//    NSLog(@"%@", objectId);
-    
     NSString *username = [userDictionary objectForKey:@"username"];
-//    NSLog(@"%@", username);
-    
-    NSString *createdAt = [userDictionary objectForKey:@"createdAt"];
-//    NSLog(@"%@", createdAt);
-    
-    NSString *sessionToken = [userDictionary objectForKey:@"sessionToken"];
-//    NSLog(@"%@", sessionToken);
-    
-    NSString *updatedAt = [userDictionary objectForKey:@"updatedAt"];
-//    NSLog(@"%@", updatedAt);
-    
     NSString *name = [userDictionary objectForKey:@"name"];
-    //    NSLog(@"%@", updatedAt);
-    
     NSString *email = [userDictionary objectForKey:@"email"];
-    //    NSLog(@"%@", updatedAt);
     
     if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:objectId] ) {
         NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"User" objectId:objectId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
@@ -243,9 +155,6 @@
         newUser.username = username;
         newUser.name = name;
         newUser.email = email;
-        //    newUser.createdAt = createdAt;
-        //    newUser.sessionToken = sessionToken;
-        //    newUser.updatedAt = updatedAt;
         
         [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
         
@@ -255,32 +164,6 @@
     }
     
     [self dismissViewControllerAnimated:NO completion:nil];
-    
-//    NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithEmail:self.emailTextField.text andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-//    
-//    if ( userArray ) {
-//        if ( [userArray count] == 0 ) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Non-existing user!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            
-//            [alert show];
-//            
-//            return;
-//        }
-//        
-//        User *currentUser = userArray[0];
-//        
-//        if ( [currentUser.password isEqualToString:self.passwordTextField.text] ) {
-//            [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:currentUser];
-//            
-//            [self dismissViewControllerAnimated:NO completion:nil];
-//        } else {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Wrong Password!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            
-//            [alert show];
-//            
-//            return;
-//        }
-//    }
 }
 
 @end

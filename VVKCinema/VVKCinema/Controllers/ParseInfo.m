@@ -103,6 +103,36 @@
     return nil;
 }
 
+- (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password {
+    NSMutableURLRequest *parseRequest = [[NSMutableURLRequest alloc] init];
+    
+    [parseRequest setHTTPMethod:@"GET"];
+    [parseRequest setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [parseRequest setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [parseRequest setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
+    
+    NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/login?username=%@&password=%@", username, password];
+    
+    NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
+    
+    [parseRequest setURL:requestURL];
+    
+    NSURLResponse *res = nil;
+    NSError *err = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:parseRequest returningResponse:&res error:&err];
+    
+    if ( data ) {
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        return responseDictionary;
+    }
+    
+    return nil;
+}
+
 - (NSData *)getAllObjectsWithType:(NSString *)type {
     NSMutableURLRequest *parseRequest = [[NSMutableURLRequest alloc] init];
     
@@ -399,7 +429,7 @@
             
             [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
         } else if ( [type isEqualToString:@"Ticket"] ) {
             for (id key in responseDictionary) {
                 NSDictionary *ticketsDictionary = responseDictionary[key];
@@ -456,7 +486,8 @@
                         newTicketType.name = ticketTypeName;
                     }
                         
-                    NSDictionary *userDictionary = [ticketDictionary objectForKey:@"user"];
+//                    NSDictionary *userDictionary = [ticketDictionary objectForKey:@"user"];
+                    NSDictionary *userDictionary = [ticketDictionary objectForKey:@"userId"];
                     NSString *userId = [userDictionary objectForKey:@"objectId"];
                     
                     if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
@@ -505,7 +536,7 @@
     }
 }
 
-- (void)sendSignUpRequestToParseWithUsername:(NSString *)username password:(NSString *)password andEmail:(NSString *)email {
+- (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/users/"]];
     
@@ -518,7 +549,7 @@
     [request setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
     [request setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
     
-    NSDictionary *dict = @{@"username":username, @"password":password, @"email":email};
+    NSDictionary *dict = @{@"name":name, @"password":password, @"email":email, @"username":email};
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     
@@ -526,7 +557,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
          if ( !data ) {
-//             [self.delegate userDidSignUpSuccessfully:NO];
+             [self.delegate userDidSignUpSuccessfully:NO];
              
              return;
          }
@@ -536,11 +567,11 @@
          
          if ( [httpResponse statusCode] == 201 ) {
              NSLog(@"Registration successful!");
-//             [self.delegate userDidSignUpSuccessfully:YES];
+             [self.delegate userDidSignUpSuccessfully:YES];
          } else {
              NSLog(@"Registration failed!");
              NSLog(@"%@", response);
-//             [self.delegate userDidSignUpSuccessfully:NO];
+             [self.delegate userDidSignUpSuccessfully:NO];
          }
      }];
 }

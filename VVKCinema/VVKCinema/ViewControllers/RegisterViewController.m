@@ -9,12 +9,13 @@
 #import "RegisterViewController.h"
 #import "ParseInfo.h"
 
-@interface RegisterViewController ()
+@interface RegisterViewController () <ParseInfoDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end
 
@@ -22,10 +23,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.avatarButton.layer.cornerRadius = self.avatarButton.frame.size.height /2;
     self.avatarButton.layer.masksToBounds = YES;
     self.avatarButton.layer.borderWidth = 0;
+}
+
+- (void)userDidSignUpSuccessfully:(BOOL)isSuccessful {
+    if ( isSuccessful ) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SUCCESS!" message:@"Registration successful!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [self dismissViewControllerAnimated:NO completion:nil];
+        
+//        [alert show];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Invalid register parameters!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
+    }
 }
 
 - (IBAction)cancelButton:(id)sender {
@@ -44,7 +59,10 @@
         return;
     }
     
-    [[ParseInfo sharedParse] sendSignUpRequestToParseWithUsername:self.nameTextField.text password:self.passwordTextField.text andEmail:self.emailTextField.text];
+    ParseInfo *parseInfoClass = [ParseInfo sharedParse];
+    parseInfoClass.delegate = self;
+    
+    [parseInfoClass sendSignUpRequestToParseWithName:self.nameTextField.text password:self.passwordTextField.text andEmail:self.emailTextField.text];
 }
 
 @end

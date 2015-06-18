@@ -9,7 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@protocol ParseInfoDelegate;
+
+@protocol ParseInfoDelegate
+
+- (void)userDidSignUpSuccessfully:(BOOL)isSuccessful;
+
+@end
+
 @interface ParseInfo : NSObject
+
+@property (nonatomic) id<ParseInfoDelegate> delegate;
 
 @property (strong, nonatomic) NSDictionary *responseDictionary;
 
@@ -21,6 +31,8 @@
 
 - (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId;
 
-- (void)sendSignUpRequestToParseWithUsername:(NSString *)username password:(NSString *)password andEmail:(NSString *)email;
+- (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email;
+
+- (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password;
 
 @end

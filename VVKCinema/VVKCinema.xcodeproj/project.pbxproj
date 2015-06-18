@@ -10,6 +10,7 @@
 		313742B41B27FF2900E3DF58 /* TypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313742B31B27FF2900E3DF58 /* TypeViewController.m */; };
 		313FA61A1B2797FF0095A365 /* DaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FA6191B2797FF0095A365 /* DaysViewController.m */; };
 		313FA61D1B2798790095A365 /* TransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 313FA61C1B2798790095A365 /* TransitionAnimator.m */; };
+		314384DD1B32D23F006B4B6C /* StartRatingControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 314384DC1B32D23F006B4B6C /* StartRatingControl.m */; };
 		31B20C291B271DC500247370 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B20C281B271DC500247370 /* RatingView.m */; };
 		31B20C2C1B271EEC00247370 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B20C2B1B271EEC00247370 /* MovieCell.m */; };
 		31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B20C341B272A6B00247370 /* SortOptionsViewController.m */; };
@@ -65,6 +66,8 @@
 		313FA6191B2797FF0095A365 /* DaysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaysViewController.m; sourceTree = "<group>"; };
 		313FA61B1B2798790095A365 /* TransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionAnimator.h; sourceTree = "<group>"; };
 		313FA61C1B2798790095A365 /* TransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionAnimator.m; sourceTree = "<group>"; };
+		314384DB1B32D23F006B4B6C /* StartRatingControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartRatingControl.h; sourceTree = "<group>"; };
+		314384DC1B32D23F006B4B6C /* StartRatingControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartRatingControl.m; sourceTree = "<group>"; };
 		31B20C271B271DC500247370 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
 		31B20C281B271DC500247370 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
 		31B20C2A1B271EEC00247370 /* MovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				31B20C281B271DC500247370 /* RatingView.m */,
 				31BD42BE1B2977BB0095770F /* TicketsView.h */,
 				31BD42BF1B2977BB0095770F /* TicketsView.m */,
+				314384DB1B32D23F006B4B6C /* StartRatingControl.h */,
+				314384DC1B32D23F006B4B6C /* StartRatingControl.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 				95E7276F1B29EB8C007C62AA /* Country.m in Sources */,
 				956FFCFB1B322A0B00A429D8 /* RegisterViewController.m in Sources */,
 				95E727901B2B3F3C007C62AA /* TicketType.m in Sources */,
+				314384DD1B32D23F006B4B6C /* StartRatingControl.m in Sources */,
 				956FFCE61B2E1EB200A429D8 /* Movie.m in Sources */,
 				956FFCFE1B322BB600A429D8 /* User.m in Sources */,
 				49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */,

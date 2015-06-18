@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 VVK. All rights reserved.
 //
 
+
 #import "MapViewController.h"
 #import <MapKit/MapKit.h>
 
@@ -30,9 +31,15 @@
     self.locationManager = [[CLLocationManager alloc]init];
     [self.locationManager requestWhenInUseAuthorization];
     // Do any additional setup after loading the view, typically from a nib.
-   
+    
     self.mapView.delegate = self;
     self.mapView.camera.centerCoordinate = CLLocationCoordinate2DMake(42.654783,23.370199);
+    MKPointAnnotation *startingPoint = [MKPointAnnotation new];
+    startingPoint.title = @"You are here!";
+    startingPoint.subtitle = @"Starting point";
+    startingPoint.coordinate = self.mapView.camera.centerCoordinate;
+    [self.mapView addAnnotation:startingPoint];
+    
     self.mapView.camera.altitude = 1000;
     self.mapView.camera.pitch = 30;
     
@@ -50,10 +57,14 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
+#pragma mark - IBActions
+- (IBAction)exitToMain:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)handleRoutePressed:(id)sender {
- 
-
+    
+    
     // Make a directions request
     MKDirectionsRequest *directionsRequest = [MKDirectionsRequest new];
     // Start at our current location
@@ -63,6 +74,9 @@
     [directionsRequest setDestination:source];
     //Uncomment to use the current location
     // MKMapItem *source = [MKMapItem mapItemForCurrentLocation];
+    //Setting up the current location Annotation
+    
+    
     [directionsRequest setSource:source];
     // Make the destination
     CLLocationCoordinate2D destinationCoords = CLLocationCoordinate2DMake(42.688226, 23.318539);
@@ -72,18 +86,22 @@
     
     MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-                // Now handle the result
+        // Now handle the result
         if (error) {
             NSLog(@"There was an error getting your directions");
             return;
         }else{
-           
+            
             [self goToCoordinate:destinationCoords];        }
         
         // So there wasn't an error - let's plot those routes
-         _currentRoute = [response.routes firstObject];
+        _currentRoute = [response.routes firstObject];
         [self plotRouteOnMap:_currentRoute];
     }];
+    MKPointAnnotation *point = [MKPointAnnotation new];
+    point.title = @"VVK Cinema";
+    point.coordinate = destinationCoords;
+    [self.mapView addAnnotation:point];
 }
 
 
@@ -108,7 +126,7 @@
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
-    renderer.strokeColor = [UIColor redColor];
+    renderer.strokeColor = [UIColor blueColor];
     renderer.lineWidth = 4.0;
     return  renderer;
 }
@@ -150,7 +168,7 @@
     MKMapPoint midPoint = MKMapPointMake(startingPoint.x + ((endingPoint.x - startingPoint.x) / 2.0), startingPoint.y + ((endingPoint.y - startingPoint.y) / 2.0));
     
     CLLocationCoordinate2D midCoordinate = MKCoordinateForMapPoint(midPoint);
-    CLLocationDistance midAltitude = end.altitude * 4;
+    CLLocationDistance midAltitude = end.altitude * 4; //Slight change
     
     MKMapCamera *midCamera = [MKMapCamera cameraLookingAtCenterCoordinate:end.centerCoordinate fromEyeCoordinate:midCoordinate eyeAltitude:midAltitude];
     
@@ -175,7 +193,7 @@
 
 - (void)goToCoordinate:(CLLocationCoordinate2D)coord
 {
-    MKMapCamera *end = [MKMapCamera cameraLookingAtCenterCoordinate:coord fromEyeCoordinate:coord eyeAltitude:500];
+    MKMapCamera *end = [MKMapCamera cameraLookingAtCenterCoordinate:coord fromEyeCoordinate:coord eyeAltitude:8000];
     end.pitch = 55;
     
     MKMapCamera *start = self.mapView.camera;

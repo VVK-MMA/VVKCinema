@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "ParseInfo.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface AppDelegate ()
 
@@ -18,10 +21,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    
-    
-    
     [application setStatusBarHidden:NO];
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     self.initialLaunch = YES;
@@ -36,7 +35,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferTicketsFromServerToCoreData) name:@"ProjectionsAddedToCoreData" object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferMoviesFromServerToCoreData) name:@"TicketsAddedToCoreData" object:nil];
     
-    return YES;
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                    didFinishLaunchingWithOptions:launchOptions];
 }
 
 -(void)transferProjectionsFromServerToCoreData
@@ -75,7 +75,17 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBSDKAppEvents activateApp];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

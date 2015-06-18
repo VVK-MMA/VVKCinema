@@ -523,7 +523,7 @@
                         
                     NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"User" objectId:userId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
                         
-                    if ( userArray ) {
+                    if ( [userArray count] > 0 ) {
                         newTicket.user = userArray[0];
                     }
                 }

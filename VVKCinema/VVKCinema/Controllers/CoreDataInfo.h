@@ -21,6 +21,8 @@
 
 - (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className WithId:(NSString *)objectId;
 
+- (BOOL)isCoreDataContainsUserWithClassName:(NSString *)className andEmail:(NSString *)email;
+
 - (NSArray *)fetchAllObjectsWithClassName:(NSString *)className;
 
 - (NSArray *)fetchObjectWithEntityName:(NSString *)entityName objectId:(NSString *)objectId andContext:(NSManagedObjectContext *)context;

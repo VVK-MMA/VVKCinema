@@ -83,6 +83,27 @@
     return  NO;
 }
 
+- (BOOL)isCoreDataContainsUserWithClassName:(NSString *)className andEmail:(NSString *)email {
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:className];
+    
+    NSError *error = nil;
+    
+    NSArray *objects = [[[CoreDataInfo sharedCoreDataInfo] context] executeFetchRequest:request error:&error];
+    
+    if (error != nil) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+    }
+    else {
+        for ( NSManagedObject *object in objects ) {
+            if ( [[object valueForKey:@"email"] isEqualToString:email] ) {
+                return YES;
+            }
+        }
+    }
+    
+    return  NO;
+}
+
 - (NSArray *)fetchAllObjectsWithClassName:(NSString *)className {
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:className];
     
@@ -127,7 +148,7 @@
     
     [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"username = '%@'", email]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"email = '%@'", email]];
     
     [request setPredicate:predicate];
     

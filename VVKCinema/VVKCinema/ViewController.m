@@ -365,7 +365,16 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 - (void)setupBackground
 {
     //first drape
-    UIImage *drapeImage = [UIImage imageNamed:@"left.png"];
+    UIImage *drapeImage;
+    UIImage *drapeImage2;
+    NSInteger screenSize = [UIScreen mainScreen].bounds.size.width;
+    if (screenSize == 320) { //iPhone 5 or 5S
+        drapeImage = [UIImage imageNamed:@"left_small.png"];
+        drapeImage2 = [UIImage imageNamed:@"right_small.png"];
+    } else if (screenSize > 320) { //iPhone 6 or 6S
+        drapeImage = [UIImage imageNamed:@"left.png"];
+        drapeImage2 = [UIImage imageNamed:@"right.png"];
+    }
     
     self.drape = [CALayer layer];
     self.drape.opaque = NO;
@@ -376,7 +385,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [self.view.layer addSublayer:self.drape];
     
     //second drape
-    UIImage *drapeImage2 = [UIImage imageNamed:@"right.png"];
     
     self.drape2 = [CALayer layer];
     self.drape2.opaque = NO;
@@ -403,10 +411,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     leftDrapeAnim.delegate = self;
     leftDrapeAnim.fillMode = kCAFillModeForwards;
     leftDrapeAnim.removedOnCompletion = NO;
-
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        [self.drape addAnimation:leftDrapeAnim forKey:@"position"];
-    });
     
     CGPoint endPt2 = CGPointMake(self.view.frame.size.width + 300,
                                  self.drape2.position.y);
@@ -424,6 +428,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     rightDrapeAnim.removedOnCompletion = NO;
     
     dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.drape addAnimation:leftDrapeAnim forKey:@"position"];
         [self.drape2 addAnimation:rightDrapeAnim forKey:@"position"];
     });
 }

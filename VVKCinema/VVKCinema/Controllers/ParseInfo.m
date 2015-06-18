@@ -490,24 +490,24 @@
                     NSDictionary *userDictionary = [ticketDictionary objectForKey:@"userId"];
                     NSString *userId = [userDictionary objectForKey:@"objectId"];
                     
-                    if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
-                        NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];
-                        NSString *userUsername = [userDict objectForKey:@"username"];
-                        
-                        NSString *userPassword = [userDict objectForKey:@"password"];
-                        
-                        NSString *userEmail = [userDict objectForKey:@"email"];
-                        
-                        NSString *name = [userDict objectForKey:@"name"];
-                        
-                        User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-                            
-                        newUser.parseId = userId;
-                        newUser.username = userUsername;
-                        newUser.password = userPassword;
-                        newUser.email = userEmail;
-                        newUser.name = name;
-                    }
+//                    if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
+//                        NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];
+//                        NSString *userUsername = [userDict objectForKey:@"username"];
+//                        
+//                        NSString *userPassword = [userDict objectForKey:@"password"];
+//                        
+//                        NSString *userEmail = [userDict objectForKey:@"email"];
+//                        
+//                        NSString *name = [userDict objectForKey:@"name"];
+//                        
+//                        User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+//                            
+//                        newUser.parseId = userId;
+//                        newUser.username = userUsername;
+//                        newUser.password = userPassword;
+//                        newUser.email = userEmail;
+//                        newUser.name = name;
+//                    }
                     
                     NSArray *seatArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Seat" objectId:seatId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
                         

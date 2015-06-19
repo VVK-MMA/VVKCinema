@@ -13,8 +13,10 @@
 #import "Director.h"
 #import "Projection.h"
 #import "InfoCell.h"
+#import "StartRatingControl.h"
 
-@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate, StarRatingDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actorsLabel;
@@ -23,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *directorLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet StarRatingControl *starView;
 
 @end
 
@@ -34,8 +37,10 @@
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
     
+    // Setup starView
+    self.starView.delegate = self;
     
-    //Details Part
+    // Details Part
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationController.navigationBar.topItem.title = @"Back";
@@ -84,6 +89,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)rateMovie:(id)sender {
+    NSLog(@"%lu", (unsigned long)self.starView.rating);
 }
 
 /*

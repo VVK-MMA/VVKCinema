@@ -21,13 +21,13 @@
 #import "TicketType.h"
 #import "User.h"
 #import "CoreDataInfo.h"
+
 #import <UIKit/UIKit.h>
 
 #define X_Parse_Application_Id @"Pz64OL0zYyDKrlRPA8ULclYo9dr9dt2xtrb4aufU"
 #define X_Parse_REST_API_Key @"ZEA7E45RUzSJHg4ezCnn9B8fsYiAWUDNQW5bZsSC"
 
 @implementation ParseInfo
-
 
 #pragma mark Class Methods
 
@@ -55,6 +55,18 @@
     return parseRequest;
 }
 
+- (NSDictionary *)responseFromSynchronousRequest:(NSMutableURLRequest *)parseRequest {
+    NSURLResponse *res = nil;
+    NSError *err = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:parseRequest returningResponse:&res error:&err];
+    
+    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    return responseDictionary;
+}
+
+
 #pragma mark Public Methods
 
 - (NSDictionary *)getAllObjectsWithType:(NSString *)type relatedToObjectWithClassName:(NSString *)className objectId:(NSString *)objectId andKeyName:(NSString *)keyName {
@@ -67,19 +79,8 @@
     NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
     
     [parseRequest setURL:requestURL];
-    
-    NSURLResponse *res = nil;
-    NSError *err = nil;
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:parseRequest returningResponse:&res error:&err];
-    
-    if ( data ) {
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
-        return responseDictionary;
-    }
-    
-    return nil;
+    return [self responseFromSynchronousRequest:parseRequest];
 }
 
 - (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId {
@@ -92,19 +93,8 @@
     NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
     
     [parseRequest setURL:requestURL];
-    
-    NSURLResponse *res = nil;
-    NSError *err = nil;
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:parseRequest returningResponse:&res error:&err];
-    
-    if ( data ) {
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
-        return responseDictionary;
-    }
-    
-    return nil;
+    return [self responseFromSynchronousRequest:parseRequest];
 }
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password {
@@ -119,19 +109,8 @@
     NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
     
     [parseRequest setURL:requestURL];
-    
-    NSURLResponse *res = nil;
-    NSError *err = nil;
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:parseRequest returningResponse:&res error:&err];
-    
-    if ( data ) {
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         
-        return responseDictionary;
-    }
-    
-    return nil;
+    return [self responseFromSynchronousRequest:parseRequest];
 }
 
 - (NSData *)getAllObjectsWithType:(NSString *)type {
@@ -150,11 +129,7 @@
     
     NSData *data = [NSURLConnection sendSynchronousRequest:parseRequest returningResponse:&res error:&err];
     
-    if ( data ) {
-        return data;
-    }
-    
-    return nil;
+    return data;
 }
 
 - (void)transferFromServerToCoreDataAllObjectsWithType:(NSString *)type {

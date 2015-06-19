@@ -29,4 +29,5 @@
 
 - (NSArray *)fetchUserWithEmail:(NSString *)email andContext:(NSManagedObjectContext *)context;
 
+- (NSArray *)fetchAllProjectionsWithDate:(NSString *)date movieId:(NSString *)movieId andContext:(NSManagedObjectContext *)context;
 @end

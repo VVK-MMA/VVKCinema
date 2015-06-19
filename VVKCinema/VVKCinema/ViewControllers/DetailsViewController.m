@@ -14,6 +14,7 @@
 #import "Projection.h"
 #import "StartRatingControl.h"
 #import "CinemaPickerView.h"
+#import "Hall.h"
 
 @interface DetailsViewController ()<StarRatingDelegate,CinemaPickerViewDelegate,CinemaPickerViewDatasource>
 
@@ -24,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *directorLabel;
 
-
 @property (weak, nonatomic) IBOutlet StarRatingControl *starView;
 
 @end
@@ -32,17 +32,19 @@
 @implementation DetailsViewController {
     CinemaPickerView *cinemaPicker;
     Movie *selectedMovie;
+    NSMutableArray *hallsArray;
+    NSMutableArray *timesArray;
+    NSMutableArray *datesArray;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //Setting up the picker
-    cinemaPicker = [[CinemaPickerView alloc] initWithFrame:CGRectMake(0, 400, self.view.bounds.size.width, self.view.bounds.size.height-400.0)];
+    cinemaPicker = [[CinemaPickerView alloc] initWithFrame:CGRectMake(0, 400, self.view.bounds.size.width, self.view.bounds.size.height-450.0)];
     cinemaPicker.datasource = self;
     cinemaPicker.delegate = self;
     [self.view addSubview:cinemaPicker];
-    
-    [cinemaPicker reloadData];
     
     // Setup starView
     self.starView.delegate = self;
@@ -88,10 +90,38 @@
 
     self.releaseDateLabel.text = [NSString stringWithFormat:@"%@ min * %@", selectedMovie.duration, date];
     
+    hallsArray = [NSMutableArray arrayWithCapacity:0];
+    timesArray = [NSMutableArray arrayWithCapacity:0];
+    datesArray = [NSMutableArray arrayWithCapacity:0];
+    
     for ( Projection *projection in selectedMovie.projections ) {
         NSLog(@"%@", projection.parseId);
         NSLog(@"%@", projection.date);
+        
+        Hall *hall = projection.hall;
+        
+        NSLog(@"%@", hall.name);
+        
+        if ( hall.name ) {
+            [hallsArray addObject:hall.name];
+        }
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        
+        NSString *timeString = [formatter stringFromDate:projection.date];
+        
+        [timesArray addObject:timeString];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"d:MM"];
+        
+        NSString *dateString = [dateFormatter stringFromDate:projection.date];
+        
+        [datesArray addObject:dateString];
     }
+    
+    [cinemaPicker reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,26 +143,24 @@
     [alert show];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark -Cinema Picker View Life cycle
 
 
 - (NSUInteger)numberOfComponentsForPickerView:(CinemaPickerView *)pickerView
 {
-    return 7;
+    return 3;
 }
 
 - (NSUInteger)pickerView:(CinemaPickerView *)pickerView numberOfItemsForComponent:(NSUInteger)component
 {
-    return 7;
+    if ( component == 0 ) {
+        return [datesArray count];
+    } else if ( component == 1 ) {
+        return [hallsArray count];
+    }
+    
+    return [timesArray count];
 }
 
 - (NSString *)pickerView:(CinemaPickerView *)pickerView textForItem:(NSInteger)item forComponent:(NSInteger)component
@@ -142,24 +170,24 @@
     switch (component) {
         case 0:
             
-            value = [NSString stringWithFormat:@"%ld.06", 18+item];
+            value = [NSString stringWithFormat:@"%ld.06", 7 + item];
             break;
             
         case 1:
             switch (item) {
                 case 0:
                     
-                    value = @"IMAX";
+                    value = hallsArray[0];
                     break;
                     
                 case 1:
                     
-                    value = @"2D";
+                    value = hallsArray[1];
                     break;
                     
                 case 2:
                     
-                    value = @"3D";
+                    value = hallsArray[2];
                     break;
                     
        
@@ -175,29 +203,33 @@
             switch (item) {
                 case 0:
                     
-                    value = @"12:30";
+                    value = timesArray[0];
                     break;
                     
                 case 1:
                     
-                    value = @"13:30";
+                    value = timesArray[1];
                     break;
                     
                 case 2:
                     
-                    value = @"15:30";
+                    value = timesArray[2];
                     break;
                     
                 case 3:
                     
-                    value = @"18:30";
+                    value = timesArray[3];
                     break;
                     
                 case 4:
                     
-                    value = @"21:30";
+                    value = timesArray[4];
                     break;
                     
+                case 5:
+                    
+                    value = timesArray[5];
+                    break;
             }
             
             break;
@@ -234,6 +266,10 @@
 - (void)pickerView:(CinemaPickerView *)pickerView didSelectItem:(NSUInteger)item forComponent:(NSUInteger)component
 {
     NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
+    
+    if ( component == 0 ) {
+//        NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:@"19.06" movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+    }
 }
 
 - (UIColor *)selectionColorForPickerView:(CinemaPickerView *)pickerView

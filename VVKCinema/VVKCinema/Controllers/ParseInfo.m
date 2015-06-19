@@ -354,6 +354,8 @@
                     } else {
                         Hall *newHall = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Hall" objectId:projectionHallId andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
                         
+//                        NSLog(@"%@", newHall.name);
+                        
                         newProjection.hall = newHall;
                     }
                     

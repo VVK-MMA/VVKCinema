@@ -427,6 +427,6 @@ static UIColor *selectionColor;
     }
 }
 
-#warning - Implement backgroundColor, selectionColor, textColor (use a component object including title and collectionView)
+//#warning - Implement backgroundColor, selectionColor, textColor (use a component object including title and collectionView)
 
 @end

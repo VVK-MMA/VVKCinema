@@ -137,6 +137,43 @@
     return entitiesArray;
 }
 
+- (NSArray *)fetchAllProjectionsWithDate:(NSString *)date movieId:(NSString *)movieId andContext:(NSManagedObjectContext *)context {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    
+    [request setEntity:[NSEntityDescription entityForName:@"Projection" inManagedObjectContext:context]];
+    
+    NSString *startOfDay = [NSString stringWithFormat:@"%@.2015 00:00", date];
+    NSString *endOfDay = [NSString stringWithFormat:@"%@.2015 23:59", date];
+    
+    // Convert string to date object
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"d.MM.yyyy HH:mm"];
+    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    NSDate *startOfDayDate = [dateFormat dateFromString:startOfDay];
+    NSDate *endOfDayDate = [dateFormat dateFromString:endOfDay];
+    
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"date <= %@", [NSDate date]]];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date BETWEEN %@", [NSArray arrayWithObjects:startOfDayDate, endOfDayDate, nil]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"(date >= %@) AND (date <= %@)", startOfDayDate, endOfDayDate]];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"parseId = '%@'", @"EmTwJnFRif"]];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"movie = '%@'", @"DvWDahelbS"]];
+    
+    [request setPredicate:predicate];
+    
+    NSError *error = nil;
+    
+    NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
+    
+    if ( error ) {
+        NSLog(@"%@: Error fetching context: %@", [self class], [error localizedDescription]);
+        NSLog(@"entitiesArray: %@",entitiesArray);
+        
+        return nil;
+    }
+    
+    return entitiesArray;
+}
+
 - (NSArray *)fetchUserWithEmail:(NSString *)email andContext:(NSManagedObjectContext *)context {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     

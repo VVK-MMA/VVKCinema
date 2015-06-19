@@ -12,10 +12,10 @@
 #import "CoreDataInfo.h"
 #import "Director.h"
 #import "Projection.h"
-#import "InfoCell.h"
 #import "StartRatingControl.h"
+#import "CinemaPickerView.h"
 
-@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate, StarRatingDelegate>
+@interface DetailsViewController ()<StarRatingDelegate,CinemaPickerViewDelegate,CinemaPickerViewDatasource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -24,20 +24,25 @@
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *directorLabel;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (weak, nonatomic) IBOutlet StarRatingControl *starView;
 
 @end
 
 @implementation DetailsViewController {
+    CinemaPickerView *cinemaPicker;
     Movie *selectedMovie;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Setting up the tableview
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
+    //Setting up the picker
+    cinemaPicker = [[CinemaPickerView alloc] initWithFrame:CGRectMake(0, 400, self.view.bounds.size.width, self.view.bounds.size.height-400.0)];
+    cinemaPicker.datasource = self;
+    cinemaPicker.delegate = self;
+    [self.view addSubview:cinemaPicker];
+    
+    [cinemaPicker reloadData];
     
     // Setup starView
     self.starView.delegate = self;
@@ -117,77 +122,128 @@
     // Pass the selected object to the new view controller.
 }
 */
-#pragma mark - Table View Life cycle
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+#pragma mark -Cinema Picker View Life cycle
+
+
+- (NSUInteger)numberOfComponentsForPickerView:(CinemaPickerView *)pickerView
 {
-    return 1;
+    return 7;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSUInteger)pickerView:(CinemaPickerView *)pickerView numberOfItemsForComponent:(NSUInteger)component
 {
-    return 3;
+    return 7;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString *)pickerView:(CinemaPickerView *)pickerView textForItem:(NSInteger)item forComponent:(NSInteger)component
 {
-    if(section == 0)
-    {
-        return @"1";
-    }else if(section == 1)
-    {
-        return @"2";
-    }else if(section == 2)
-    {
-        return @"3";
-    }else if(section == 3)
-    {
-        return @"4";
-    }else if(section == 4)
-    {
-        return @"5";
-    }else if(section == 5)
-    {
-        return @"6";
-    } else if(section == 5){
+    NSString *value = @"";
+    
+    switch (component) {
+        case 0:
+            
+            value = [NSString stringWithFormat:@"%ld.06", 18+item];
+            break;
+            
+        case 1:
+            switch (item) {
+                case 0:
+                    
+                    value = @"IMAX";
+                    break;
+                    
+                case 1:
+                    
+                    value = @"2D";
+                    break;
+                    
+                case 2:
+                    
+                    value = @"3D";
+                    break;
+                    
+       
+                    
+              //  default:
+                 //   value = @"value";
+                    break;
+            }
+            
+            break;
+            
+        case 2:
+            switch (item) {
+                case 0:
+                    
+                    value = @"12:30";
+                    break;
+                    
+                case 1:
+                    
+                    value = @"13:30";
+                    break;
+                    
+                case 2:
+                    
+                    value = @"15:30";
+                    break;
+                    
+                case 3:
+                    
+                    value = @"18:30";
+                    break;
+                    
+                case 4:
+                    
+                    value = @"21:30";
+                    break;
+                    
+            }
+            
+            break;
+            
+       // default:
+         //   value = @"value";
+           // break;
+    }
+    
+    return value;
+}
+
+- (NSString *)pickerView:(CinemaPickerView *)pickerView titleForComponent:(NSUInteger)component
+{
+    NSString *value = @"";
+    
+    switch (component) {
+        case 0:
+            value = @"Date";
+            break;
+        case 1:
+            value = @"Type";
+            break;
+        case 2:
+            value = @"Time";
+            break;
         
-        return @"7";
-    } else {
-        return @"8";
+         
     }
+    
+    return value;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)pickerView:(CinemaPickerView *)pickerView didSelectItem:(NSUInteger)item forComponent:(NSUInteger)component
 {
-    static NSString *cellname = @"cell";
-    InfoCell *cell = (InfoCell *)[tableView dequeueReusableCellWithIdentifier:cellname];
-    if (cell == nil){
-        cell = [[InfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellname];
-    }else{
-        cell = [[InfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellname];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIColor *)selectionColorForPickerView:(CinemaPickerView *)pickerView
 {
-    return 140;
+    return [UIColor colorWithRed:62.0/255.0 green:116.0/255.0 blue:1.0 alpha:1.0];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)reload
 {
-    if ([indexPath section]==0) {
-        NSLog(@"indexPath section%ld",(long)[indexPath section]);
-        NSLog(@"rows === %ld",(long)[indexPath row]);
-    }
+    [cinemaPicker reloadData];
 }
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 
 @end

@@ -43,14 +43,22 @@
 }
 
 
-#pragma mark Public Methods
+#pragma mark Private Methods
 
-- (NSDictionary *)getAllObjectsWithType:(NSString *)type relatedToObjectWithClassName:(NSString *)className objectId:(NSString *)objectId andKeyName:(NSString *)keyName {
+- (NSMutableURLRequest *)prepareBaseRequestWithHisHeaders {
     NSMutableURLRequest *parseRequest = [[NSMutableURLRequest alloc] init];
     
     [parseRequest setHTTPMethod:@"GET"];
     [parseRequest setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
     [parseRequest setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    
+    return parseRequest;
+}
+
+#pragma mark Public Methods
+
+- (NSDictionary *)getAllObjectsWithType:(NSString *)type relatedToObjectWithClassName:(NSString *)className objectId:(NSString *)objectId andKeyName:(NSString *)keyName {
+    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"$relatedTo\":{\"object\":{\"__type\":\"Pointer\",\"className\":\"%@\",\"objectId\":\"%@\"},\"key\":\"%@\"}}", type, className, objectId, keyName];
     
@@ -75,11 +83,7 @@
 }
 
 - (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId {
-    NSMutableURLRequest *parseRequest = [[NSMutableURLRequest alloc] init];
-    
-    [parseRequest setHTTPMethod:@"GET"];
-    [parseRequest setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
-    [parseRequest setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@/%@", type, objectId];
     
@@ -104,11 +108,8 @@
 }
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password {
-    NSMutableURLRequest *parseRequest = [[NSMutableURLRequest alloc] init];
-    
-    [parseRequest setHTTPMethod:@"GET"];
-    [parseRequest setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
-    [parseRequest setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+
     [parseRequest setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/login?username=%@&password=%@", username, password];
@@ -134,11 +135,7 @@
 }
 
 - (NSData *)getAllObjectsWithType:(NSString *)type {
-    NSMutableURLRequest *parseRequest = [[NSMutableURLRequest alloc] init];
-    
-    [parseRequest setHTTPMethod:@"GET"];
-    [parseRequest setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
-    [parseRequest setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@", type];
     
@@ -490,26 +487,25 @@
 //                    NSDictionary *userDictionary = [ticketDictionary objectForKey:@"user"];
                     NSDictionary *userDictionary = [ticketDictionary objectForKey:@"userId"];
                     NSString *userId = [userDictionary objectForKey:@"objectId"];
-                    NSLog(@"%@", userId);
                     
-//                    if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
-//                        NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];
-//                        NSString *userUsername = [userDict objectForKey:@"username"];
-//                        
-//                        NSString *userPassword = [userDict objectForKey:@"password"];
-//                        
-//                        NSString *userEmail = [userDict objectForKey:@"email"];
-//                        
-//                        NSString *name = [userDict objectForKey:@"name"];
-//                        
-//                        User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-//                            
-//                        newUser.parseId = userId;
-//                        newUser.username = userUsername;
-//                        newUser.password = userPassword;
-//                        newUser.email = userEmail;
-//                        newUser.name = name;
-//                    }
+                    if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
+                        NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];
+                        NSString *userUsername = [userDict objectForKey:@"username"];
+                        
+                        NSString *userPassword = [userDict objectForKey:@"password"];
+                        
+                        NSString *userEmail = [userDict objectForKey:@"email"];
+                        
+                        NSString *name = [userDict objectForKey:@"name"];
+                        
+                        User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+                            
+                        newUser.parseId = userId;
+                        newUser.username = userUsername;
+                        newUser.password = userPassword;
+                        newUser.email = userEmail;
+                        newUser.name = name;
+                    }
                     
                     NSArray *seatArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Seat" objectId:seatId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
                         
@@ -539,7 +535,8 @@
 }
 
 - (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    NSMutableURLRequest *request = [self prepareBaseRequestWithHisHeaders];
+    
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/users/"]];
     
     [request setHTTPMethod:@"POST"];
@@ -547,8 +544,6 @@
     // Set HTTP headers
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
-    [request setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
     [request setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
     
     NSDictionary *dict = @{@"name":name, @"password":password, @"email":email, @"username":email};

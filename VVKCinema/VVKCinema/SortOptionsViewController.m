@@ -55,19 +55,26 @@
 
 - (IBAction)addSortOption:(id)sender {
     if ( [sender tag] == 0 ) {
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"releaseDate"];
+        if ( ![[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"releaseDate"] ) {
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"releaseDate"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
+        }
     } else if ( [sender tag] == 1 ) {
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
-        [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"name"];
+        if ( ![[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"name"] ) {
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES]];
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"name"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
+        }
     } else if ( [sender tag] == 2 ) {
         if ( ![[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"rate"] ) {
             [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO]];
             [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"rate"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
         }
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];
     
     [self dismissVC:sender];
 }

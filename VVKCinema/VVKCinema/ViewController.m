@@ -142,7 +142,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rate" ascending:NO];
     
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] sortDescriptor] ) {
         sortDescriptor = [[VVKCinemaInfo sharedVVKCinemaInfo] sortDescriptor];

@@ -8,6 +8,7 @@
 
 #import "CoreDataInfo.h"
 #import "Movie.h"
+
 #import <UIKit/UIKit.h>
 
 @implementation CoreDataInfo
@@ -25,6 +26,9 @@
     return sharedCoreDataInfo;
 }
 
+
+#pragma mark Private Methods
+
 - (instancetype)init {
     self = [super init];
     
@@ -33,15 +37,6 @@
     }
     
     return self;
-}
-
-- (void)saveContext:(NSManagedObjectContext *)context {
-    NSError *saveError = nil;
-    
-    if ( ![context save:&saveError] )
-    {
-        NSLog(@"Save did not complete successfully. Error: %@", [saveError localizedDescription]);
-    }
 }
 
 - (NSManagedObjectContext *)getContext {
@@ -54,6 +49,18 @@
     }
     
     return context;
+}
+
+
+#pragma mark Public Methods
+
+- (void)saveContext:(NSManagedObjectContext *)context {
+    NSError *saveError = nil;
+    
+    if ( ![context save:&saveError] )
+    {
+        NSLog(@"Save did not complete successfully. Error: %@", [saveError localizedDescription]);
+    }
 }
 
 - (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className WithId:(NSString *)objectId {

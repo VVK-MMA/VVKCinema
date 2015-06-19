@@ -81,11 +81,13 @@
         newUser.email = fbEmail;
             
         [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-            
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
         
         [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
+        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -158,10 +160,12 @@
         
         [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ProjectionsAddedToCoreData" object:nil];
-        
         [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
+        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }

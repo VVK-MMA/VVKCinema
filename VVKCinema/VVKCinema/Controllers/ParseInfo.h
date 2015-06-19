@@ -25,12 +25,7 @@
 
 + (id)sharedParse;
 
-- (NSDictionary *)getAllObjectsWithType:(NSString *)type relatedToObjectWithClassName:(NSString *)className objectId:(NSString *)objectId andKeyName:(NSString *)keyName;
-
 - (void)transferFromServerToCoreDataAllObjectsWithType:(NSString *)type;
-
-- (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId;
-
 - (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email;
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password;

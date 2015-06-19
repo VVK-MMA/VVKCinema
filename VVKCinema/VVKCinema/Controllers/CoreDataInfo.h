@@ -17,17 +17,12 @@
 
 - (void)saveContext:(NSManagedObjectContext *)context;
 
-- (NSManagedObjectContext *)getContext;
-
 - (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className WithId:(NSString *)objectId;
-
 - (BOOL)isCoreDataContainsUserWithClassName:(NSString *)className andEmail:(NSString *)email;
 
 - (NSArray *)fetchAllObjectsWithClassName:(NSString *)className;
-
 - (NSArray *)fetchObjectWithEntityName:(NSString *)entityName objectId:(NSString *)objectId andContext:(NSManagedObjectContext *)context;
-
 - (NSArray *)fetchUserWithEmail:(NSString *)email andContext:(NSManagedObjectContext *)context;
-
 - (NSArray *)fetchAllProjectionsWithDate:(NSString *)date movieId:(NSString *)movieId andContext:(NSManagedObjectContext *)context;
+
 @end

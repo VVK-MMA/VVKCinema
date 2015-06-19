@@ -32,8 +32,7 @@
     
     // Subscribe For Notifications For Transfering Data Between Server And Core Data
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferProjectionsFromServerToCoreData) name:@"MoviesAddedToCoreData" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferTicketsFromServerToCoreData) name:@"ProjectionsAddedToCoreData" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferMoviesFromServerToCoreData) name:@"TicketsAddedToCoreData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferTicketsFromServerToCoreData) name:@"UserLoggedIn" object:nil];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
@@ -50,13 +49,6 @@
 {
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         [[ParseInfo sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Ticket"];
-    });
-}
-
--(void)transferMoviesFromServerToCoreData
-{
-    dispatch_async(dispatch_get_global_queue(0,0), ^{
-        [[ParseInfo sharedParse] transferFromServerToCoreDataAllObjectsWithType:@"Movie"];
     });
 }
 

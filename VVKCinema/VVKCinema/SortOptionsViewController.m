@@ -37,7 +37,7 @@
     self.dateButton.layer.borderWidth = 0;
     self.dateButton.backgroundColor = [UIColor grayColor];
     
-    if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"releaseDate"] ) {
+    if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"releaseDate"] || ![[VVKCinemaInfo sharedVVKCinemaInfo] sort] ) {
         self.dateButton.backgroundColor = [UIColor orangeColor];
     } else if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"name"] ) {
         self.alphabetButton.backgroundColor = [UIColor orangeColor];
@@ -55,7 +55,7 @@
 
 - (IBAction)addSortOption:(id)sender {
     if ( [sender tag] == 0 ) {
-        if ( ![[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"releaseDate"] ) {
+        if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"name"] || [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"rate"] ) {
             [[VVKCinemaInfo sharedVVKCinemaInfo] setSortDescriptor:[[NSSortDescriptor alloc] initWithKey:@"releaseDate" ascending:NO]];
             [[VVKCinemaInfo sharedVVKCinemaInfo] setSort:@"releaseDate"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"AddedSortOption" object:nil];

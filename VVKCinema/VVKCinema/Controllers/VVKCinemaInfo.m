@@ -18,6 +18,7 @@
     @synchronized(self) {
         if ( sharedVVKCinemaInfo == nil )
             sharedVVKCinemaInfo = [[self alloc] init];
+        
     }
     
     return sharedVVKCinemaInfo;

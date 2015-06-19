@@ -29,7 +29,9 @@
 
 @end
 
-@implementation DetailsViewController
+@implementation DetailsViewController {
+    Movie *selectedMovie;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +47,7 @@
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationController.navigationBar.topItem.title = @"Back";
 
-    Movie *selectedMovie = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Movie" objectId:[[VVKCinemaInfo sharedVVKCinemaInfo] selectedMovie] andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
+    selectedMovie = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Movie" objectId:[[VVKCinemaInfo sharedVVKCinemaInfo] selectedMovie] andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
     
     self.posterImageView.image = [UIImage imageWithData:selectedMovie.posterData];
     self.nameLabel.text = selectedMovie.name;
@@ -94,6 +96,16 @@
 
 - (IBAction)rateMovie:(id)sender {
     NSLog(@"%lu", (unsigned long)self.starView.rating);
+    
+    selectedMovie.rate = [NSNumber numberWithInteger:self.starView.rating];
+    
+    [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadData" object:nil];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"You rated %@ with %lu stars!", selectedMovie.name, (unsigned long)self.starView.rating] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 /*

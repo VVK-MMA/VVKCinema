@@ -89,6 +89,10 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     self.fetchedResultsController = nil;
     
     [self.fetchedResultsController performFetch:&error];
+    [self reloadData];
+}
+
+-(void)reloadData {
     [self.moviesCollectionView reloadData];
 }
 
@@ -107,6 +111,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedGenrePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performFetch) name:@"AddedDayPredicate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startDrapeAnimation) name:@"MoviesAddedToCoreData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"ReloadData" object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -116,7 +121,8 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedTypePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedGenrePredicate" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AddedDayPredicate" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"TicketsAddedToCoreData" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"MoviesAddedToCoreData" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReloadData" object:nil];
     
     [self.drape removeFromSuperlayer];
     [self.drape2 removeFromSuperlayer];

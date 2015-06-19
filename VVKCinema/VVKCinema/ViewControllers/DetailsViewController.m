@@ -49,6 +49,7 @@
     
     self.posterImageView.image = [UIImage imageWithData:selectedMovie.posterData];
     self.nameLabel.text = selectedMovie.name;
+    self.starView.rating = [selectedMovie.rate integerValue];
     
     NSMutableArray *genres = [NSMutableArray arrayWithCapacity:0];
     

@@ -684,6 +684,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="book:" destination="x3e-nM-mXd" eventType="touchUpInside" id="JaB-0H-9cx"/>
                                             <segue destination="hJa-0D-cE7" kind="presentation" id="DUR-oT-Rht"/>
                                         </connections>
                                     </button>

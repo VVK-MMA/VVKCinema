@@ -35,6 +35,10 @@
     NSMutableArray *hallsArray;
     NSMutableArray *timesArray;
     NSMutableArray *datesArray;
+    NSString *selectedDate;
+    NSString *selectedTime;
+    NSArray *projectionsArray;
+    NSInteger selectedProjectionIndex;
 }
 
 - (void)viewDidLoad {
@@ -95,7 +99,7 @@
     timesArray = [NSMutableArray arrayWithCapacity:0];
     datesArray = [self nextSevenDays];
     
-    NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[0] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+    projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[0] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
 
     NSLog(@"%@", selectedMovie.parseId);
     
@@ -286,7 +290,7 @@
     NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
     
     if ( component == 0 ) {
-        if ( item > 0 ) {
+//        if ( item > 0 ) {
             NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[item] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             
 //            for (Projection *projection in projectionsArray) {
@@ -298,6 +302,13 @@
 //            }
             
 //            [cinemaPicker reloadData];
+            
+            selectedDate = datesArray[item];
+//        }
+    } else if ( component == 2 ) {
+        if ( timesArray ) {
+            selectedTime = timesArray[item];
+            selectedProjectionIndex = item;
         }
     }
 }
@@ -310,6 +321,21 @@
 - (void)reload
 {
     [cinemaPicker reloadData];
+}
+
+- (IBAction)book:(id)sender {
+//    NSString *dateString = [NSString stringWithFormat:@"%@ %@", selectedDate, selectedTime];
+//    
+//    // Convert string to date object
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    [dateFormat setDateFormat:@"d.MM HH:mm"];
+//    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+//    NSDate *date = [dateFormat dateFromString:dateString];
+//    
+//    NSLog(@"%@", dateString);
+//    NSLog(@"%@", date);
+    
+    [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedProjection:projectionsArray[selectedProjectionIndex]];
 }
 
 @end

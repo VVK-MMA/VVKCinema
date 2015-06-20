@@ -8,6 +8,10 @@
 
 #import "BookViewController.h"
 #import "SeatPickerControl.h"
+#import "VVKCinemaInfo.h"
+#import "LoginViewController.h"
+#import "Projection.h"
+#import "Seat.h"
 
 @interface BookViewController ()
 
@@ -48,6 +52,22 @@
     self.studentCountLabel.text = [NSString stringWithFormat:@"%.f", studentCount];
 
     self.seatPicker.numberOfSeatsToBeSelected = totalCount;
+    
+    Projection *selectedProjection = [[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection];
+    
+    NSMutableArray *busySeatsArray = [NSMutableArray arrayWithCapacity:0];
+    
+    for (Seat *seat in selectedProjection.seats) {
+        NSInteger row = [seat.row integerValue];
+        NSInteger column = [seat.column integerValue];
+        
+        NSInteger seatNumber = row * 10 + column;
+        NSLog(@"%ld", (long)seatNumber);
+        
+        [busySeatsArray addObject:[NSNumber numberWithInteger:seatNumber]];
+    }
+    
+    self.seatPicker.busySeats = busySeatsArray;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,7 +101,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)showLoginVC
+{
+    LoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginVC"];
+    
+    UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *beView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    beView.frame = self.view.bounds;
+    
+    loginVC.view.frame = self.view.bounds;
+    loginVC.view.backgroundColor = [UIColor clearColor];
+    [loginVC.view insertSubview:beView atIndex:0];
+    loginVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    
+    [self presentViewController:loginVC animated:NO completion:nil];
+}
+
 - (IBAction)bookSeats:(id)sender {
+    if ( ![[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] ) {
+        [self showLoginVC];
+    } else {
+        
+    }
 }
 
 /*

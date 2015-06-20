@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "Projection.h"
 
 @interface VVKCinemaInfo : NSObject
 
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) NSPredicate *genrePredicate;
 @property (strong, nonatomic) NSNumber *currentGenre;
 @property (strong, nonatomic) NSString *selectedMovie;
+@property (strong, nonatomic) Projection *selectedProjection;
 @property (strong, nonatomic) User *currentUser;
 
 + (id)sharedVVKCinemaInfo;

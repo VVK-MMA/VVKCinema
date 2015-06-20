@@ -268,7 +268,7 @@
     NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
     
     if ( component == 0 ) {
-//        NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:@"19.06" movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+        NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:@"19.06" movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
     }
 }
 

@@ -161,7 +161,7 @@
     
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"date <= %@", [NSDate date]]];
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date BETWEEN %@", [NSArray arrayWithObjects:startOfDayDate, endOfDayDate, nil]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"(date >= %@) AND (date <= %@)", startOfDayDate, endOfDayDate]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startOfDayDate, endOfDayDate];
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"parseId = '%@'", @"EmTwJnFRif"]];
 //    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"movie = '%@'", @"DvWDahelbS"]];
     

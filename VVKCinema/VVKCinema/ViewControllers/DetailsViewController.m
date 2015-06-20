@@ -90,35 +90,19 @@
 
     self.releaseDateLabel.text = [NSString stringWithFormat:@"%@ min * %@", selectedMovie.duration, date];
     
+    //
     hallsArray = [NSMutableArray arrayWithCapacity:0];
     timesArray = [NSMutableArray arrayWithCapacity:0];
-    datesArray = [NSMutableArray arrayWithCapacity:0];
+    datesArray = [self nextSevenDays];
     
-    for ( Projection *projection in selectedMovie.projections ) {
-        NSLog(@"%@", projection.parseId);
-        NSLog(@"%@", projection.date);
-        
-        Hall *hall = projection.hall;
-        
-        NSLog(@"%@", hall.name);
-        
-        if ( hall.name ) {
-            [hallsArray addObject:hall.name];
-        }
-        
+    NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[0] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+
+    for (Projection *projection in projectionsArray) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"HH:mm"];
-        
         NSString *timeString = [formatter stringFromDate:projection.date];
         
         [timesArray addObject:timeString];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"d:MM"];
-        
-        NSString *dateString = [dateFormatter stringFromDate:projection.date];
-        
-        [datesArray addObject:dateString];
     }
     
     [cinemaPicker reloadData];
@@ -146,6 +130,27 @@
 
 #pragma mark -Cinema Picker View Life cycle
 
+- (NSDate *)todayPlusDays:(NSInteger)days {
+    NSDate *today = [NSDate date];
+    
+    return [today dateByAddingTimeInterval:60 * 60 * 24 * days];
+}
+
+- (NSMutableArray *)nextSevenDays {
+    NSMutableArray *nextSevenDays = [NSMutableArray arrayWithCapacity:0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"d.MM"];
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    [nextSevenDays addObject:dateString];
+    
+    for (int i = 1; i < 7; i++) {
+        [nextSevenDays addObject:[dateFormatter stringFromDate:[self todayPlusDays:i]]];
+    }
+    
+    return nextSevenDays;
+}
 
 - (NSUInteger)numberOfComponentsForPickerView:(CinemaPickerView *)pickerView
 {
@@ -157,7 +162,7 @@
     if ( component == 0 ) {
         return [datesArray count];
     } else if ( component == 1 ) {
-        return [hallsArray count];
+        return 2;
     }
     
     return [timesArray count];
@@ -169,74 +174,84 @@
     
     switch (component) {
         case 0:
+            switch (item) {
+                case 0:
+                    value = datesArray[0];
+                    
+                    break;
+                case 1:
+                    value = datesArray[1];
+                    
+                    break;
+                case 2:
+                    value = datesArray[2];
+                    
+                    break;
+                case 3:
+                    value = datesArray[3];
+                    
+                    break;
+                case 4:
+                    value = datesArray[4];
+                    
+                    break;
+                case 5:
+                    value = datesArray[5];
+                    
+                    break;
+                case 6:
+                    value = datesArray[6];
+                    
+                    break;
+                case 7:
+                    value = datesArray[7];
+                    
+                    break;
+            }
             
-            value = [NSString stringWithFormat:@"%ld.06", 7 + item];
             break;
-            
         case 1:
             switch (item) {
                 case 0:
+                    value = @"IMAX";
                     
-                    value = hallsArray[0];
                     break;
-                    
                 case 1:
+                    value = @"4DX";
                     
-                    value = hallsArray[1];
-                    break;
-                    
-                case 2:
-                    
-                    value = hallsArray[2];
-                    break;
-                    
-       
-                    
-              //  default:
-                 //   value = @"value";
                     break;
             }
             
             break;
-            
         case 2:
             switch (item) {
                 case 0:
-                    
                     value = timesArray[0];
-                    break;
                     
+                    break;
                 case 1:
-                    
                     value = timesArray[1];
-                    break;
                     
+                    break;
                 case 2:
-                    
                     value = timesArray[2];
-                    break;
                     
+                    break;
                 case 3:
-                    
                     value = timesArray[3];
-                    break;
                     
+                    break;
                 case 4:
-                    
                     value = timesArray[4];
+                    
                     break;
-                    
                 case 5:
-                    
                     value = timesArray[5];
+                    
                     break;
             }
             
             break;
-            
-       // default:
-         //   value = @"value";
-           // break;
     }
     
     return value;
@@ -268,8 +283,15 @@
     NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
     
     if ( component == 0 ) {
-        NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:@"19.06" movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-        NSLog(@"%@", projectionsArray);
+        NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[item] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+        
+        for (Projection *projection in projectionsArray) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"HH:mm"];
+            NSString *timeString = [formatter stringFromDate:projection.date];
+            
+            [timesArray addObject:timeString];
+        }
     }
 }
 

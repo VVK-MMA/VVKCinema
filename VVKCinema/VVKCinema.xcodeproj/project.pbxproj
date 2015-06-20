@@ -40,6 +40,8 @@
 		956FFD041B330FDA00A429D8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 956FFD011B330FDA00A429D8 /* FBSDKLoginKit.framework */; };
 		956FFD051B330FDA00A429D8 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 956FFD021B330FDA00A429D8 /* FBSDKShareKit.framework */; };
 		95907E771B34878B0097040E /* Projection.m in Sources */ = {isa = PBXBuildFile; fileRef = 95907E761B34878B0097040E /* Projection.m */; };
+		95907E7A1B359E740097040E /* SeatPickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95907E791B359E740097040E /* SeatPickerControl.m */; };
+		95907E7D1B35A3070097040E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95907E7C1B35A3070097040E /* BookViewController.m */; };
 		95E727661B299DCC007C62AA /* ParseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* ParseInfo.m */; };
 		95E7276F1B29EB8C007C62AA /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7276E1B29EB8C007C62AA /* Country.m */; };
 		95E727721B29ED13007C62AA /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727711B29ED13007C62AA /* Director.m */; };
@@ -124,6 +126,10 @@
 		956FFD021B330FDA00A429D8 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		95907E751B34878B0097040E /* Projection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Projection.h; path = CDModels/Projection.h; sourceTree = "<group>"; };
 		95907E761B34878B0097040E /* Projection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Projection.m; path = CDModels/Projection.m; sourceTree = "<group>"; };
+		95907E781B359E740097040E /* SeatPickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeatPickerControl.h; sourceTree = "<group>"; };
+		95907E791B359E740097040E /* SeatPickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeatPickerControl.m; sourceTree = "<group>"; };
+		95907E7B1B35A3070097040E /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookViewController.h; path = ViewControllers/BookViewController.h; sourceTree = "<group>"; };
+		95907E7C1B35A3070097040E /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookViewController.m; path = ViewControllers/BookViewController.m; sourceTree = "<group>"; };
 		95E727641B299DCC007C62AA /* ParseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseInfo.h; path = Controllers/ParseInfo.h; sourceTree = "<group>"; };
 		95E727651B299DCC007C62AA /* ParseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseInfo.m; path = Controllers/ParseInfo.m; sourceTree = "<group>"; };
 		95E7276D1B29EB8C007C62AA /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 				49C4D0D51B2AAF20009E33BF /* MapViewController.m */,
 				956FFCF31B30C99500A429D8 /* DetailsViewController.h */,
 				956FFCF41B30C99500A429D8 /* DetailsViewController.m */,
+				95907E7B1B35A3070097040E /* BookViewController.h */,
+				95907E7C1B35A3070097040E /* BookViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -226,6 +234,8 @@
 				31BD42BF1B2977BB0095770F /* TicketsView.m */,
 				314384DB1B32D23F006B4B6C /* StartRatingControl.h */,
 				314384DC1B32D23F006B4B6C /* StartRatingControl.m */,
+				95907E781B359E740097040E /* SeatPickerControl.h */,
+				95907E791B359E740097040E /* SeatPickerControl.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -485,6 +495,7 @@
 				95907E771B34878B0097040E /* Projection.m in Sources */,
 				9517C3091B11FB3A00542CE1 /* ViewController.m in Sources */,
 				95E7277B1B2B27D2007C62AA /* Actor.m in Sources */,
+				95907E7D1B35A3070097040E /* BookViewController.m in Sources */,
 				31B20C381B2739E400247370 /* AccountViewController.m in Sources */,
 				31B20C291B271DC500247370 /* RatingView.m in Sources */,
 				956FFCEC1B2EE9B300A429D8 /* DayCell.m in Sources */,
@@ -492,6 +503,7 @@
 				956FFCF51B30C99500A429D8 /* DetailsViewController.m in Sources */,
 				956FFCF21B2F0CE300A429D8 /* CoreDataInfo.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
+				95907E7A1B359E740097040E /* SeatPickerControl.m in Sources */,
 				956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */,
 				95E727661B299DCC007C62AA /* ParseInfo.m in Sources */,
 				95E727721B29ED13007C62AA /* Director.m in Sources */,

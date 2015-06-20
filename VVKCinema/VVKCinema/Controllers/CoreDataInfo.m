@@ -158,14 +158,18 @@
     [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     NSDate *startOfDayDate = [dateFormat dateFromString:startOfDay];
     NSDate *endOfDayDate = [dateFormat dateFromString:endOfDay];
+
+    NSPredicate *datePredicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startOfDayDate, endOfDayDate];
+    NSPredicate *moviePredicate = [NSPredicate predicateWithFormat:@"ANY movie.parseId like %@", movieId];
     
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"date <= %@", [NSDate date]]];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date BETWEEN %@", [NSArray arrayWithObjects:startOfDayDate, endOfDayDate, nil]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startOfDayDate, endOfDayDate];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"parseId = '%@'", @"EmTwJnFRif"]];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"movie = '%@'", @"DvWDahelbS"]];
+    NSMutableArray *predicatesArray = [NSMutableArray arrayWithCapacity:0];
     
-    [request setPredicate:predicate];
+    [predicatesArray addObject:datePredicate];
+    [predicatesArray addObject:moviePredicate];
+    
+    NSPredicate *combinePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
+
+    [request setPredicate:combinePredicate];
     
     NSError *error = nil;
     

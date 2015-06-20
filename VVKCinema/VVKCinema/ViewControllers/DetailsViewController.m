@@ -97,6 +97,8 @@
     
     NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[0] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
 
+    NSLog(@"%@", selectedMovie.parseId);
+    
     for (Projection *projection in projectionsArray) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"HH:mm"];
@@ -264,15 +266,16 @@
     switch (component) {
         case 0:
             value = @"Date";
+            
             break;
         case 1:
             value = @"Type";
+            
             break;
         case 2:
             value = @"Time";
+            
             break;
-        
-         
     }
     
     return value;
@@ -283,14 +286,18 @@
     NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
     
     if ( component == 0 ) {
-        NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[item] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-        
-        for (Projection *projection in projectionsArray) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"HH:mm"];
-            NSString *timeString = [formatter stringFromDate:projection.date];
+        if ( item > 0 ) {
+            NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[item] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             
-            [timesArray addObject:timeString];
+//            for (Projection *projection in projectionsArray) {
+//                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//                [formatter setDateFormat:@"HH:mm"];
+//                NSString *timeString = [formatter stringFromDate:projection.date];
+//                
+//                [timesArray addObject:timeString];
+//            }
+            
+//            [cinemaPicker reloadData];
         }
     }
 }

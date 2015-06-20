@@ -16,6 +16,12 @@
 
 @implementation RatingView
 
+- (void)setNumberOfStars:(NSInteger)numberOfStars
+{
+    _numberOfStars = numberOfStars;
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     NSInteger currentXOffset = OFFSET;

@@ -269,6 +269,7 @@
     
     if ( component == 0 ) {
         NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:@"19.06" movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+        NSLog(@"%@", projectionsArray);
     }
 }
 

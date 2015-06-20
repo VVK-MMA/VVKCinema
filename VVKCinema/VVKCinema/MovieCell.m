@@ -49,8 +49,8 @@
 
 -(void)prepareForReuse {
     self.movieCoverImageView.image = nil;
-    self.ratingView.backgroundColor = [UIColor whiteColor];
-    self.ratingView.numberOfStars = 0;
+    //self.ratingView.backgroundColor = [UIColor whiteColor];
+    //self.ratingView.numberOfStars = 0;
 }
 
 @end

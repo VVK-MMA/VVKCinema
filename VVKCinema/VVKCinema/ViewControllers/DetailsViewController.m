@@ -306,7 +306,7 @@
             selectedDate = datesArray[item];
 //        }
     } else if ( component == 2 ) {
-        if ( timesArray ) {
+        if ( [timesArray count] != 0 ) {
             selectedTime = timesArray[item];
             selectedProjectionIndex = item;
         }

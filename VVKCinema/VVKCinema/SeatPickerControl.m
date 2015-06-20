@@ -68,7 +68,7 @@
     if (self) {
 		_numberOfSeats = kDefaultNumberOfSeats;
         _numberOfSeatsToBeSelected = 3;
-        _busySeats = [[NSArray alloc] initWithObjects:@0, @3, @8, @9, @20, @21, @22, @33, @34, @79, nil];
+//        _busySeats = [[NSArray alloc] initWithObjects:@0, @3, @8, @9, @20, @21, @22, @33, @34, @79, nil];
         [self setupView];
     }
     return self;

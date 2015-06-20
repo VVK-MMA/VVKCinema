@@ -68,6 +68,8 @@
     }
     
     self.seatPicker.busySeats = busySeatsArray;
+    
+    [self.seatPicker setupView];
 }
 
 - (void)didReceiveMemoryWarning {

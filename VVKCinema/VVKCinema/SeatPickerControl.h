@@ -14,5 +14,7 @@
 @property (nonatomic) NSUInteger selection;
 @property (nonatomic) NSArray *busySeats; //indexes of already busy seats
 
+- (void)setupView;
+
 @end
 

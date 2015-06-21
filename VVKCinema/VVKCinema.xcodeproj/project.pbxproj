@@ -18,6 +18,8 @@
 		31B20C3B1B273A7000247370 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B20C3A1B273A7000247370 /* LoginViewController.m */; };
 		31B20C3D1B274DAF00247370 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B20C3C1B274DAF00247370 /* Images.xcassets */; };
 		31BD42C01B2977BB0095770F /* TicketsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD42BF1B2977BB0095770F /* TicketsView.m */; };
+		31E07E661B36E1B000BE39CA /* DropTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E07E651B36E1B000BE39CA /* DropTransitionAnimator.m */; };
+		31E07E691B36E24F00BE39CA /* DropTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E07E681B36E24F00BE39CA /* DropTicketViewController.m */; };
 		49C09E0B1B343DEA00E2AF0D /* CinemaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C09E0A1B343DEA00E2AF0D /* CinemaPickerView.m */; };
 		49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4D0D51B2AAF20009E33BF /* MapViewController.m */; };
 		49C4D0D81B2AB2B5009E33BF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C4D0D71B2AB2B5009E33BF /* MapKit.framework */; };
@@ -87,6 +89,10 @@
 		31B20C3C1B274DAF00247370 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		31BD42BE1B2977BB0095770F /* TicketsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsView.h; sourceTree = "<group>"; };
 		31BD42BF1B2977BB0095770F /* TicketsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsView.m; sourceTree = "<group>"; };
+		31E07E641B36E1B000BE39CA /* DropTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropTransitionAnimator.h; sourceTree = "<group>"; };
+		31E07E651B36E1B000BE39CA /* DropTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropTransitionAnimator.m; sourceTree = "<group>"; };
+		31E07E671B36E24F00BE39CA /* DropTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropTicketViewController.h; sourceTree = "<group>"; };
+		31E07E681B36E24F00BE39CA /* DropTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropTicketViewController.m; sourceTree = "<group>"; };
 		49C09E091B343DEA00E2AF0D /* CinemaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaPickerView.h; sourceTree = "<group>"; };
 		49C09E0A1B343DEA00E2AF0D /* CinemaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaPickerView.m; sourceTree = "<group>"; };
 		49C4D0D41B2AAF20009E33BF /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -181,6 +187,8 @@
 			children = (
 				313FA61B1B2798790095A365 /* TransitionAnimator.h */,
 				313FA61C1B2798790095A365 /* TransitionAnimator.m */,
+				31E07E641B36E1B000BE39CA /* DropTransitionAnimator.h */,
+				31E07E651B36E1B000BE39CA /* DropTransitionAnimator.m */,
 			);
 			name = "Transition Animator";
 			sourceTree = "<group>";
@@ -210,6 +218,8 @@
 				956FFCF41B30C99500A429D8 /* DetailsViewController.m */,
 				95907E7B1B35A3070097040E /* BookViewController.h */,
 				95907E7C1B35A3070097040E /* BookViewController.m */,
+				31E07E671B36E24F00BE39CA /* DropTicketViewController.h */,
+				31E07E681B36E24F00BE39CA /* DropTicketViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -476,6 +486,8 @@
 				956FFCFB1B322A0B00A429D8 /* RegisterViewController.m in Sources */,
 				95E727901B2B3F3C007C62AA /* TicketType.m in Sources */,
 				314384DD1B32D23F006B4B6C /* StartRatingControl.m in Sources */,
+				31E07E661B36E1B000BE39CA /* DropTransitionAnimator.m in Sources */,
+				31E07E691B36E24F00BE39CA /* DropTicketViewController.m in Sources */,
 				956FFCE61B2E1EB200A429D8 /* Movie.m in Sources */,
 				956FFCFE1B322BB600A429D8 /* User.m in Sources */,
 				49C88D5D1B28510300FCFFA8 /* GenreViewController.m in Sources */,

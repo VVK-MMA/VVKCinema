@@ -779,7 +779,8 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="utc-S6-J4e">
                                             <connections>
-                                                <action selector="bookSeats:" destination="hJa-0D-cE7" id="ra6-YG-zgF"/>
+                                                <action selector="bookSeats:" destination="hJa-0D-cE7" id="zmr-Kz-Mvw"/>
+                                                <segue destination="MTb-FK-DoI" kind="modal" identifier="Drop" id="4FJ-Mf-1bD"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1031,6 +1032,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhf-pe-SZo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2430" y="-385"/>
+        </scene>
+        <!--Drop Ticket View Controller-->
+        <scene sceneID="7XC-AK-4DN">
+            <objects>
+                <viewController autoresizesArchivedViewToFullSize="NO" id="MTb-FK-DoI" customClass="DropTicketViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PfX-9K-TG5"/>
+                        <viewControllerLayoutGuide type="bottom" id="m02-3H-MRW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c3P-jD-9gk">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket" translatesAutoresizingMaskIntoConstraints="NO" id="jlt-Ib-KZJ">
+                                <rect key="frame" x="0.0" y="0.0" width="230" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCo-dY-fu5">
+                                <rect key="frame" x="92" y="87" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hkj-dc-7bq" kind="unwind" unwindAction="unwindToViewController:" id="gGT-1j-dzk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jlt-Ib-KZJ" secondAttribute="trailing" id="Mo5-Ty-BoM"/>
+                            <constraint firstItem="jlt-Ib-KZJ" firstAttribute="leading" secondItem="c3P-jD-9gk" secondAttribute="leading" id="Qh6-LK-250"/>
+                            <constraint firstItem="jlt-Ib-KZJ" firstAttribute="top" secondItem="c3P-jD-9gk" secondAttribute="top" id="rGk-4X-9lF"/>
+                            <constraint firstItem="jlt-Ib-KZJ" firstAttribute="bottom" secondItem="m02-3H-MRW" secondAttribute="top" id="ru2-nK-s3C"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="230" height="130"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nol-CX-1Jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hkj-dc-7bq" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2914" y="-385"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="KmA-eI-qIi">
@@ -1562,6 +1607,7 @@
         <image name="screen" width="386" height="47"/>
         <image name="selected" width="23" height="21"/>
         <image name="sort" width="11" height="24"/>
+        <image name="ticket" width="512" height="267"/>
         <image name="tiles" width="22" height="24"/>
     </resources>
 </document>

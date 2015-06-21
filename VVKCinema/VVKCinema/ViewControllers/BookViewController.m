@@ -13,8 +13,10 @@
 #import "Projection.h"
 #import "Seat.h"
 #import "ParseInfo.h"
+#import "DropTicketViewController.h"
+#import "DropTransitionAnimator.h"
 
-@interface BookViewController () <ParseInfoDelegate>
+@interface BookViewController () <ParseInfoDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
@@ -178,6 +180,55 @@
         }
     }
 }
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Drop"]) {
+        UIViewController *toVC = segue.destinationViewController;
+        toVC.modalPresentationStyle = UIModalPresentationCustom;
+        toVC.transitioningDelegate = self;
+    }
+}
+
+- (IBAction)unwindToViewController:(UIStoryboardSegue *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
+{
+    id<UIViewControllerAnimatedTransitioning> animationController;
+    
+    if ([presented isKindOfClass:[DropTicketViewController class]]) {
+        DropTransitionAnimator *animator = [[DropTransitionAnimator alloc] init];
+        animator.appearing = YES;
+        animator.duration = 1.5;
+        animationController = animator;
+    }
+    
+    return animationController;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    id<UIViewControllerAnimatedTransitioning> animationController;
+    
+    if ([dismissed isKindOfClass:[DropTicketViewController class]]) {
+        DropTransitionAnimator *animator = [[DropTransitionAnimator alloc] init];
+        animator.appearing = NO;
+        animator.duration = 3.0;
+        animationController = animator;
+    }
+    
+    return animationController;
+}
+
 
 //- (void)userDidPostTicketSuccessfully:(BOOL)isSuccessful {
 //    NSDictionary *ticketResultsDictionary = [[ParseInfo sharedParse] getTicketWithClassName:@"Ticket" user:[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] parseId] andSeatId:seatObjectId];

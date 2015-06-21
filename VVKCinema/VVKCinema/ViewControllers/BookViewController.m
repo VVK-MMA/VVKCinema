@@ -158,6 +158,8 @@
             [parseInfo bookNewSeatToParseWithColumn:column row:row andProjectionId:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
         }
     }
+    
+    [self showReservedTicket];
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {

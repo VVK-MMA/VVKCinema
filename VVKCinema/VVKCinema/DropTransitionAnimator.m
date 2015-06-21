@@ -182,7 +182,7 @@ static NSTimeInterval const kDefaultDuration = 1.0;
         
         // Collision - inset bottom and right
         UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[fromView]];
-        UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, -225, -50);
+        UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, -200, -200);
         [collisionBehavior setTranslatesReferenceBoundsIntoBoundaryWithInsets:insets];
         collisionBehavior.collisionDelegate = self;
         self.collisionBehavior = collisionBehavior;

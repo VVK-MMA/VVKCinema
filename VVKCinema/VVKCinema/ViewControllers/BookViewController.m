@@ -194,14 +194,23 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)showReservedTicket
 {
-    if ([segue.identifier isEqualToString:@"Drop"]) {
-        UIViewController *toVC = segue.destinationViewController;
-        toVC.modalPresentationStyle = UIModalPresentationCustom;
-        toVC.transitioningDelegate = self;
-    }
+    DropTicketViewController *dvc = [self.storyboard instantiateViewControllerWithIdentifier:@"ReservedTicket"];
+    UIViewController *toVC = dvc;
+    toVC.modalPresentationStyle = UIModalPresentationCustom;
+    toVC.transitioningDelegate = self;
+    [self presentViewController:toVC animated:YES completion:nil];
 }
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([segue.identifier isEqualToString:@"Drop"]) {
+//        UIViewController *toVC = segue.destinationViewController;
+//        toVC.modalPresentationStyle = UIModalPresentationCustom;
+//        toVC.transitioningDelegate = self;
+//    }
+//}
 
 - (IBAction)unwindToViewController:(UIStoryboardSegue *)sender
 {

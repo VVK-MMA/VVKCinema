@@ -44,6 +44,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //imageView setup
+    self.posterImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.posterImageView.layer.borderWidth = 5.0f;
+    self.posterImageView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.posterImageView.layer.shadowRadius = 4.0f;
+    self.posterImageView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    self.posterImageView.layer.shadowOpacity = 0.5f;
+    
     //Setting up the picker
     cinemaPicker = [[CinemaPickerView alloc] initWithFrame:CGRectMake(0, 400, self.view.bounds.size.width, self.view.bounds.size.height-450.0)];
     cinemaPicker.datasource = self;

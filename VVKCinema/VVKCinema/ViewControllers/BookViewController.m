@@ -190,26 +190,4 @@
     currentIndex++;
 }
 
-//- (void)userDidPostTicketSuccessfully:(BOOL)isSuccessful {
-//    NSDictionary *ticketResultsDictionary = [[ParseInfo sharedParse] getTicketWithClassName:@"Ticket" user:[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] parseId] andSeatId:seatObjectId];
-//    
-//    for (id ticketResultsDictionaryKey in ticketResultsDictionary) {
-//        NSDictionary *ticketDictionary = ticketResultsDictionary[ticketResultsDictionaryKey];
-//        
-//        for (id ticketDict in ticketDictionary) {
-//            NSString *ticketObjectId = [ticketDict objectForKey:@"objectId"];
-//            NSLog(@"%@", ticketObjectId);
-//            
-//            NSString *ticketSeatId = [ticketDict objectForKey:@"seatId"];
-//            NSLog(@"%@", ticketSeatId);
-//            
-//            NSString *ticketUserId = [ticketDict objectForKey:@"user"];
-//            NSLog(@"%@", ticketUserId);
-//            
-//            ParseInfo *parseInfo = [ParseInfo sharedParse];
-//            parseInfo.delegate = self;
-//        }
-//    }
-//}
-
 @end

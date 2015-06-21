@@ -36,14 +36,18 @@
     double regularCount;
     double studentCount;
     double totalCount;
-    NSNumber *column;
-    NSNumber *row;
+//    NSNumber *column;
+//    NSNumber *row;
     NSString *seatObjectId;
+    NSMutableArray *selectedSeatsArray;
+    int currentIndex;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    currentIndex = 0;
     
     self.regularLabel.text = [NSString stringWithFormat:@"REGULAR"];
     self.studentLabel.text = [NSString stringWithFormat:@"STUDENT"];
@@ -64,8 +68,8 @@
     NSMutableArray *busySeatsArray = [NSMutableArray arrayWithCapacity:0];
     
     for (Seat *seat in selectedProjection.seats) {
-        row = [NSNumber numberWithInteger:[seat.row integerValue]];
-        column = [NSNumber numberWithInteger:[seat.column integerValue]];
+        NSNumber *row = [NSNumber numberWithInteger:[seat.row integerValue]];
+        NSNumber *column = [NSNumber numberWithInteger:[seat.column integerValue]];
         
         NSInteger seatNumber = [row integerValue] * 10 + [column integerValue];
         NSLog(@"%ld", (long)seatNumber);
@@ -141,23 +145,28 @@
     if ( ![[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] ) {
         [self showLoginVC];
     } else {
-        NSNumber *selection = [NSNumber numberWithUnsignedInteger:self.seatPicker.selection];
-        NSLog(@"%@", selection);
-        
-        column = [NSNumber numberWithInteger:[selection integerValue] % 10];
-        NSLog(@"%@", column);
-        
-        row = [NSNumber numberWithInteger:[selection integerValue] / 10];
-        NSLog(@"%@", row);
+        selectedSeatsArray = [self.seatPicker selectedSeats];
         
         ParseInfo *parseInfo = [ParseInfo sharedParse];
         parseInfo.delegate = self;
         
-        [parseInfo bookNewSeatToParseWithColumn:column row:row andProjectionId:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
+        for (NSNumber *selectedSeat in selectedSeatsArray) {
+            NSNumber *column = [NSNumber numberWithInteger:[selectedSeat integerValue] % 10];
+            
+            NSNumber *row = [NSNumber numberWithInteger:[selectedSeat integerValue] / 10];
+            
+            [parseInfo bookNewSeatToParseWithColumn:column row:row andProjectionId:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
+        }
     }
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {
+    NSNumber *selectedSeat = selectedSeatsArray[currentIndex];
+    
+    NSNumber *column = [NSNumber numberWithInteger:[selectedSeat integerValue] % 10];
+    
+    NSNumber *row = [NSNumber numberWithInteger:[selectedSeat integerValue] / 10];
+    
     NSDictionary *seatResultsDictionary = [[ParseInfo sharedParse] getSeatWithClassName:@"Seat" column:column row:row fromProjection:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
     
     for (id seatResultsDictionaryKey in seatResultsDictionary) {
@@ -179,6 +188,8 @@
             [parseInfo bookNewTicketToParseWithSeat:seatObjectId ticketType:@"" andUserId:[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] parseId]];
         }
     }
+    
+    currentIndex++;
 }
 
 #pragma mark - Navigation

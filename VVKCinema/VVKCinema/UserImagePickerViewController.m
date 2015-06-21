@@ -28,7 +28,9 @@
     self.selectPhotoButton.layer.masksToBounds = YES;
     self.selectPhotoButton.layer.borderWidth = 0;
     
-       // Do any additional setup after loading the view.
+    self.cancelBUtton.layer.cornerRadius = self.cancelBUtton.frame.size.height /2;
+    self.cancelBUtton.layer.masksToBounds = YES;
+    self.cancelBUtton.layer.borderWidth = 0;       // Do any additional setup after loading the view.
 }
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -68,7 +70,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.userImageView.image = chosenImage;
+    [self.cancelBUtton setImage:chosenImage forState:UIControlStateNormal];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     

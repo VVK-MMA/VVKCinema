@@ -1,6 +1,6 @@
 //
-//  SongsTableViewCell.m
-//  HomeAssignment_v2
+//  SeatPickerControl.m
+//  VVKCinema
 //
 //  Created by Vladimir Kadurin on 4/17/15.
 //  Copyright (c) 2015 Vladimir Kadurin. All rights reserved.

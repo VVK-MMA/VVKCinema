@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSNumber *currentDay;
 @property (strong, nonatomic) NSPredicate *typePredicate;
 @property (strong, nonatomic) NSNumber *currentType;
+@property (strong, nonatomic) NSNumber *ticketIndex;
 @property (strong, nonatomic) NSPredicate *genrePredicate;
 @property (strong, nonatomic) NSNumber *currentGenre;
 @property (strong, nonatomic) NSString *selectedMovie;

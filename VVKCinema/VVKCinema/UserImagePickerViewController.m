@@ -7,6 +7,7 @@
 //
 
 #import "UserImagePickerViewController.h"
+#import "VVKCinemaInfo.h"
 
 @interface UserImagePickerViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
@@ -71,6 +72,10 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     [self.cancelBUtton setImage:chosenImage forState:UIControlStateNormal];
+    
+    [[VVKCinemaInfo sharedVVKCinemaInfo] setAvatarImageData:UIImagePNGRepresentation(chosenImage)];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ImageSelected" object:nil];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     

@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 #import "ParseInfo.h"
 #import "UserImagePickerViewController.h"
+#import "VVKCinemaInfo.h"
 
 @interface RegisterViewController () <ParseInfoDelegate>
 
@@ -28,6 +29,20 @@
     self.avatarButton.layer.cornerRadius = self.avatarButton.frame.size.height /2;
     self.avatarButton.layer.masksToBounds = YES;
     self.avatarButton.layer.borderWidth = 0;
+}
+
+- (void)putImageToButton {
+    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] avatarImageData] ) {
+        [self.avatarButton setImage:[UIImage imageWithData:[[VVKCinemaInfo sharedVVKCinemaInfo] avatarImageData]] forState:UIControlStateNormal];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(putImageToButton) name:@"ImageSelected" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ImageSelected" object:nil];
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {

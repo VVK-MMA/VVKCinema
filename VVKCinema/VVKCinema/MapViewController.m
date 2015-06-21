@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad
 {
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     //Setting up barButtons
     UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"route"] style:UIBarButtonItemStylePlain target:self action:@selector(handleRoutePressed:)];
     search.tintColor = [UIColor whiteColor];

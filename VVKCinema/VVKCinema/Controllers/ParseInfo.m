@@ -114,7 +114,7 @@
 - (NSDictionary *)getSeatWithClassName:(NSString *)className column:(NSNumber *)column row:(NSNumber *)row fromProjection:(NSString *)projection {
     NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
     
-    NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"$column\":%@,\"$row\":%@,\"$projectionId\":\"%@\"}}", className, column, row, projection];
+    NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"column\":%@,\"row\":%@,\"projectionId\":\"%@\"}}", className, column, row, projection];
     
     NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
@@ -124,6 +124,20 @@
     
     return [self responseFromSynchronousRequest:parseRequest];
 }
+
+//- (NSDictionary *)getTicketWithClassName:(NSString *)className user:(NSString *)user andSeatId:(NSString *)seatId {
+//    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+//    
+//    NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"userId\":%@,\"seatId\":%@}", className, user, seatId];
+//    
+//    NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
+//    
+//    [parseRequest setURL:requestURL];
+//    
+//    return [self responseFromSynchronousRequest:parseRequest];
+//}
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password {
     NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
@@ -225,7 +239,8 @@
     // Set HTTP headers
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    NSDictionary *dict = @{@"seat":seat, @"ticketType":ticketType, @"userId":userId};
+//    NSDictionary *dict = @{@"seatId":seat, @"ticketType":ticketType, @"userId":userId};
+    NSDictionary *dict = @{@"seatId":seat, @"user":userId};
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     
@@ -233,6 +248,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if ( !data ) {
+//            [self.delegate userDidPostTicketSuccessfully:NO];
             
             return;
         }
@@ -241,12 +257,20 @@
         NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ( [httpResponse statusCode] == 201 ) {
-//            NSLog(@"Registration successful!");
+            NSLog(@"bookNewTicketToParseWithSeat successful!");
+            
+//            [self.delegate userDidPostTicketSuccessfully:YES];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
         } else {
-//            NSLog(@"Registration failed!");
+            NSLog(@"bookNewTicketToParseWithSeat failed!");
             NSLog(@"%@", response);
+            
+//            [self.delegate userDidPostTicketSuccessfully:NO];
         }
     }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BookedNewTicket" object:nil];
 }
 
 - (void)transferFromServerToCoreDataAllObjectsWithType:(NSString *)type {
@@ -531,8 +555,10 @@
                 
                 newTicket.parseId = ticketObjectId;
                 
-                NSDictionary *seatDictionary = [ticketDictionary objectForKey:@"seat"];
-                NSString *seatId = [seatDictionary objectForKey:@"objectId"];
+//                NSDictionary *seatDictionary = [ticketDictionary objectForKey:@"seat"];
+//                NSString *seatId = [seatDictionary objectForKey:@"objectId"];
+                
+                NSString *seatId = [ticketDictionary objectForKey:@"seatId"];
                 
                 if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Seat" WithId:seatId] ) {
                     NSDictionary *seatDict = [self getObjectWithType:@"Seat" andObjectId:seatId];
@@ -573,8 +599,10 @@
                     newTicketType.name = ticketTypeName;
                 }
                 
-                NSDictionary *userDictionary = [ticketDictionary objectForKey:@"userId"];
-                NSString *userId = [userDictionary objectForKey:@"objectId"];
+//                NSDictionary *userDictionary = [ticketDictionary objectForKey:@"userId"];
+//                NSString *userId = [userDictionary objectForKey:@"objectId"];
+                
+                NSString *userId = [ticketDictionary objectForKey:@"user"];
                 
                 if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
                     NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];

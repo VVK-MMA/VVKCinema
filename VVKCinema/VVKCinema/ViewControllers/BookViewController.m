@@ -36,6 +36,7 @@
     double totalCount;
     NSNumber *column;
     NSNumber *row;
+    NSString *seatObjectId;
 }
 
 - (void)viewDidLoad {
@@ -73,6 +74,18 @@
     self.seatPicker.busySeats = busySeatsArray;
     
     [self.seatPicker setupView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bookTicket) name:@"BookedNewTicket" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"BookedNewTicket" object:nil];
+}
+
+- (void)bookTicket {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -143,18 +156,49 @@
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {
-//    NSDictionary *seatResultsDictionary = [[ParseInfo sharedParse] getSeatWithClassName:@"Seat" column:column row:row fromProjection:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
+    NSDictionary *seatResultsDictionary = [[ParseInfo sharedParse] getSeatWithClassName:@"Seat" column:column row:row fromProjection:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
+    
+    for (id seatResultsDictionaryKey in seatResultsDictionary) {
+        NSDictionary *seatDictionary = seatResultsDictionary[seatResultsDictionaryKey];
+        
+        for (id seatDict in seatDictionary) {
+            seatObjectId = [seatDict objectForKey:@"objectId"];
+            NSLog(@"%@", seatObjectId);
+
+            NSString *seatColumn = [seatDict objectForKey:@"column"];
+            NSLog(@"%@", seatColumn);
+
+            NSString *seatRow = [seatDict objectForKey:@"row"];
+            NSLog(@"%@", seatRow);
+            
+            ParseInfo *parseInfo = [ParseInfo sharedParse];
+            parseInfo.delegate = self;
+            
+            [parseInfo bookNewTicketToParseWithSeat:seatObjectId ticketType:@"" andUserId:[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] parseId]];
+        }
+    }
+}
+
+//- (void)userDidPostTicketSuccessfully:(BOOL)isSuccessful {
+//    NSDictionary *ticketResultsDictionary = [[ParseInfo sharedParse] getTicketWithClassName:@"Ticket" user:[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] parseId] andSeatId:seatObjectId];
 //    
-//    for (id seatResultsDictionaryKey in seatResultsDictionary) {
-//        NSDictionary *seatDictionary = seatResultsDictionary[seatResultsDictionaryKey];
+//    for (id ticketResultsDictionaryKey in ticketResultsDictionary) {
+//        NSDictionary *ticketDictionary = ticketResultsDictionary[ticketResultsDictionaryKey];
 //        
-//        for (id seatDict in seatDictionary) {
-//            NSString *seatObjectId = [seatDict objectForKey:@"objectId"];
-//            NSLog(@"%@", seatObjectId);
+//        for (id ticketDict in ticketDictionary) {
+//            NSString *ticketObjectId = [ticketDict objectForKey:@"objectId"];
+//            NSLog(@"%@", ticketObjectId);
+//            
+//            NSString *ticketSeatId = [ticketDict objectForKey:@"seatId"];
+//            NSLog(@"%@", ticketSeatId);
+//            
+//            NSString *ticketUserId = [ticketDict objectForKey:@"user"];
+//            NSLog(@"%@", ticketUserId);
+//            
+//            ParseInfo *parseInfo = [ParseInfo sharedParse];
+//            parseInfo.delegate = self;
 //        }
 //    }
-    
-//    [parseInfoClass bookNewTicketToParseWithSeat:<#(NSString *)#> ticketType:<#(NSString *)#> andUserId:<#(NSString *)#>:column row:row andProjectionId:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
-}
+//}
 
 @end

@@ -65,6 +65,8 @@
             }
         }
     }];
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {

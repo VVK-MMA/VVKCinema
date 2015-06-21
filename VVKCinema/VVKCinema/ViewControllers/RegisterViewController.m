@@ -29,7 +29,7 @@
     self.avatarButton.layer.borderWidth = 0;
 }
 
-- (void)userDidSignUpSuccessfully:(BOOL)isSuccessful {
+- (void)userDidPostSuccessfully:(BOOL)isSuccessful {
     if ( isSuccessful ) {
         [self dismissViewControllerAnimated:NO completion:nil];        
     } else {

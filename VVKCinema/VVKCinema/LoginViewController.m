@@ -67,7 +67,7 @@
     }];
 }
 
-- (void)userDidSignUpSuccessfully:(BOOL)isSuccessful {
+- (void)userDidPostSuccessfully:(BOOL)isSuccessful {
     if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsUserWithClassName:@"User" andEmail:fbEmail] ) {
         NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithEmail:fbEmail andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             

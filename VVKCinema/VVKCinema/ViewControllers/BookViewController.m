@@ -12,8 +12,9 @@
 #import "LoginViewController.h"
 #import "Projection.h"
 #import "Seat.h"
+#import "ParseInfo.h"
 
-@interface BookViewController ()
+@interface BookViewController () <ParseInfoDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;
@@ -33,6 +34,8 @@
     double regularCount;
     double studentCount;
     double totalCount;
+    NSNumber *column;
+    NSNumber *row;
 }
 
 - (void)viewDidLoad {
@@ -58,10 +61,10 @@
     NSMutableArray *busySeatsArray = [NSMutableArray arrayWithCapacity:0];
     
     for (Seat *seat in selectedProjection.seats) {
-        NSInteger row = [seat.row integerValue];
-        NSInteger column = [seat.column integerValue];
+        row = [NSNumber numberWithInteger:[seat.row integerValue]];
+        column = [NSNumber numberWithInteger:[seat.column integerValue]];
         
-        NSInteger seatNumber = row * 10 + column;
+        NSInteger seatNumber = [row integerValue] * 10 + [column integerValue];
         NSLog(@"%ld", (long)seatNumber);
         
         [busySeatsArray addObject:[NSNumber numberWithInteger:seatNumber]];
@@ -123,18 +126,35 @@
     if ( ![[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] ) {
         [self showLoginVC];
     } else {
+        NSNumber *selection = [NSNumber numberWithUnsignedInteger:self.seatPicker.selection];
+        NSLog(@"%@", selection);
         
+        column = [NSNumber numberWithInteger:[selection integerValue] % 10];
+        NSLog(@"%@", column);
+        
+        row = [NSNumber numberWithInteger:[selection integerValue] / 10];
+        NSLog(@"%@", row);
+        
+        ParseInfo *parseInfo = [ParseInfo sharedParse];
+        parseInfo.delegate = self;
+        
+        [parseInfo bookNewSeatToParseWithColumn:column row:row andProjectionId:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)userDidPostSuccessfully:(BOOL)isSuccessful {
+//    NSDictionary *seatResultsDictionary = [[ParseInfo sharedParse] getSeatWithClassName:@"Seat" column:column row:row fromProjection:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
+//    
+//    for (id seatResultsDictionaryKey in seatResultsDictionary) {
+//        NSDictionary *seatDictionary = seatResultsDictionary[seatResultsDictionaryKey];
+//        
+//        for (id seatDict in seatDictionary) {
+//            NSString *seatObjectId = [seatDict objectForKey:@"objectId"];
+//            NSLog(@"%@", seatObjectId);
+//        }
+//    }
+    
+//    [parseInfoClass bookNewTicketToParseWithSeat:<#(NSString *)#> ticketType:<#(NSString *)#> andUserId:<#(NSString *)#>:column row:row andProjectionId:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] parseId]];
 }
-*/
 
 @end

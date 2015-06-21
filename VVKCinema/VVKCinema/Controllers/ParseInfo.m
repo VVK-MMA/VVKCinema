@@ -111,6 +111,20 @@
 
 #pragma mark Public Methods
 
+- (NSDictionary *)getSeatWithClassName:(NSString *)className column:(NSNumber *)column row:(NSNumber *)row fromProjection:(NSString *)projection {
+    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+    
+    NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"$column\":%@,\"$row\":%@,\"$projectionId\":\"%@\"}}", className, column, row, projection];
+    
+    NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
+    
+    [parseRequest setURL:requestURL];
+    
+    return [self responseFromSynchronousRequest:parseRequest];
+}
+
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password {
     NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
     
@@ -146,7 +160,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if ( !data ) {
-            [self.delegate userDidSignUpSuccessfully:NO];
+            [self.delegate userDidPostSuccessfully:NO];
             
             return;
         }
@@ -156,11 +170,81 @@
         
         if ( [httpResponse statusCode] == 201 ) {
             NSLog(@"Registration successful!");
-            [self.delegate userDidSignUpSuccessfully:YES];
+            [self.delegate userDidPostSuccessfully:YES];
         } else {
             NSLog(@"Registration failed!");
             NSLog(@"%@", response);
-            [self.delegate userDidSignUpSuccessfully:NO];
+            [self.delegate userDidPostSuccessfully:NO];
+        }
+    }];
+}
+
+- (void)bookNewSeatToParseWithColumn:(NSNumber *)column row:(NSNumber *)row andProjectionId:(NSString *)projectionId {
+    NSMutableURLRequest *request = [self prepareBaseRequestWithHisHeaders];
+    
+    [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Seat"]];
+    [request setHTTPMethod:@"POST"];
+    
+    // Set HTTP headers
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary *dict = @{@"column":column, @"row":row, @"projectionId":projectionId};
+//    NSDictionary *dict = @{@"column":column, @"row":row};
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    
+    [request setHTTPBody:jsonData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if ( !data ) {
+            [self.delegate userDidPostSuccessfully:NO];
+            
+            return;
+        }
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+        if ( [httpResponse statusCode] == 201 ) {
+            NSLog(@"bookNewSeatToParse successful!");
+            [self.delegate userDidPostSuccessfully:YES];
+        } else {
+            NSLog(@"bookNewSeatToParse failed!");
+            NSLog(@"%@", response);
+            [self.delegate userDidPostSuccessfully:NO];
+        }
+    }];
+}
+
+- (void)bookNewTicketToParseWithSeat:(NSString *)seat ticketType:(NSString *)ticketType andUserId:(NSString *)userId {
+    NSMutableURLRequest *request = [self prepareBaseRequestWithHisHeaders];
+    
+    [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Ticket"]];
+    [request setHTTPMethod:@"POST"];
+    
+    // Set HTTP headers
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSDictionary *dict = @{@"seat":seat, @"ticketType":ticketType, @"userId":userId};
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    
+    [request setHTTPBody:jsonData];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if ( !data ) {
+            
+            return;
+        }
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+        
+        if ( [httpResponse statusCode] == 201 ) {
+//            NSLog(@"Registration successful!");
+        } else {
+//            NSLog(@"Registration failed!");
+            NSLog(@"%@", response);
         }
     }];
 }
@@ -457,8 +541,10 @@
                     NSNumber *seatColumn = [seatDict objectForKey:@"column"];
                     NSNumber *seatRow = [seatDict objectForKey:@"row"];
                     
-                    NSDictionary *seatProjectionDictionary = [seatDict objectForKey:@"projection"];
-                    NSString *seatProjectionId = [seatProjectionDictionary objectForKey:@"objectId"];
+//                    NSDictionary *seatProjectionDictionary = [seatDict objectForKey:@"projection"];
+//                    NSString *seatProjectionId = [seatProjectionDictionary objectForKey:@"objectId"];
+                    
+                    NSString *seatProjectionId = [seatDict objectForKey:@"projectionId"];
                     
                     Seat *newSeat = [NSEntityDescription insertNewObjectForEntityForName:@"Seat" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
                     

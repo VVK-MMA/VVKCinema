@@ -13,7 +13,8 @@
 
 @protocol ParseInfoDelegate
 
-- (void)userDidSignUpSuccessfully:(BOOL)isSuccessful;
+- (void)userDidPostSuccessfully:(BOOL)isSuccessful;
+//- (void)userDidBookSeatSuccessfully:(BOOL)isSuccessful;
 
 @end
 
@@ -27,7 +28,10 @@
 
 - (void)transferFromServerToCoreDataAllObjectsWithType:(NSString *)type;
 - (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email;
+- (void)bookNewSeatToParseWithColumn:(NSNumber *)column row:(NSNumber *)row andProjectionId:(NSString *)projectionId;
+- (void)bookNewTicketToParseWithSeat:(NSString *)seat ticketType:(NSString *)ticketType andUserId:(NSString *)userId;
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password;
+- (NSDictionary *)getSeatWithClassName:(NSString *)className column:(NSNumber *)column row:(NSNumber *)row fromProjection:(NSString *)projection;
 
 @end

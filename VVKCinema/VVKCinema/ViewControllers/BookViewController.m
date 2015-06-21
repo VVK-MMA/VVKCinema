@@ -13,8 +13,10 @@
 #import "Projection.h"
 #import "Seat.h"
 #import "ParseInfo.h"
+#import "DropTicketViewController.h"
+#import "DropTransitionAnimator.h"
 
-@interface BookViewController () <ParseInfoDelegate>
+@interface BookViewController () <ParseInfoDelegate, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalPriceLabel;

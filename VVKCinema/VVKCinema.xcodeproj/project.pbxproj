@@ -20,6 +20,7 @@
 		31BD42C01B2977BB0095770F /* TicketsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BD42BF1B2977BB0095770F /* TicketsView.m */; };
 		31E07E661B36E1B000BE39CA /* DropTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E07E651B36E1B000BE39CA /* DropTransitionAnimator.m */; };
 		31E07E691B36E24F00BE39CA /* DropTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E07E681B36E24F00BE39CA /* DropTicketViewController.m */; };
+		49B787D51B372179004EA347 /* UserImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B787D41B372179004EA347 /* UserImagePickerViewController.m */; };
 		49C09E0B1B343DEA00E2AF0D /* CinemaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C09E0A1B343DEA00E2AF0D /* CinemaPickerView.m */; };
 		49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C4D0D51B2AAF20009E33BF /* MapViewController.m */; };
 		49C4D0D81B2AB2B5009E33BF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C4D0D71B2AB2B5009E33BF /* MapKit.framework */; };
@@ -93,6 +94,8 @@
 		31E07E651B36E1B000BE39CA /* DropTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropTransitionAnimator.m; sourceTree = "<group>"; };
 		31E07E671B36E24F00BE39CA /* DropTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropTicketViewController.h; sourceTree = "<group>"; };
 		31E07E681B36E24F00BE39CA /* DropTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropTicketViewController.m; sourceTree = "<group>"; };
+		49B787D31B372179004EA347 /* UserImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserImagePickerViewController.h; sourceTree = "<group>"; };
+		49B787D41B372179004EA347 /* UserImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserImagePickerViewController.m; sourceTree = "<group>"; };
 		49C09E091B343DEA00E2AF0D /* CinemaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinemaPickerView.h; sourceTree = "<group>"; };
 		49C09E0A1B343DEA00E2AF0D /* CinemaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CinemaPickerView.m; sourceTree = "<group>"; };
 		49C4D0D41B2AAF20009E33BF /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				95907E7C1B35A3070097040E /* BookViewController.m */,
 				31E07E671B36E24F00BE39CA /* DropTicketViewController.h */,
 				31E07E681B36E24F00BE39CA /* DropTicketViewController.m */,
+				49B787D31B372179004EA347 /* UserImagePickerViewController.h */,
+				49B787D41B372179004EA347 /* UserImagePickerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 				49C4D0D61B2AAF20009E33BF /* MapViewController.m in Sources */,
 				956FFCF51B30C99500A429D8 /* DetailsViewController.m in Sources */,
 				956FFCF21B2F0CE300A429D8 /* CoreDataInfo.m in Sources */,
+				49B787D51B372179004EA347 /* UserImagePickerViewController.m in Sources */,
 				31B20C351B272A6B00247370 /* SortOptionsViewController.m in Sources */,
 				95907E7A1B359E740097040E /* SeatPickerControl.m in Sources */,
 				956FFCE91B2E22C900A429D8 /* VVKCinemaInfo.m in Sources */,

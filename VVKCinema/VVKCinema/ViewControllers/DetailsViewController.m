@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *genresLabel;
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *directorLabel;
-
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet StarRatingControl *starView;
 
 @end
@@ -53,10 +53,10 @@
     self.posterImageView.layer.shadowOpacity = 0.5f;
     
     //Setting up the picker
-    cinemaPicker = [[CinemaPickerView alloc] initWithFrame:CGRectMake(0, 400, self.view.bounds.size.width, self.view.bounds.size.height-450.0)];
+    cinemaPicker = [[CinemaPickerView alloc] initWithFrame:CGRectMake(0, 350, self.view.bounds.size.width, self.view.bounds.size.height-470.0)];
     cinemaPicker.datasource = self;
     cinemaPicker.delegate = self;
-    [self.view addSubview:cinemaPicker];
+    [self.scrollView addSubview:cinemaPicker];
     
     // Setup starView
     self.starView.delegate = self;

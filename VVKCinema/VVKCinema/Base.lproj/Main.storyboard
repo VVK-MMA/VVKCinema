@@ -222,6 +222,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4um-I0-hWw">
+                                <rect key="frame" x="272" y="509" width="57" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="3UP-rU-aro"/>
+                                    <constraint firstAttribute="height" constant="18" id="RP8-cQ-Bt6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" alpha="0.5" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgC-M0-dpS">
                                 <rect key="frame" x="255" y="411" width="90" height="90"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -234,16 +244,6 @@
                                     <segue destination="Cfh-tQ-I2O" kind="presentation" id="hMr-8U-4q0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4um-I0-hWw">
-                                <rect key="frame" x="272" y="509" width="57" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="57" id="3UP-rU-aro"/>
-                                    <constraint firstAttribute="height" constant="18" id="RP8-cQ-Bt6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -732,6 +732,7 @@
                         <outlet property="nameLabel" destination="hQg-rb-NPg" id="VXq-H5-MGZ"/>
                         <outlet property="posterImageView" destination="NsP-QO-jPv" id="XP6-3b-JbG"/>
                         <outlet property="releaseDateLabel" destination="jkW-yP-N5L" id="8CD-TD-VNl"/>
+                        <outlet property="scrollView" destination="s7o-jK-CDa" id="VqM-fV-hiD"/>
                         <outlet property="starView" destination="jUr-0o-n63" id="iGg-tW-e9T"/>
                     </connections>
                 </viewController>
@@ -1183,6 +1184,79 @@
                 <exit id="hkj-dc-7bq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2936" y="-385"/>
+        </scene>
+        <!--User Image Picker View Controller-->
+        <scene sceneID="Nmw-3D-YtP">
+            <objects>
+                <viewController storyboardIdentifier="UserImage" id="8Ec-bz-Hka" customClass="UserImagePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jQT-VH-88I"/>
+                        <viewControllerLayoutGuide type="bottom" id="0ea-aK-ck2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="75M-E5-01z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4k-GX-BKC">
+                                <rect key="frame" x="242" y="187" width="116" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="PhS-ul-kk9"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cameraImage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="8Ec-bz-Hka" eventType="touchUpInside" id="OuO-aP-cnF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W71-bn-8Fk">
+                                <rect key="frame" x="242" y="28" width="116" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="5Ti-jm-FJu"/>
+                                    <constraint firstAttribute="height" constant="116" id="SPu-JV-DiZ"/>
+                                </constraints>
+                                <state key="normal" title="Cancel" image="newProfile">
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="8Ec-bz-Hka" eventType="touchUpInside" id="Ug4-uz-0WN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCf-ed-mC5">
+                                <rect key="frame" x="242" y="403" width="116" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="CT5-71-OMa"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="galleryImage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="8Ec-bz-Hka" eventType="touchUpInside" id="ln4-Ab-YXh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W71-bn-8Fk" firstAttribute="trailing" secondItem="W4k-GX-BKC" secondAttribute="trailing" id="7DN-VE-tEa"/>
+                            <constraint firstItem="0ea-aK-ck2" firstAttribute="top" secondItem="SCf-ed-mC5" secondAttribute="bottom" constant="81" id="TQa-0C-zjT"/>
+                            <constraint firstItem="W71-bn-8Fk" firstAttribute="leading" secondItem="W4k-GX-BKC" secondAttribute="leading" id="YrQ-67-C6U"/>
+                            <constraint firstItem="SCf-ed-mC5" firstAttribute="leading" secondItem="W4k-GX-BKC" secondAttribute="leading" id="cp8-1y-ku6"/>
+                            <constraint firstItem="W71-bn-8Fk" firstAttribute="top" secondItem="jQT-VH-88I" secondAttribute="bottom" constant="8" symbolic="YES" id="gDL-Qs-PFH"/>
+                            <constraint firstItem="SCf-ed-mC5" firstAttribute="centerX" secondItem="75M-E5-01z" secondAttribute="centerX" id="itL-Si-JXy"/>
+                            <constraint firstItem="W4k-GX-BKC" firstAttribute="top" secondItem="W71-bn-8Fk" secondAttribute="bottom" constant="43" id="jrt-OZ-TM6"/>
+                            <constraint firstItem="SCf-ed-mC5" firstAttribute="trailing" secondItem="W4k-GX-BKC" secondAttribute="trailing" id="wIi-4l-ybp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelBUtton" destination="W71-bn-8Fk" id="9ka-4L-SCD"/>
+                        <outlet property="mainView" destination="75M-E5-01z" id="Zvw-rE-Zbj"/>
+                        <outlet property="selectPhotoButton" destination="SCf-ed-mC5" id="9uC-sy-I81"/>
+                        <outlet property="takePhotoButton" destination="W4k-GX-BKC" id="RZ4-02-Qv6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IDq-ms-YgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="361" y="-1796"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="KmA-eI-qIi">
@@ -1701,10 +1775,12 @@
         <image name="alphabet" width="64" height="55"/>
         <image name="arrow" width="163" height="243"/>
         <image name="calendar" width="59" height="64"/>
+        <image name="cameraImage" width="1024" height="1024"/>
         <image name="current" width="23" height="20"/>
         <image name="empty" width="23" height="21"/>
         <image name="exit" width="24" height="24"/>
         <image name="facebook" width="160" height="160"/>
+        <image name="galleryImage" width="480" height="356"/>
         <image name="genre" width="584" height="363"/>
         <image name="moviepopcorn" width="600" height="405"/>
         <image name="newProfile" width="512" height="512"/>

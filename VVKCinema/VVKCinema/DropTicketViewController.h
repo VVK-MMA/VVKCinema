@@ -10,4 +10,11 @@
 
 @interface DropTicketViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *projectionTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rowLabel;
+@property (weak, nonatomic) IBOutlet UILabel *seatLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
 @end

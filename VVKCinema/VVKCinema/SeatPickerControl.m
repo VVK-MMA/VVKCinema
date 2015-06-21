@@ -137,9 +137,9 @@
         }
     }];
     //test
-    NSLog(@"...");
+//    NSLog(@"...");
     for (NSNumber *num in self.selectedSeats) {
-        NSLog(@"%ld", (long)[num integerValue]);
+//        NSLog(@"%ld", (long)[num integerValue]);
     }
 }
 

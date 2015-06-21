@@ -114,6 +114,7 @@
     for (Projection *projection in projectionsArray) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"HH:mm"];
+        [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
         NSString *timeString = [formatter stringFromDate:projection.date];
         
         [timesArray addObject:timeString];
@@ -155,6 +156,7 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"d.MM"];
+//    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     [nextSevenDays addObject:dateString];
@@ -299,8 +301,10 @@
     
     if ( component == 0 ) {
 //        if ( item > 0 ) {
-            NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[item] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
-            
+//            NSArray *projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[item] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+        
+        projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[item] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+        
 //            for (Projection *projection in projectionsArray) {
 //                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 //                [formatter setDateFormat:@"HH:mm"];

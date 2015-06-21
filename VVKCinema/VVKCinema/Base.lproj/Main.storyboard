@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5m7-Pk-sAb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5m7-Pk-sAb">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1184,6 +1184,72 @@
             </objects>
             <point key="canvasLocation" x="2936" y="-385"/>
         </scene>
+        <!--User Image Picker View Controller-->
+        <scene sceneID="Nmw-3D-YtP">
+            <objects>
+                <viewController storyboardIdentifier="UserImage" id="8Ec-bz-Hka" customClass="UserImagePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jQT-VH-88I"/>
+                        <viewControllerLayoutGuide type="bottom" id="0ea-aK-ck2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="75M-E5-01z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCf-ed-mC5">
+                                <rect key="frame" x="256" y="242" width="89" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="CAT-ed-in1"/>
+                                    <constraint firstAttribute="width" constant="89" id="bAN-gm-ibw"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="galleryImage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="8Ec-bz-Hka" eventType="touchUpInside" id="ln4-Ab-YXh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4k-GX-BKC">
+                                <rect key="frame" x="256" y="464" width="89" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="jkn-ws-Ae9"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cameraImage">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="8Ec-bz-Hka" eventType="touchUpInside" id="OuO-aP-cnF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W71-bn-8Fk">
+                                <rect key="frame" x="256" y="28" width="89" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="8Ec-bz-Hka" eventType="touchUpInside" id="Ug4-uz-0WN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W4k-GX-BKC" firstAttribute="leading" secondItem="SCf-ed-mC5" secondAttribute="leading" id="JUu-bN-H8h"/>
+                            <constraint firstItem="SCf-ed-mC5" firstAttribute="centerY" secondItem="75M-E5-01z" secondAttribute="centerY" id="qLy-FE-rIl"/>
+                            <constraint firstItem="SCf-ed-mC5" firstAttribute="trailing" secondItem="W4k-GX-BKC" secondAttribute="trailing" id="wP5-Rs-07P"/>
+                            <constraint firstAttribute="bottom" secondItem="W4k-GX-BKC" secondAttribute="bottom" constant="20" symbolic="YES" id="xCP-QY-JhZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelBUtton" destination="W71-bn-8Fk" id="9ka-4L-SCD"/>
+                        <outlet property="mainView" destination="75M-E5-01z" id="Zvw-rE-Zbj"/>
+                        <outlet property="selectPhotoButton" destination="SCf-ed-mC5" id="9uC-sy-I81"/>
+                        <outlet property="takePhotoButton" destination="W4k-GX-BKC" id="RZ4-02-Qv6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IDq-ms-YgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="361" y="-1796"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="KmA-eI-qIi">
             <objects>
@@ -1701,10 +1767,12 @@
         <image name="alphabet" width="64" height="55"/>
         <image name="arrow" width="163" height="243"/>
         <image name="calendar" width="59" height="64"/>
+        <image name="cameraImage" width="1024" height="1024"/>
         <image name="current" width="23" height="20"/>
         <image name="empty" width="23" height="21"/>
         <image name="exit" width="24" height="24"/>
         <image name="facebook" width="160" height="160"/>
+        <image name="galleryImage" width="480" height="356"/>
         <image name="genre" width="584" height="363"/>
         <image name="moviepopcorn" width="600" height="405"/>
         <image name="newProfile" width="512" height="512"/>

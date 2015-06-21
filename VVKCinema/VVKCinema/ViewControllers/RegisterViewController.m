@@ -8,6 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "ParseInfo.h"
+#import "UserImagePickerViewController.h"
 
 @interface RegisterViewController () <ParseInfoDelegate>
 
@@ -44,6 +45,18 @@
 }
 
 - (IBAction)addPhoto:(id)sender {
+    UserImagePickerViewController *uipvc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserImage"];
+    
+    UIBlurEffect * blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *beView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    beView.frame = self.view.bounds;
+    
+    uipvc.view.frame = self.view.bounds;
+    uipvc.view.backgroundColor = [UIColor clearColor];
+    [uipvc.view insertSubview:beView atIndex:0];
+    uipvc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    
+    [self presentViewController:uipvc animated:NO completion:nil];
 }
 
 - (IBAction)createUser:(id)sender {

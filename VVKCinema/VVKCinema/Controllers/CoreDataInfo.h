@@ -17,8 +17,7 @@
 
 - (void)saveContext:(NSManagedObjectContext *)context;
 
-- (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className WithId:(NSString *)objectId;
-- (BOOL)isCoreDataContainsUserWithClassName:(NSString *)className andEmail:(NSString *)email;
+- (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className andValue:(NSString *)value forKey:(NSString *)key;
 
 - (NSArray *)fetchAllObjectsWithClassName:(NSString *)className;
 - (NSArray *)fetchObjectWithEntityName:(NSString *)entityName objectId:(NSString *)objectId andContext:(NSManagedObjectContext *)context;

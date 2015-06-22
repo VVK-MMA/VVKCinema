@@ -275,7 +275,7 @@
             for (id movieDictionary in moviesDictionary) {
                 NSString *objectId = [movieDictionary objectForKey:@"objectId"];
                 
-                if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Movie" WithId:objectId] ) {
+                if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Movie" andValue:objectId forKey:@"parseId"] ) {
                     continue;
                 }
                 
@@ -313,7 +313,7 @@
                 NSDictionary *countryDictionary = [movieDictionary objectForKey:@"country"];
                 NSString *countryId = [countryDictionary objectForKey:@"objectId"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Country" WithId:countryId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Country" andValue:countryId forKey:@"parseId"] ) {
                     NSDictionary *countryDict = [self getObjectWithType:@"Country" andObjectId:countryId];
                     NSString *countryName = [countryDict objectForKey:@"name"];
                     
@@ -326,7 +326,7 @@
                 NSDictionary *directorDictionary = [movieDictionary objectForKey:@"director"];
                 NSString *directorId = [directorDictionary objectForKey:@"objectId"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Director" WithId:directorId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Director" andValue:directorId forKey:@"parseId"] ) {
                     NSDictionary *directorDict = [self getObjectWithType:@"Director" andObjectId:directorId];
                     NSString *directorFirstName = [directorDict objectForKey:@"firstName"];
                     NSString *directorLastName = [directorDict objectForKey:@"lastName"];
@@ -341,7 +341,7 @@
                 NSDictionary *languageDictionary = [movieDictionary objectForKey:@"language"];
                 NSString *languageId = [languageDictionary objectForKey:@"objectId"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Language" WithId:languageId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Language" andValue:languageId forKey:@"parseId"] ) {
                     NSDictionary *languageDict = [self getObjectWithType:@"Language" andObjectId:languageId];
                     NSString *languageName = [languageDict objectForKey:@"name"];
                     
@@ -359,7 +359,7 @@
                     for (id actorDictionary in actorsDictionary) {
                         NSString *actorObjectId = [actorDictionary objectForKey:@"objectId"];
                         
-                        if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Actor" WithId:actorObjectId] ) {
+                        if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Actor" andValue:actorObjectId forKey:@"parseId"] ) {
                             NSString *actorFirstName = [actorDictionary objectForKey:@"firstName"];
                             NSString *actorLastName = [actorDictionary objectForKey:@"lastName"];
                             
@@ -382,7 +382,7 @@
                     for (id genreDictionary in genresDictionary) {
                         NSString *genreObjectId = [genreDictionary objectForKey:@"objectId"];
                         
-                        if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Genre" WithId:genreObjectId] ) {
+                        if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Genre" andValue:genreObjectId forKey:@"parseId"] ) {
                             NSString *genreName = [genreDictionary objectForKey:@"name"];
                             
                             Genre *newGenre = [NSEntityDescription insertNewObjectForEntityForName:@"Genre" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
@@ -407,7 +407,7 @@
                     for (id hallDictionary in hallsDictionary) {
                         NSString *hallObjectId = [hallDictionary objectForKey:@"objectId"];
                         
-                        if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Hall" WithId:hallObjectId] ) {
+                        if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Hall" andValue:hallObjectId forKey:@"parseId"] ) {
                             NSString *hallName = [hallDictionary objectForKey:@"name"];
                             
                             Hall *newHall = [NSEntityDescription insertNewObjectForEntityForName:@"Hall" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
@@ -454,7 +454,7 @@
             for (id projectionDictionary in projectionsDictionary) {
                 NSString *projectionObjectId = [projectionDictionary objectForKey:@"objectId"];
                 
-                if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Projection" WithId:projectionObjectId] ) {
+                if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Projection" andValue:projectionObjectId forKey:@"parseId"] ) {
                     continue;
                 }
                 
@@ -473,7 +473,7 @@
                 NSDictionary *projectionHallDictionary = [projectionDictionary objectForKey:@"hall"];
                 NSString *projectionHallId = [projectionHallDictionary objectForKey:@"objectId"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Hall" WithId:projectionHallId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Hall" andValue:projectionHallId forKey:@"parseId"] ) {
                     NSDictionary *projectionHallDict = [self getObjectWithType:@"Hall" andObjectId:projectionHallId];
                     NSString *projectionHallName = [projectionHallDict objectForKey:@"name"];
                     
@@ -495,7 +495,7 @@
                 NSDictionary *projectionProjectionTypeDictionary = [projectionDictionary objectForKey:@"projectionType"];
                 NSString *projectionProjectionTypeId = [projectionProjectionTypeDictionary objectForKey:@"objectId"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"ProjectionType" WithId:projectionProjectionTypeId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"ProjectionType" andValue:projectionProjectionTypeId forKey:@"parseId"] ) {
                     NSDictionary *projectionProjectionTypeDict = [self getObjectWithType:@"ProjectionType" andObjectId:projectionProjectionTypeId];
                     NSString *projectionProjectionTypeName = [projectionProjectionTypeDict objectForKey:@"name"];
                     
@@ -539,7 +539,7 @@
             for (id ticketDictionary in ticketsDictionary) {
                 NSString *ticketObjectId = [ticketDictionary objectForKey:@"objectId"];
                 
-                if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Ticket" WithId:ticketObjectId] ) {
+                if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Ticket" andValue:ticketObjectId forKey:@"parseId"] ) {
                     continue;
                 }
                 
@@ -561,7 +561,7 @@
                 
                 NSString *seatId = [ticketDictionary objectForKey:@"seatId"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Seat" WithId:seatId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"Seat" andValue:seatId forKey:@"parseId"] ) {
                     NSDictionary *seatDict = [self getObjectWithType:@"Seat" andObjectId:seatId];
                     
                     NSNumber *seatBusy = [seatDict objectForKey:@"busy"];
@@ -590,7 +590,7 @@
                 NSDictionary *ticketTypeDictionary = [ticketDictionary objectForKey:@"ticketType"];
                 NSString *ticketTypeId = [ticketTypeDictionary objectForKey:@"objectId"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"TicketType" WithId:ticketTypeId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"TicketType" andValue:ticketTypeId forKey:@"parseId"] ) {
                     NSDictionary *ticketTypeDict = [self getObjectWithType:@"TicketType" andObjectId:ticketTypeId];
                     NSString *ticketTypeName = [ticketTypeDict objectForKey:@"name"];
                     
@@ -605,7 +605,7 @@
                 
                 NSString *userId = [ticketDictionary objectForKey:@"user"];
                 
-                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:userId] ) {
+                if ( ![[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" andValue:userId forKey:@"parseId"] ) {
                     NSDictionary *userDict = [self getObjectWithType:@"User" andObjectId:userId];
                     
                     NSString *userUsername = [userDict objectForKey:@"username"];

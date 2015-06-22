@@ -70,7 +70,7 @@
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {
-    if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsUserWithClassName:@"User" andEmail:fbEmail] ) {
+    if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" andValue:fbEmail forKey:@"email"] ) {
         NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchUserWithEmail:fbEmail andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
             
         [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:userArray[0]];
@@ -148,7 +148,7 @@
     NSString *name = [userDictionary objectForKey:@"name"];
     NSString *email = [userDictionary objectForKey:@"email"];
     
-    if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" WithId:objectId] ) {
+    if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" andValue:objectId forKey:@"parseId"] ) {
         NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"User" objectId:objectId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
         
         [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:userArray[0]];

@@ -63,7 +63,7 @@
     }
 }
 
-- (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className WithId:(NSString *)objectId {
+- (BOOL)isCoreDataContainsObjectWithClassName:(NSString *)className andValue:(NSString *)value forKey:(NSString *)key {
     NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:className];
     
     NSError *error = nil;
@@ -75,28 +75,7 @@
     }
     else {
         for ( NSManagedObject *object in objects ) {
-            if ( [[object valueForKey:@"parseId"] isEqualToString:objectId] ) {
-                return YES;
-            }
-        }
-    }
-    
-    return  NO;
-}
-
-- (BOOL)isCoreDataContainsUserWithClassName:(NSString *)className andEmail:(NSString *)email {
-    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:className];
-    
-    NSError *error = nil;
-    
-    NSArray *objects = [[[CoreDataInfo sharedCoreDataInfo] context] executeFetchRequest:request error:&error];
-    
-    if (error != nil) {
-        NSLog(@"Error: %@", [error localizedDescription]);
-    }
-    else {
-        for ( NSManagedObject *object in objects ) {
-            if ( [[object valueForKey:@"email"] isEqualToString:email] ) {
+            if ( [[object valueForKey:[NSString stringWithFormat:@"%@", key]] isEqualToString:value] ) {
                 return YES;
             }
         }

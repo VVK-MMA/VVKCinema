@@ -73,7 +73,7 @@
         NSNumber *column = [NSNumber numberWithInteger:[seat.column integerValue]];
         
         NSInteger seatNumber = [row integerValue] * 10 + [column integerValue];
-        NSLog(@"%ld", (long)seatNumber);
+//        NSLog(@"%ld", (long)seatNumber);
         
         [busySeatsArray addObject:[NSNumber numberWithInteger:seatNumber]];
     }
@@ -179,13 +179,13 @@
         
         for (id seatDict in seatDictionary) {
             seatObjectId = [seatDict objectForKey:@"objectId"];
-            NSLog(@"%@", seatObjectId);
+//            NSLog(@"%@", seatObjectId);
 
             NSString *seatColumn = [seatDict objectForKey:@"column"];
-            NSLog(@"%@", seatColumn);
+//            NSLog(@"%@", seatColumn);
 
             NSString *seatRow = [seatDict objectForKey:@"row"];
-            NSLog(@"%@", seatRow);
+//            NSLog(@"%@", seatRow);
             
             ParseInfo *parseInfo = [ParseInfo sharedParse];
             parseInfo.delegate = self;
@@ -205,15 +205,15 @@
     UIViewController *toVC = dvc;
     
     dvc.projectionTypeLabel.text = [[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] hall] name];
-    NSLog(@"%@", dvc.projectionTypeLabel.text);
+//    NSLog(@"%@", dvc.projectionTypeLabel.text);
     
     NSNumber *selectedSeat = selectedSeatsArray[0];
     NSNumber *row = [NSNumber numberWithInteger:[selectedSeat integerValue] / 10];
     
     dvc.rowLabel.text = [row stringValue];
-    NSLog(@"%@", dvc.rowLabel.text);
+//    NSLog(@"%@", dvc.rowLabel.text);
     dvc.seatLabel.text = [selectedSeatsArray componentsJoinedByString:@", "];;
-    NSLog(@"%@", dvc.seatLabel.text);
+//    NSLog(@"%@", dvc.seatLabel.text);
     
     toVC.modalPresentationStyle = UIModalPresentationCustom;
     toVC.transitioningDelegate = self;

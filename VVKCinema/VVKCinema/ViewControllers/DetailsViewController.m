@@ -109,7 +109,7 @@
     
     projectionsArray = [[CoreDataInfo sharedCoreDataInfo] fetchAllProjectionsWithDate:datesArray[0] movieId:selectedMovie.parseId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
 
-    NSLog(@"%@", selectedMovie.parseId);
+//    NSLog(@"%@", selectedMovie.parseId);
     
     for (Projection *projection in projectionsArray) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -129,7 +129,7 @@
 }
 
 - (IBAction)rateMovie:(id)sender {
-    NSLog(@"%lu", (unsigned long)self.starView.rating);
+//    NSLog(@"%lu", (unsigned long)self.starView.rating);
     
     selectedMovie.rate = [NSNumber numberWithInteger:self.starView.rating];
     
@@ -297,7 +297,7 @@
 
 - (void)pickerView:(CinemaPickerView *)pickerView didSelectItem:(NSUInteger)item forComponent:(NSUInteger)component
 {
-    NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
+//    NSLog(@"COMPONENT: %lu; ITEM: %lu", (unsigned long)component, (unsigned long)item);
     
     if ( component == 0 ) {
 //        if ( item > 0 ) {

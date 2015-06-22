@@ -184,14 +184,14 @@
         }
         
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+//        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ( [httpResponse statusCode] == 201 ) {
             NSLog(@"Registration successful!");
             [self.delegate userDidPostSuccessfully:YES];
         } else {
-            NSLog(@"Registration failed!");
-            NSLog(@"%@", response);
+//            NSLog(@"Registration failed!");
+//            NSLog(@"%@", response);
             [self.delegate userDidPostSuccessfully:NO];
         }
     }];
@@ -218,7 +218,7 @@
         }
         
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+//        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ( [httpResponse statusCode] == 201 ) {
             NSLog(@"bookNewSeatToParse successful!");
@@ -245,14 +245,12 @@
     [self setHTTPBodyToRequest:request withDictionary:dict];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        if ( !data ) {
-//            [self.delegate userDidPostTicketSuccessfully:NO];
-            
+        if ( !data ) {            
             return;
         }
         
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
+//        NSLog(@"response status code: %ld", (long)[httpResponse statusCode]);
         
         if ( [httpResponse statusCode] == 201 ) {
             NSLog(@"bookNewTicketToParseWithSeat successful!");

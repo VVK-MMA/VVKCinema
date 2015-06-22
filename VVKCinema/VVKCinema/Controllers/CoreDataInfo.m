@@ -51,6 +51,18 @@
     return context;
 }
 
+- (NSArray *)entitiesArrayFromRequest:(NSFetchRequest *)request withError:(NSError *)error {
+    NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
+    
+    if ( error ) {
+        NSLog(@"%@: Error fetching context: %@", [self class], [error localizedDescription]);
+        
+        return nil;
+    }
+    
+    return entitiesArray;
+}
+
 
 #pragma mark Public Methods
 
@@ -89,15 +101,7 @@
     
     NSError *error = nil;
     
-    NSArray *objects = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
-    
-    if ( error != nil ) {
-        NSLog(@"%@", error);
-        
-        return nil;
-    }
-    
-    return objects;
+    return [self entitiesArrayFromRequest:request withError:error];
 }
 
 - (NSArray *)fetchObjectWithEntityName:(NSString *)entityName objectId:(NSString *)objectId andContext:(NSManagedObjectContext *)context {
@@ -111,16 +115,7 @@
     
     NSError *error = nil;
     
-    NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
-    
-    if ( error ) {
-        NSLog(@"%@: Error fetching context: %@", [self class], [error localizedDescription]);
-        NSLog(@"entitiesArray: %@",entitiesArray);
-        
-        return nil;
-    }
-    
-    return entitiesArray;
+    return [self entitiesArrayFromRequest:request withError:error];
 }
 
 - (NSArray *)fetchAllProjectionsWithDate:(NSString *)date movieId:(NSString *)movieId andContext:(NSManagedObjectContext *)context {
@@ -139,7 +134,6 @@
     NSDate *endOfDayDate = [dateFormat dateFromString:endOfDay];
 
     NSPredicate *datePredicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startOfDayDate, endOfDayDate];
-//    NSPredicate *moviePredicate = [NSPredicate predicateWithFormat:@"ANY movie.parseId like %@", movieId];
     NSPredicate *moviePredicate = [NSPredicate predicateWithFormat:@"movie.parseId like %@", movieId];
     
     NSMutableArray *predicatesArray = [NSMutableArray arrayWithCapacity:0];
@@ -157,16 +151,7 @@
     
     NSError *error = nil;
     
-    NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
-    
-    if ( error ) {
-        NSLog(@"%@: Error fetching context: %@", [self class], [error localizedDescription]);
-        NSLog(@"entitiesArray: %@",entitiesArray);
-        
-        return nil;
-    }
-    
-    return entitiesArray;
+    return [self entitiesArrayFromRequest:request withError:error];
 }
 
 - (NSArray *)fetchUserWithEmail:(NSString *)email andContext:(NSManagedObjectContext *)context {
@@ -180,16 +165,7 @@
     
     NSError *error = nil;
     
-    NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
-    
-    if ( error ) {
-        NSLog(@"%@: Error fetching context: %@", [self class], [error localizedDescription]);
-        NSLog(@"entitiesArray: %@",entitiesArray);
-        
-        return nil;
-    }
-    
-    return entitiesArray;
+    return [self entitiesArrayFromRequest:request withError:error];
 }
 
 @end

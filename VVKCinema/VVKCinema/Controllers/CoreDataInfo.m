@@ -107,9 +107,7 @@
     
     [request setEntity:[NSEntityDescription entityForName:[NSString stringWithFormat:@"%@", entityName] inManagedObjectContext:context]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"parseId = '%@'", objectId]];
-    
-    [request setPredicate:predicate];
+    [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"parseId = '%@'", objectId]]];
     
     return [self entitiesArrayFromRequest:request];
 }
@@ -143,6 +141,7 @@
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
+    
     [request setSortDescriptors:sortDescriptors];
     
     return [self entitiesArrayFromRequest:request];
@@ -153,9 +152,7 @@
     
     [request setEntity:[NSEntityDescription entityForName:@"User" inManagedObjectContext:context]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"email = '%@'", email]];
-    
-    [request setPredicate:predicate];
+    [request setPredicate:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"email = '%@'", email]]];
     
     return [self entitiesArrayFromRequest:request];
 }

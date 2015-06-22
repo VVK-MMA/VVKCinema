@@ -92,7 +92,8 @@
 }
 
 - (void)bookTicket {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self showReservedTicket];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,7 +163,6 @@
         }
     }
     
-    [self showReservedTicket];
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {

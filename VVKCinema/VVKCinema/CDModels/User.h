@@ -2,7 +2,7 @@
 //  User.h
 //  VVKCinema
 //
-//  Created by Valeri Manchev on 6/18/15.
+//  Created by Valeri Manchev on 6/22/15.
 //  Copyright (c) 2015 VVK. All rights reserved.
 //
 
@@ -14,10 +14,11 @@
 @interface User : NSManagedObject
 
 @property (nonatomic, retain) NSString * email;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * parseId;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSString * username;
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSData * avatar;
 @property (nonatomic, retain) NSSet *tickets;
 @end
 

@@ -10,6 +10,8 @@
 #import "ParseInfo.h"
 #import "UserImagePickerViewController.h"
 #import "VVKCinemaInfo.h"
+#import "CoreDataInfo.h"
+#import "AccountViewController.h"
 
 @interface RegisterViewController () <ParseInfoDelegate>
 
@@ -47,12 +49,62 @@
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {
     if ( isSuccessful ) {
-        [self dismissViewControllerAnimated:NO completion:nil];        
+//        [self dismissViewControllerAnimated:NO completion:nil];
+        
+        //
+        NSDictionary *userDictionary = [[ParseInfo sharedParse] loginUserWithUsername:self.emailTextField.text andPassword:self.passwordTextField.text];
+        
+        if ( [[userDictionary objectForKey:@"code"] integerValue] == 101 ) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Invalid login parameters!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            
+            [alert show];
+            
+            return;
+        }
+        
+        NSString *objectId = [userDictionary objectForKey:@"objectId"];
+        NSString *username = [userDictionary objectForKey:@"username"];
+        NSString *name = [userDictionary objectForKey:@"name"];
+        NSString *email = [userDictionary objectForKey:@"email"];
+        
+        if ( [[CoreDataInfo sharedCoreDataInfo] isCoreDataContainsObjectWithClassName:@"User" andValue:objectId forKey:@"parseId"] ) {
+            NSArray *userArray = [[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"User" objectId:objectId andContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+            
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:userArray[0]];
+        } else {
+            User *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+            
+            newUser.parseId = objectId;
+            newUser.username = username;
+            newUser.name = name;
+            newUser.email = email;
+            newUser.avatar = UIImagePNGRepresentation([self.avatarButton imageForState:UIControlStateNormal]);
+            
+            [[CoreDataInfo sharedCoreDataInfo] saveContext:[[CoreDataInfo sharedCoreDataInfo] context]];
+            
+            [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
+            
+            //        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+        
+        [self showAccountVC];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Invalid register parameters!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [alert show];
-    }
+    }    
+}
+
+- (void)showAccountVC
+{
+    AccountViewController *accountVC = [self.storyboard instantiateViewControllerWithIdentifier:@"Account"];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:accountVC];
+    accountVC.modalTransitionStyle = UIModalPresentationOverCurrentContext;
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (IBAction)cancelButton:(id)sender {

@@ -93,8 +93,9 @@
 }
 
 - (void)bookTicket {
-    if (!self.ticketDroped) {
+    if ( !self.ticketDroped ) {
         [self showReservedTicket];
+        
         self.ticketDroped = YES;
     }
 }

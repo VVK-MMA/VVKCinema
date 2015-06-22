@@ -83,6 +83,10 @@
     self.nameLabel.text = currentUser.name;
     self.emailLabel.text = currentUser.email;
     
+    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] ) {
+        self.profileImageView.image = [UIImage imageWithData:[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] avatar]];
+    }
+    
     self.tickets = [NSMutableArray arrayWithCapacity:0];
     
     NSArray *allUserTicketsArray = [currentUser.tickets allObjects];
@@ -140,7 +144,7 @@
     viewToAdd.opaque = NO;
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.image = [UIImage imageNamed:@"ticket"];
+    imageView.image = [UIImage imageNamed:@"ticket"];    
     imageView.frame = CGRectMake(0, 0, self.ticketsView.bounds.size.width + 20, TICKET_HEIGHT);
     [viewToAdd addSubview:imageView];
     

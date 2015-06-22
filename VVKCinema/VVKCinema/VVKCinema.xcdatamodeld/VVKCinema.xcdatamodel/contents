@@ -86,6 +86,7 @@
         <relationship name="tickets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ticket" inverseName="ticketType" inverseEntity="Ticket" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="avatar" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parseId" optional="YES" attributeType="String" syncable="YES"/>
@@ -106,6 +107,6 @@
         <element name="Seat" positionX="153" positionY="449" width="128" height="133"/>
         <element name="Ticket" positionX="-72" positionY="531" width="128" height="135"/>
         <element name="TicketType" positionX="153" positionY="594" width="128" height="88"/>
-        <element name="User" positionX="-83" positionY="369" width="128" height="133"/>
+        <element name="User" positionX="-83" positionY="369" width="128" height="150"/>
     </elements>
 </model>

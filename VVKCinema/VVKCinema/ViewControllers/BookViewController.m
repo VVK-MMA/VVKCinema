@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *studentCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *studentPriceLabel;
 @property (weak, nonatomic) IBOutlet SeatPickerControl *seatPicker;
+@property (nonatomic) BOOL ticketDroped;
 
 @end
 
@@ -92,8 +93,10 @@
 }
 
 - (void)bookTicket {
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    [self showReservedTicket];
+    if (!self.ticketDroped) {
+        [self showReservedTicket];
+        self.ticketDroped = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -196,18 +199,6 @@
 {
     DropTicketViewController *dvc = [self.storyboard instantiateViewControllerWithIdentifier:@"ReservedTicket"];
     UIViewController *toVC = dvc;
-    
-    dvc.projectionTypeLabel.text = [[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedProjection] hall] name];
-//    NSLog(@"%@", dvc.projectionTypeLabel.text);
-    
-    NSNumber *selectedSeat = selectedSeatsArray[0];
-    NSNumber *row = [NSNumber numberWithInteger:[selectedSeat integerValue] / 10];
-    
-    dvc.rowLabel.text = [row stringValue];
-//    NSLog(@"%@", dvc.rowLabel.text);
-    dvc.seatLabel.text = [selectedSeatsArray componentsJoinedByString:@", "];;
-//    NSLog(@"%@", dvc.seatLabel.text);
-    
     toVC.modalPresentationStyle = UIModalPresentationCustom;
     toVC.transitioningDelegate = self;
     [self presentViewController:toVC animated:YES completion:nil];

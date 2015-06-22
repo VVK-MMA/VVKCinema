@@ -154,14 +154,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
         sortDescriptor = [[VVKCinemaInfo sharedVVKCinemaInfo] sortDescriptor];
     }
     
-//    if ( [[VVKCinemaInfo sharedVVKCinemaInfo] sort] ) {
-//        if ( [[[VVKCinemaInfo sharedVVKCinemaInfo] sort] isEqualToString:@"name"] ) {
-//            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-//        } else {
-//            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:[NSString stringWithFormat:@"%@", [[VVKCinemaInfo sharedVVKCinemaInfo] sort]] ascending:NO];
-//        }
-//    }
-    
     NSArray *sortDescriptors = @[sortDescriptor];
 
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -185,8 +177,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     [fetchRequest setPredicate:combinePredicate];
     
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[appDelegate managedObjectContext] sectionNameKeyPath:nil cacheName:nil];
     
     aFetchedResultsController.delegate = self;
@@ -195,8 +185,6 @@ static NSString * const movieCellIdentifier = @"MovieCell";
     
     NSError *error = nil;
     if ( ![self.fetchedResultsController performFetch:&error] ) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         
         abort();
@@ -275,7 +263,7 @@ static NSString * const movieCellIdentifier = @"MovieCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     Movie *selectedMovie = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedMovie:selectedMovie.parseId];    
+    [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedMovie:selectedMovie];
 }
 
 #pragma mark - Navigation

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "User.h"
 #import "Projection.h"
 
@@ -22,12 +23,13 @@
 @property (strong, nonatomic) NSNumber *currentType;
 
 @property (strong, nonatomic) NSNumber *ticketIndex;
+
 @property (nonatomic) NSData *avatarImageData;
 
 @property (strong, nonatomic) NSPredicate *genrePredicate;
 @property (strong, nonatomic) NSNumber *currentGenre;
 
-@property (strong, nonatomic) NSString *selectedMovie;
+@property (strong, nonatomic) Movie *selectedMovie;
 @property (strong, nonatomic) Projection *selectedProjection;
 @property (strong, nonatomic) User *currentUser;
 

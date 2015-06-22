@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *directorLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet StarRatingControl *starView;
+@property (weak, nonatomic) IBOutlet UIButton *bookButton;
 
 @end
 
@@ -66,7 +67,7 @@
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationController.navigationBar.topItem.title = @"Back";
 
-    selectedMovie = [[[CoreDataInfo sharedCoreDataInfo] fetchObjectWithEntityName:@"Movie" objectId:[[VVKCinemaInfo sharedVVKCinemaInfo] selectedMovie] andContext:[[CoreDataInfo sharedCoreDataInfo] context]] objectAtIndex:0];
+    selectedMovie = [[VVKCinemaInfo sharedVVKCinemaInfo] selectedMovie];
     
     self.posterImageView.image = [UIImage imageWithData:selectedMovie.posterData];
     self.nameLabel.text = selectedMovie.name;
@@ -121,6 +122,10 @@
     }
     
     [cinemaPicker reloadData];
+    
+    if ( [timesArray count] == 0 ) {
+        self.bookButton.hidden = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

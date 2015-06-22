@@ -14,8 +14,6 @@
 @protocol ParseInfoDelegate
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful;
-//- (void)userDidPostTicketSuccessfully:(BOOL)isSuccessful;
-//- (void)userDidBookSeatSuccessfully:(BOOL)isSuccessful;
 
 @end
 
@@ -34,6 +32,5 @@
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password;
 - (NSDictionary *)getSeatWithClassName:(NSString *)className column:(NSNumber *)column row:(NSNumber *)row fromProjection:(NSString *)projection;
-//- (NSDictionary *)getTicketWithClassName:(NSString *)className user:(NSString *)user andSeatId:(NSString *)seatId;
 
 @end

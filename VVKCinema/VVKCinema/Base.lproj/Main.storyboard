@@ -727,6 +727,7 @@
                     </view>
                     <connections>
                         <outlet property="actorsLabel" destination="FLO-Gt-pkL" id="cB5-76-kgI"/>
+                        <outlet property="bookButton" destination="xQQ-0Y-iu4" id="DPt-Gy-NFK"/>
                         <outlet property="directorLabel" destination="B7P-in-7Qr" id="iHg-JB-Tvv"/>
                         <outlet property="genresLabel" destination="IsS-Pt-GSm" id="8dY-t5-nMi"/>
                         <outlet property="nameLabel" destination="hQg-rb-NPg" id="VXq-H5-MGZ"/>

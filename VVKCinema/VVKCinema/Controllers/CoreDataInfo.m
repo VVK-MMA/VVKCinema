@@ -51,7 +51,9 @@
     return context;
 }
 
-- (NSArray *)entitiesArrayFromRequest:(NSFetchRequest *)request withError:(NSError *)error {
+- (NSArray *)entitiesArrayFromRequest:(NSFetchRequest *)request {
+    NSError *error = nil;
+    
     NSArray *entitiesArray = [[[CoreDataInfo sharedCoreDataInfo] getContext] executeFetchRequest:request error:&error];
     
     if ( error ) {
@@ -97,11 +99,7 @@
 }
 
 - (NSArray *)fetchAllObjectsWithClassName:(NSString *)className {
-    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:className];
-    
-    NSError *error = nil;
-    
-    return [self entitiesArrayFromRequest:request withError:error];
+    return [self entitiesArrayFromRequest:[[NSFetchRequest alloc]initWithEntityName:className]];
 }
 
 - (NSArray *)fetchObjectWithEntityName:(NSString *)entityName objectId:(NSString *)objectId andContext:(NSManagedObjectContext *)context {
@@ -113,9 +111,7 @@
     
     [request setPredicate:predicate];
     
-    NSError *error = nil;
-    
-    return [self entitiesArrayFromRequest:request withError:error];
+    return [self entitiesArrayFromRequest:request];
 }
 
 - (NSArray *)fetchAllProjectionsWithDate:(NSString *)date movieId:(NSString *)movieId andContext:(NSManagedObjectContext *)context {
@@ -149,9 +145,7 @@
     NSArray *sortDescriptors = @[sortDescriptor];
     [request setSortDescriptors:sortDescriptors];
     
-    NSError *error = nil;
-    
-    return [self entitiesArrayFromRequest:request withError:error];
+    return [self entitiesArrayFromRequest:request];
 }
 
 - (NSArray *)fetchUserWithEmail:(NSString *)email andContext:(NSManagedObjectContext *)context {
@@ -163,9 +157,7 @@
     
     [request setPredicate:predicate];
     
-    NSError *error = nil;
-    
-    return [self entitiesArrayFromRequest:request withError:error];
+    return [self entitiesArrayFromRequest:request];
 }
 
 @end

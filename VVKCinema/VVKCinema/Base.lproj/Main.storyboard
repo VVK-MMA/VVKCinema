@@ -361,7 +361,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch the image if you want to add your own profile image" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isr-Ct-DUU">
                                 <rect key="frame" x="155" y="565" width="291" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -1068,133 +1068,30 @@
                                     <segue destination="hkj-dc-7bq" kind="unwind" unwindAction="unwindToViewController:" id="gGT-1j-dzk"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKH-hS-HdW">
-                                <rect key="frame" x="130" y="20" width="41" height="21"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HALL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHk-Q2-i5w">
-                                <rect key="frame" x="61" y="41" width="40" height="17"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUL-Z3-s7f">
-                                <rect key="frame" x="121" y="41" width="33" height="17"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEAT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGq-8U-Bih">
-                                <rect key="frame" x="174" y="41" width="38" height="17"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4DX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ED-Pd-nQX">
-                                <rect key="frame" x="61" y="60" width="31" height="18"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1i-yk-FeZ">
-                                <rect key="frame" x="61" y="86" width="39" height="17"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ha-m1-fuO">
-                                <rect key="frame" x="121" y="60" width="10" height="18"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9H-x8-M16">
-                                <rect key="frame" x="121" y="86" width="37" height="17"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYR-OF-uzZ">
-                                <rect key="frame" x="174" y="60" width="10" height="18"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRICE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wx5-PC-qgN">
-                                <rect key="frame" x="174" y="86" width="43" height="17"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16.22" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raf-C0-Fce">
-                                <rect key="frame" x="121" y="105" width="41" height="18"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.06" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvr-7n-wT3">
-                                <rect key="frame" x="61" y="105" width="41" height="18"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.50leva" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ8-rF-BlE">
-                                <rect key="frame" x="174" y="105" width="63" height="18"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have successfully reserved your tickets. Thank you!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5g-NN-YN4">
+                                <rect key="frame" x="36" y="30" width="223" height="59"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XYR-OF-uzZ" firstAttribute="top" secondItem="YGq-8U-Bih" secondAttribute="bottom" constant="2" id="0VO-zi-nG7"/>
-                            <constraint firstItem="raf-C0-Fce" firstAttribute="top" secondItem="h9H-x8-M16" secondAttribute="bottom" constant="2" id="2o0-71-0nJ"/>
-                            <constraint firstItem="PKH-hS-HdW" firstAttribute="centerX" secondItem="jlt-Ib-KZJ" secondAttribute="centerX" id="3vu-aS-DBH"/>
-                            <constraint firstItem="YGq-8U-Bih" firstAttribute="leading" secondItem="eUL-Z3-s7f" secondAttribute="trailing" constant="20" id="Cno-9A-eHU"/>
-                            <constraint firstItem="G1i-yk-FeZ" firstAttribute="leading" secondItem="3ED-Pd-nQX" secondAttribute="leading" id="Ehh-cS-nUN"/>
-                            <constraint firstItem="eUL-Z3-s7f" firstAttribute="leading" secondItem="hHk-Q2-i5w" secondAttribute="trailing" constant="20" id="F0j-w0-eqo"/>
-                            <constraint firstItem="YGq-8U-Bih" firstAttribute="centerY" secondItem="eUL-Z3-s7f" secondAttribute="centerY" id="FXk-BZ-NFC"/>
-                            <constraint firstItem="9ha-m1-fuO" firstAttribute="leading" secondItem="h9H-x8-M16" secondAttribute="leading" id="G9Q-ky-mJm"/>
-                            <constraint firstItem="hHk-Q2-i5w" firstAttribute="top" secondItem="PKH-hS-HdW" secondAttribute="bottom" id="GIt-6d-Lf6"/>
                             <constraint firstItem="DCo-dY-fu5" firstAttribute="centerX" secondItem="jlt-Ib-KZJ" secondAttribute="centerX" id="H6A-Ec-C14"/>
-                            <constraint firstItem="PKH-hS-HdW" firstAttribute="top" secondItem="jlt-Ib-KZJ" secondAttribute="top" constant="20" id="HIW-mN-cku"/>
-                            <constraint firstItem="hHk-Q2-i5w" firstAttribute="centerY" secondItem="eUL-Z3-s7f" secondAttribute="centerY" id="HyJ-rn-No4"/>
                             <constraint firstItem="m02-3H-MRW" firstAttribute="top" secondItem="DCo-dY-fu5" secondAttribute="bottom" constant="15" id="KmY-pV-jxw"/>
-                            <constraint firstItem="G1i-yk-FeZ" firstAttribute="leading" secondItem="uvr-7n-wT3" secondAttribute="leading" id="MlD-9i-wHo"/>
                             <constraint firstAttribute="trailing" secondItem="jlt-Ib-KZJ" secondAttribute="trailing" id="Mo5-Ty-BoM"/>
-                            <constraint firstItem="3ED-Pd-nQX" firstAttribute="leading" secondItem="hHk-Q2-i5w" secondAttribute="leading" id="Obq-cc-hVz"/>
+                            <constraint firstItem="d5g-NN-YN4" firstAttribute="top" secondItem="PfX-9K-TG5" secondAttribute="bottom" constant="30" id="PqE-R7-WJJ"/>
                             <constraint firstItem="jlt-Ib-KZJ" firstAttribute="leading" secondItem="c3P-jD-9gk" secondAttribute="leading" id="Qh6-LK-250"/>
-                            <constraint firstItem="fZ8-rF-BlE" firstAttribute="top" secondItem="Wx5-PC-qgN" secondAttribute="bottom" constant="2" id="Uhy-kn-SkI"/>
-                            <constraint firstItem="G1i-yk-FeZ" firstAttribute="top" secondItem="3ED-Pd-nQX" secondAttribute="bottom" constant="8" id="UtG-3i-0sb"/>
-                            <constraint firstItem="h9H-x8-M16" firstAttribute="top" secondItem="9ha-m1-fuO" secondAttribute="bottom" constant="8" id="WuH-2c-3Qb"/>
-                            <constraint firstItem="9ha-m1-fuO" firstAttribute="leading" secondItem="eUL-Z3-s7f" secondAttribute="leading" id="hJg-XP-PQw"/>
-                            <constraint firstItem="XYR-OF-uzZ" firstAttribute="leading" secondItem="YGq-8U-Bih" secondAttribute="leading" id="j4f-9E-jUJ"/>
-                            <constraint firstItem="uvr-7n-wT3" firstAttribute="top" secondItem="G1i-yk-FeZ" secondAttribute="bottom" constant="2" id="kpp-YR-TAD"/>
-                            <constraint firstItem="hHk-Q2-i5w" firstAttribute="leading" secondItem="c3P-jD-9gk" secondAttribute="leadingMargin" constant="45" id="mc8-VZ-cB4"/>
-                            <constraint firstItem="9ha-m1-fuO" firstAttribute="top" secondItem="eUL-Z3-s7f" secondAttribute="bottom" constant="2" id="oNY-R8-Wbs"/>
-                            <constraint firstItem="XYR-OF-uzZ" firstAttribute="leading" secondItem="Wx5-PC-qgN" secondAttribute="leading" id="ogP-6G-YJJ"/>
-                            <constraint firstItem="fZ8-rF-BlE" firstAttribute="leading" secondItem="Wx5-PC-qgN" secondAttribute="leading" id="r9D-lr-c9c"/>
+                            <constraint firstItem="d5g-NN-YN4" firstAttribute="leading" secondItem="c3P-jD-9gk" secondAttribute="leadingMargin" constant="20" id="aCo-6u-mfL"/>
                             <constraint firstItem="jlt-Ib-KZJ" firstAttribute="top" secondItem="c3P-jD-9gk" secondAttribute="top" id="rGk-4X-9lF"/>
                             <constraint firstItem="jlt-Ib-KZJ" firstAttribute="bottom" secondItem="m02-3H-MRW" secondAttribute="top" id="ru2-nK-s3C"/>
-                            <constraint firstItem="raf-C0-Fce" firstAttribute="leading" secondItem="h9H-x8-M16" secondAttribute="leading" id="upf-SX-sDr"/>
-                            <constraint firstItem="3ED-Pd-nQX" firstAttribute="top" secondItem="hHk-Q2-i5w" secondAttribute="bottom" constant="2" id="xtq-j3-oFN"/>
-                            <constraint firstItem="Wx5-PC-qgN" firstAttribute="top" secondItem="XYR-OF-uzZ" secondAttribute="bottom" constant="8" id="yGh-mO-JdL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d5g-NN-YN4" secondAttribute="trailing" constant="25" id="v4Y-YU-KyN"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="170"/>
-                    <connections>
-                        <outlet property="dateLabel" destination="uvr-7n-wT3" id="Nhg-gC-Pl3"/>
-                        <outlet property="priceLabel" destination="fZ8-rF-BlE" id="FvU-Wc-5vq"/>
-                        <outlet property="projectionTypeLabel" destination="3ED-Pd-nQX" id="kho-Vj-oMB"/>
-                        <outlet property="rowLabel" destination="9ha-m1-fuO" id="l50-jY-k70"/>
-                        <outlet property="seatLabel" destination="XYR-OF-uzZ" id="H0v-MR-aCr"/>
-                        <outlet property="timeLabel" destination="raf-C0-Fce" id="mSP-ey-EnY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nol-CX-1Jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hkj-dc-7bq" userLabel="Exit" sceneMemberID="exit"/>

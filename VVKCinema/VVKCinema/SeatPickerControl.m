@@ -136,11 +136,11 @@
             [self.selectedSeats addObject:[NSNumber numberWithInteger:idx]];
         }
     }];
-    //test
-//    NSLog(@"...");
-    for (NSNumber *num in self.selectedSeats) {
-//        NSLog(@"%ld", (long)[num integerValue]);
-    }
+//    //test
+////    NSLog(@"...");
+//    for (NSNumber *num in self.selectedSeats) {
+////        NSLog(@"%ld", (long)[num integerValue]);
+//    }
 }
 
 #pragma mark - Selection property

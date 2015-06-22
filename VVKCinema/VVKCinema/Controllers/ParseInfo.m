@@ -70,6 +70,14 @@
     return parseRequest;
 }
 
+- (NSMutableURLRequest *)basePostRequestWithParseHeadersAndContentType {
+    NSMutableURLRequest *parseRequest = [self basePostRequestWithParseHeaders];
+    
+    [parseRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    return parseRequest;
+}
+
 - (NSDictionary *)responseFromSynchronousRequest:(NSMutableURLRequest *)parseRequest {
     NSURLResponse *res = nil;
     NSError *err = nil;
@@ -163,12 +171,11 @@
 }
 
 - (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email {
-    NSMutableURLRequest *request = [self basePostRequestWithParseHeaders];
+    NSMutableURLRequest *request = [self basePostRequestWithParseHeadersAndContentType];
     
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/users/"]];
     
     // Set HTTP headers
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
     
@@ -198,15 +205,11 @@
 }
 
 - (void)bookNewSeatToParseWithColumn:(NSNumber *)column row:(NSNumber *)row andProjectionId:(NSString *)projectionId {
-    NSMutableURLRequest *request = [self basePostRequestWithParseHeaders];
+    NSMutableURLRequest *request = [self basePostRequestWithParseHeadersAndContentType];
     
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Seat"]];
     
-    // Set HTTP headers
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
     NSDictionary *dict = @{@"column":column, @"row":row, @"projectionId":projectionId};
-//    NSDictionary *dict = @{@"column":column, @"row":row};
     
     [self setHTTPBodyToRequest:request withDictionary:dict];
     
@@ -232,12 +235,9 @@
 }
 
 - (void)bookNewTicketToParseWithSeat:(NSString *)seat ticketType:(NSString *)ticketType andUserId:(NSString *)userId {
-    NSMutableURLRequest *request = [self basePostRequestWithParseHeaders];
+    NSMutableURLRequest *request = [self basePostRequestWithParseHeadersAndContentType];
     
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Ticket"]];
-    
-    // Set HTTP headers
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
 //    NSDictionary *dict = @{@"seatId":seat, @"ticketType":ticketType, @"userId":userId};
     NSDictionary *dict = @{@"seatId":seat, @"user":userId};

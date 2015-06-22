@@ -274,7 +274,8 @@
     
     //--------------------------------
     //dynamic labels. CHANGE TEXT HERE!
-    dynamicHallLabel.text = hall.name;
+//    dynamicHallLabel.text = hall.name;
+    dynamicHallLabel.text = @"IMAX";
     [dynamicHallLabel sizeToFit];
     dynamicHallLabel.frame = CGRectMake(hallLabel.frame.origin.x, hallLabel.frame.origin.y + hallLabel.frame.size.height + 3, dynamicHallLabel.frame.size.width, dynamicHallLabel.frame.size.height);
     

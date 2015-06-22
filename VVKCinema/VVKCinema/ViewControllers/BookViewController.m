@@ -179,13 +179,6 @@
         
         for (id seatDict in seatDictionary) {
             seatObjectId = [seatDict objectForKey:@"objectId"];
-//            NSLog(@"%@", seatObjectId);
-
-            NSString *seatColumn = [seatDict objectForKey:@"column"];
-//            NSLog(@"%@", seatColumn);
-
-            NSString *seatRow = [seatDict objectForKey:@"row"];
-//            NSLog(@"%@", seatRow);
             
             ParseInfo *parseInfo = [ParseInfo sharedParse];
             parseInfo.delegate = self;

@@ -45,6 +45,7 @@
 		95907E771B34878B0097040E /* Projection.m in Sources */ = {isa = PBXBuildFile; fileRef = 95907E761B34878B0097040E /* Projection.m */; };
 		95907E7A1B359E740097040E /* SeatPickerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95907E791B359E740097040E /* SeatPickerControl.m */; };
 		95907E7D1B35A3070097040E /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95907E7C1B35A3070097040E /* BookViewController.m */; };
+		95957DC01B3825680027AE3C /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 95957DBF1B3825680027AE3C /* Ticket.m */; };
 		95E727661B299DCC007C62AA /* ParseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727651B299DCC007C62AA /* ParseInfo.m */; };
 		95E7276F1B29EB8C007C62AA /* Country.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7276E1B29EB8C007C62AA /* Country.m */; };
 		95E727721B29ED13007C62AA /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727711B29ED13007C62AA /* Director.m */; };
@@ -55,7 +56,6 @@
 		95E727871B2B306C007C62AA /* ProjectionType.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727861B2B306C007C62AA /* ProjectionType.m */; };
 		95E7278D1B2B3C2A007C62AA /* Seat.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7278C1B2B3C2A007C62AA /* Seat.m */; };
 		95E727901B2B3F3C007C62AA /* TicketType.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E7278F1B2B3F3C007C62AA /* TicketType.m */; };
-		95E727961B2B41E6007C62AA /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E727951B2B41E6007C62AA /* Ticket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +139,8 @@
 		95907E791B359E740097040E /* SeatPickerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeatPickerControl.m; sourceTree = "<group>"; };
 		95907E7B1B35A3070097040E /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookViewController.h; path = ViewControllers/BookViewController.h; sourceTree = "<group>"; };
 		95907E7C1B35A3070097040E /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookViewController.m; path = ViewControllers/BookViewController.m; sourceTree = "<group>"; };
+		95957DBE1B3825680027AE3C /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = CDModels/Ticket.h; sourceTree = "<group>"; };
+		95957DBF1B3825680027AE3C /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = CDModels/Ticket.m; sourceTree = "<group>"; };
 		95E727641B299DCC007C62AA /* ParseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseInfo.h; path = Controllers/ParseInfo.h; sourceTree = "<group>"; };
 		95E727651B299DCC007C62AA /* ParseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParseInfo.m; path = Controllers/ParseInfo.m; sourceTree = "<group>"; };
 		95E7276D1B29EB8C007C62AA /* Country.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Country.h; path = CDModels/Country.h; sourceTree = "<group>"; };
@@ -159,8 +161,6 @@
 		95E7278C1B2B3C2A007C62AA /* Seat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Seat.m; path = CDModels/Seat.m; sourceTree = "<group>"; };
 		95E7278E1B2B3F3C007C62AA /* TicketType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TicketType.h; path = CDModels/TicketType.h; sourceTree = "<group>"; };
 		95E7278F1B2B3F3C007C62AA /* TicketType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TicketType.m; path = CDModels/TicketType.m; sourceTree = "<group>"; };
-		95E727941B2B41E6007C62AA /* Ticket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ticket.h; path = CDModels/Ticket.h; sourceTree = "<group>"; };
-		95E727951B2B41E6007C62AA /* Ticket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ticket.m; path = CDModels/Ticket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,14 +282,14 @@
 		950F187D1B20A1B9008E075D /* CDModels */ = {
 			isa = PBXGroup;
 			children = (
+				95957DBE1B3825680027AE3C /* Ticket.h */,
+				95957DBF1B3825680027AE3C /* Ticket.m */,
 				95907E751B34878B0097040E /* Projection.h */,
 				95907E761B34878B0097040E /* Projection.m */,
 				956FFCFC1B322BB600A429D8 /* User.h */,
 				956FFCFD1B322BB600A429D8 /* User.m */,
 				956FFCE41B2E1EB200A429D8 /* Movie.h */,
 				956FFCE51B2E1EB200A429D8 /* Movie.m */,
-				95E727941B2B41E6007C62AA /* Ticket.h */,
-				95E727951B2B41E6007C62AA /* Ticket.m */,
 				95E7278E1B2B3F3C007C62AA /* TicketType.h */,
 				95E7278F1B2B3F3C007C62AA /* TicketType.m */,
 				95E7278B1B2B3C2A007C62AA /* Seat.h */,
@@ -500,12 +500,12 @@
 				31B20C2C1B271EEC00247370 /* MovieCell.m in Sources */,
 				95E727841B2B2A8E007C62AA /* Hall.m in Sources */,
 				95E7278D1B2B3C2A007C62AA /* Seat.m in Sources */,
-				95E727961B2B41E6007C62AA /* Ticket.m in Sources */,
 				9517C3031B11FB3A00542CE1 /* AppDelegate.m in Sources */,
 				313FA61A1B2797FF0095A365 /* DaysViewController.m in Sources */,
 				9517C3061B11FB3A00542CE1 /* VVKCinema.xcdatamodeld in Sources */,
 				95E727751B29EE0A007C62AA /* Language.m in Sources */,
 				313FA61D1B2798790095A365 /* TransitionAnimator.m in Sources */,
+				95957DC01B3825680027AE3C /* Ticket.m in Sources */,
 				31BD42C01B2977BB0095770F /* TicketsView.m in Sources */,
 				95E727811B2B29D0007C62AA /* Genre.m in Sources */,
 				313742B41B27FF2900E3DF58 /* TypeViewController.m in Sources */,

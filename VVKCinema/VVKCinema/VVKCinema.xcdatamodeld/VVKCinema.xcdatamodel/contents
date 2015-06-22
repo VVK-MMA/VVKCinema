@@ -73,6 +73,7 @@
         <relationship name="ticket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ticket" inverseName="seat" inverseEntity="Ticket" syncable="YES"/>
     </entity>
     <entity name="Ticket" representedClassName="Ticket" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="parseId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <relationship name="seat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Seat" inverseName="ticket" inverseEntity="Seat" syncable="YES"/>
@@ -103,7 +104,7 @@
         <element name="Projection" positionX="655" positionY="413" width="128" height="133"/>
         <element name="ProjectionType" positionX="153" positionY="351" width="128" height="88"/>
         <element name="Seat" positionX="153" positionY="449" width="128" height="133"/>
-        <element name="Ticket" positionX="-72" positionY="531" width="128" height="118"/>
+        <element name="Ticket" positionX="-72" positionY="531" width="128" height="135"/>
         <element name="TicketType" positionX="153" positionY="594" width="128" height="88"/>
         <element name="User" positionX="-83" positionY="369" width="128" height="133"/>
     </elements>

@@ -113,7 +113,6 @@
     NSMutableURLRequest *parseRequest = [self baseGetRequestWithParseHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@", type];
-    
     NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
@@ -129,6 +128,13 @@
     NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
     
     [parseRequest setURL:requestURL];
+}
+
+- (void)setHTTPBodyToRequest:(NSMutableURLRequest *)request withDictionary:(NSDictionary *)dictionary {
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
+    
+    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:jsonData];
 }
 
 
@@ -167,10 +173,8 @@
     [request setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
     
     NSDictionary *dict = @{@"name":name, @"password":password, @"email":email, @"username":email};
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     
-    [request setHTTPBody:jsonData];
+    [self setHTTPBodyToRequest:request withDictionary:dict];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if ( !data ) {
@@ -203,10 +207,8 @@
     
     NSDictionary *dict = @{@"column":column, @"row":row, @"projectionId":projectionId};
 //    NSDictionary *dict = @{@"column":column, @"row":row};
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     
-    [request setHTTPBody:jsonData];
+    [self setHTTPBodyToRequest:request withDictionary:dict];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if ( !data ) {
@@ -239,10 +241,8 @@
     
 //    NSDictionary *dict = @{@"seatId":seat, @"ticketType":ticketType, @"userId":userId};
     NSDictionary *dict = @{@"seatId":seat, @"user":userId};
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setValue: [NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
     
-    [request setHTTPBody:jsonData];
+    [self setHTTPBodyToRequest:request withDictionary:dict];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if ( !data ) {
@@ -257,14 +257,10 @@
         if ( [httpResponse statusCode] == 201 ) {
             NSLog(@"bookNewTicketToParseWithSeat successful!");
             
-//            [self.delegate userDidPostTicketSuccessfully:YES];
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
         } else {
             NSLog(@"bookNewTicketToParseWithSeat failed!");
             NSLog(@"%@", response);
-            
-//            [self.delegate userDidPostTicketSuccessfully:NO];
         }
     }];
     
@@ -552,6 +548,15 @@
                 Ticket *newTicket = [NSEntityDescription insertNewObjectForEntityForName:@"Ticket" inManagedObjectContext:[[CoreDataInfo sharedCoreDataInfo] context]];
                 
                 newTicket.parseId = ticketObjectId;
+                
+                //
+                NSString *createdAtIso = [ticketDictionary objectForKey:@"createdAt"];
+//                NSString *createdAtIso = [createdAtDictionary objectForKey:@"iso"];
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+                NSDate *capturedStartDate = [dateFormatter dateFromString:createdAtIso];
+                newTicket.createdAt = capturedStartDate;
                 
 //                NSDictionary *seatDictionary = [ticketDictionary objectForKey:@"seat"];
 //                NSString *seatId = [seatDictionary objectForKey:@"objectId"];

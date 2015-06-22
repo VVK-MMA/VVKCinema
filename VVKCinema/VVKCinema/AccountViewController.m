@@ -35,7 +35,9 @@
 
 @end
 
-@implementation AccountViewController
+@implementation AccountViewController {
+    NSArray *sortedArray;
+}
 
 - (void)viewDidLoad
 {
@@ -83,9 +85,23 @@
     
     self.tickets = [NSMutableArray arrayWithCapacity:0];
     
-    if ( currentUser.tickets ) {
-        for ( Ticket *ticket in currentUser.tickets ) {
-            [self.tickets addObject:ticket];
+    NSArray *allUserTicketsArray = [currentUser.tickets allObjects];
+    
+    sortedArray = [allUserTicketsArray sortedArrayUsingComparator:^NSComparisonResult(id b, id a) {
+        NSDate *first = [(Ticket *)a createdAt];
+        NSDate *second = [(Ticket *)b createdAt];
+        return [first compare:second];
+    }];
+    
+    if ( [sortedArray count] > 7 ) {
+        for (int i = 0; i < [sortedArray count]; i++) {
+            [self.tickets addObject:sortedArray[i]];
+        }
+    } else {
+        if ( currentUser.tickets ) {
+            for ( Ticket *ticket in currentUser.tickets ) {
+                [self.tickets addObject:ticket];
+            }
         }
     }
     
@@ -337,10 +353,16 @@
 - (NSInteger)numberOfTicketsForTicketsView:(TicketsView *)ticketView
 {
     //maximum 7 tickets can be shown
-    NSInteger numberOfTickets = [[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] tickets] count];
+    if ( [[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] tickets] count] < 7 ) {
+        NSInteger numberOfTickets = [[[[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] tickets] count];
+        
+        return numberOfTickets;
+    } else {
+        return 7;
+    }
     
 //    return [self.views count];
-    return numberOfTickets;
+//    return numberOfTickets;
 }
 
 #pragma mark - Helper methods

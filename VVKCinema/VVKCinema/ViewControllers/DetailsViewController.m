@@ -348,6 +348,8 @@
 //    NSLog(@"%@", date);
     
     [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedProjection:projectionsArray[selectedProjectionIndex]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
 }
 
 @end

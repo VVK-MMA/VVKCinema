@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *studentCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *studentPriceLabel;
 @property (weak, nonatomic) IBOutlet SeatPickerControl *seatPicker;
+@property (nonatomic) BOOL ticketDroped;
 
 @end
 
@@ -92,8 +93,10 @@
 }
 
 - (void)bookTicket {
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    [self showReservedTicket];
+    if (!self.ticketDroped) {
+        [self showReservedTicket];
+        self.ticketDroped = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

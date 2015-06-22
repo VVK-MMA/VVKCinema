@@ -33,9 +33,17 @@
     self.cancelBUtton.layer.masksToBounds = YES;
     self.cancelBUtton.layer.borderWidth = 0;       // Do any additional setup after loading the view.
 }
+#pragma mark - IBActions
+
+- (IBAction)dismissVC:(UITapGestureRecognizer *)sender
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)takePhoto:(UIButton *)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         

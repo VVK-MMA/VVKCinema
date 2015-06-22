@@ -160,7 +160,8 @@
     NSDate *endOfDayDate = [dateFormat dateFromString:endOfDay];
 
     NSPredicate *datePredicate = [NSPredicate predicateWithFormat:@"(date >= %@) AND (date <= %@)", startOfDayDate, endOfDayDate];
-    NSPredicate *moviePredicate = [NSPredicate predicateWithFormat:@"ANY movie.parseId like %@", movieId];
+//    NSPredicate *moviePredicate = [NSPredicate predicateWithFormat:@"ANY movie.parseId like %@", movieId];
+    NSPredicate *moviePredicate = [NSPredicate predicateWithFormat:@"movie.parseId like %@", movieId];
     
     NSMutableArray *predicatesArray = [NSMutableArray arrayWithCapacity:0];
     

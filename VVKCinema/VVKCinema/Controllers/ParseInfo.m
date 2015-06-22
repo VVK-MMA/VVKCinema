@@ -45,12 +45,27 @@
 
 #pragma mark Private Methods
 
-- (NSMutableURLRequest *)prepareBaseRequestWithHisHeaders {
+- (NSMutableURLRequest *)baseRequestWithParseHeaders {
     NSMutableURLRequest *parseRequest = [[NSMutableURLRequest alloc] init];
     
-    [parseRequest setHTTPMethod:@"GET"];
     [parseRequest setValue:X_Parse_Application_Id forHTTPHeaderField:@"X-Parse-Application-Id"];
     [parseRequest setValue:X_Parse_REST_API_Key forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    
+    return parseRequest;
+}
+
+- (NSMutableURLRequest *)baseGetRequestWithParseHeaders {
+    NSMutableURLRequest *parseRequest = [self baseRequestWithParseHeaders];
+    
+    [parseRequest setHTTPMethod:@"GET"];
+    
+    return parseRequest;
+}
+
+- (NSMutableURLRequest *)basePostRequestWithParseHeaders {
+    NSMutableURLRequest *parseRequest = [self baseRequestWithParseHeaders];
+    
+    [parseRequest setHTTPMethod:@"POST"];
     
     return parseRequest;
 }
@@ -67,7 +82,7 @@
 }
 
 - (NSDictionary *)getAllObjectsWithType:(NSString *)type relatedToObjectWithClassName:(NSString *)className objectId:(NSString *)objectId andKeyName:(NSString *)keyName {
-    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *parseRequest = [self baseGetRequestWithParseHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"$relatedTo\":{\"object\":{\"__type\":\"Pointer\",\"className\":\"%@\",\"objectId\":\"%@\"},\"key\":\"%@\"}}", type, className, objectId, keyName];
     
@@ -81,7 +96,7 @@
 }
 
 - (NSDictionary *)getObjectWithType:(NSString *)type andObjectId:(NSString *)objectId {
-    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *parseRequest = [self baseGetRequestWithParseHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@/%@", type, objectId];
     
@@ -95,7 +110,7 @@
 }
 
 - (NSDictionary *)getAllObjectsWithType:(NSString *)type {
-    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *parseRequest = [self baseGetRequestWithParseHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@", type];
     
@@ -112,7 +127,7 @@
 #pragma mark Public Methods
 
 - (NSDictionary *)getSeatWithClassName:(NSString *)className column:(NSNumber *)column row:(NSNumber *)row fromProjection:(NSString *)projection {
-    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *parseRequest = [self baseGetRequestWithParseHeaders];
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"column\":%@,\"row\":%@,\"projectionId\":\"%@\"}}", className, column, row, projection];
     
@@ -140,7 +155,7 @@
 //}
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password {
-    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *parseRequest = [self baseGetRequestWithParseHeaders];
     
     [parseRequest setValue:@"1" forHTTPHeaderField:@"X-Parse-Revocable-Session"];
     
@@ -156,10 +171,9 @@
 }
 
 - (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email {
-    NSMutableURLRequest *request = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *request = [self basePostRequestWithParseHeaders];
     
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/users/"]];
-    [request setHTTPMethod:@"POST"];
     
     // Set HTTP headers
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -194,10 +208,9 @@
 }
 
 - (void)bookNewSeatToParseWithColumn:(NSNumber *)column row:(NSNumber *)row andProjectionId:(NSString *)projectionId {
-    NSMutableURLRequest *request = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *request = [self basePostRequestWithParseHeaders];
     
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Seat"]];
-    [request setHTTPMethod:@"POST"];
     
     // Set HTTP headers
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -231,10 +244,9 @@
 }
 
 - (void)bookNewTicketToParseWithSeat:(NSString *)seat ticketType:(NSString *)ticketType andUserId:(NSString *)userId {
-    NSMutableURLRequest *request = [self prepareBaseRequestWithHisHeaders];
+    NSMutableURLRequest *request = [self basePostRequestWithParseHeaders];
     
     [request setURL:[NSURL URLWithString:@"https://api.parse.com/1/classes/Ticket"]];
-    [request setHTTPMethod:@"POST"];
     
     // Set HTTP headers
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

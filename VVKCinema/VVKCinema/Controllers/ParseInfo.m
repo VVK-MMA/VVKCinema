@@ -123,6 +123,14 @@
     return [self responseFromSynchronousRequest:parseRequest];
 }
 
+- (void)setURLToParseRequest:(NSMutableURLRequest *)parseRequest WithString:(NSString *)urlString {
+    NSString *encodeURLSTring = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
+    
+    [parseRequest setURL:requestURL];
+}
+
 
 #pragma mark Public Methods
 
@@ -131,28 +139,10 @@
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"column\":%@,\"row\":%@,\"projectionId\":\"%@\"}}", className, column, row, projection];
     
-    NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
-    
-    [parseRequest setURL:requestURL];
+    [self setURLToParseRequest:parseRequest WithString:urlStringFull];
     
     return [self responseFromSynchronousRequest:parseRequest];
 }
-
-//- (NSDictionary *)getTicketWithClassName:(NSString *)className user:(NSString *)user andSeatId:(NSString *)seatId {
-//    NSMutableURLRequest *parseRequest = [self prepareBaseRequestWithHisHeaders];
-//    
-//    NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/classes/%@?where={\"userId\":%@,\"seatId\":%@}", className, user, seatId];
-//    
-//    NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
-//    
-//    [parseRequest setURL:requestURL];
-//    
-//    return [self responseFromSynchronousRequest:parseRequest];
-//}
 
 - (NSDictionary *)loginUserWithUsername:(NSString *)username andPassword:(NSString *)password {
     NSMutableURLRequest *parseRequest = [self baseGetRequestWithParseHeaders];
@@ -161,11 +151,7 @@
     
     NSString *urlStringFull = [NSString stringWithFormat:@"https://api.parse.com/1/login?username=%@&password=%@", username, password];
     
-    NSString *encodeURLSTring = [urlStringFull stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSURL *requestURL = [NSURL URLWithString:encodeURLSTring];
-    
-    [parseRequest setURL:requestURL];
+    [self setURLToParseRequest:parseRequest WithString:urlStringFull];
     
     return [self responseFromSynchronousRequest:parseRequest];
 }

@@ -324,7 +324,7 @@
     
     double ticketTypePrice = 0;
     
-    if ( [ticketType.name isEqualToString:@"редовен"] ) {
+    if ( [ticketType.name isEqualToString:@"student"] ) {
         ticketTypePrice = -2;
     }
     

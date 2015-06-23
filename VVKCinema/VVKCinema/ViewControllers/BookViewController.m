@@ -62,6 +62,10 @@
     self.totalLabel.text = [NSString stringWithFormat:@"TOTAL %.f tickets", totalCount];
     self.regularCountLabel.text = [NSString stringWithFormat:@"%.f", regularCount];
     self.studentCountLabel.text = [NSString stringWithFormat:@"%.f", studentCount];
+    
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%.02fleva", totalCount * 8.50];
+    self.regularPriceLabel.text = [NSString stringWithFormat:@"%.02fleva", regularCount * 8.50];
+    self.studentPriceLabel.text = [NSString stringWithFormat:@"%.02fleva", studentCount * 8.50];
 
     self.seatPicker.numberOfSeatsToBeSelected = totalCount;
     
@@ -121,6 +125,10 @@
     }
     
     totalCount = regularCount + studentCount;
+    
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%.02fleva", totalCount * 8.50];
+    self.regularPriceLabel.text = [NSString stringWithFormat:@"%.02fleva", regularCount * 8.50];
+    self.studentPriceLabel.text = [NSString stringWithFormat:@"%.02fleva", studentCount * 8.50];
     
     self.seatPicker.numberOfSeatsToBeSelected = totalCount;
     
@@ -204,15 +212,6 @@
     toVC.transitioningDelegate = self;
     [self presentViewController:toVC animated:YES completion:nil];
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([segue.identifier isEqualToString:@"Drop"]) {
-//        UIViewController *toVC = segue.destinationViewController;
-//        toVC.modalPresentationStyle = UIModalPresentationCustom;
-//        toVC.transitioningDelegate = self;
-//    }
-//}
 
 - (IBAction)unwindToViewController:(UIStoryboardSegue *)sender
 {

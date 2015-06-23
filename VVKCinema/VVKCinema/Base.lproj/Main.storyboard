@@ -847,9 +847,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkB-Pw-hg8">
-                                                <rect key="frame" x="243" y="4" width="50" height="21"/>
+                                                <rect key="frame" x="218" y="4" width="75" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="Fgc-e8-HET"/>
+                                                    <constraint firstAttribute="width" constant="75" id="Fgc-e8-HET"/>
                                                     <constraint firstAttribute="height" constant="21" id="iRE-ML-bvg"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -860,7 +860,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="a2d-DY-c5P" firstAttribute="leading" secondItem="7d9-xK-33V" secondAttribute="trailing" constant="8" id="AJ0-yT-TjQ"/>
-                                            <constraint firstItem="bkB-Pw-hg8" firstAttribute="leading" secondItem="1Ya-O1-Dyc" secondAttribute="trailing" constant="8" id="Doh-5G-xzJ"/>
+                                            <constraint firstItem="bkB-Pw-hg8" firstAttribute="leading" secondItem="1Ya-O1-Dyc" secondAttribute="trailing" constant="-17" id="Doh-5G-xzJ"/>
                                             <constraint firstItem="bkB-Pw-hg8" firstAttribute="top" secondItem="53A-7R-o1V" secondAttribute="top" constant="4" id="GjC-EY-Adu"/>
                                             <constraint firstItem="1Ya-O1-Dyc" firstAttribute="leading" secondItem="a2d-DY-c5P" secondAttribute="trailing" constant="8" id="LUy-rE-H5E"/>
                                             <constraint firstItem="1Ya-O1-Dyc" firstAttribute="top" secondItem="53A-7R-o1V" secondAttribute="top" constant="4" id="Mlx-3U-gOm"/>
@@ -884,10 +884,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZi-sQ-Jtw">
-                                                <rect key="frame" x="243" y="4" width="50" height="21"/>
+                                                <rect key="frame" x="218" y="4" width="75" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="YV7-Qc-60l"/>
-                                                    <constraint firstAttribute="width" constant="50" id="jD2-IU-Y5p"/>
+                                                    <constraint firstAttribute="width" constant="75" id="jD2-IU-Y5p"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -936,10 +936,10 @@
                                                 </connections>
                                             </stepper>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLw-cV-6Mb">
-                                                <rect key="frame" x="243" y="4" width="50" height="21"/>
+                                                <rect key="frame" x="218" y="4" width="75" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="XeP-Q8-e9c"/>
-                                                    <constraint firstAttribute="width" constant="50" id="h7S-CD-Ycs"/>
+                                                    <constraint firstAttribute="width" constant="75" id="h7S-CD-Ycs"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -951,7 +951,7 @@
                                             <constraint firstItem="CLw-cV-6Mb" firstAttribute="top" secondItem="A5P-Ta-uHC" secondAttribute="top" constant="4" id="4OF-kp-WUz"/>
                                             <constraint firstItem="yTk-yI-jnz" firstAttribute="leading" secondItem="A5P-Ta-uHC" secondAttribute="leading" constant="8" id="9ZK-0e-26s"/>
                                             <constraint firstItem="tCm-Km-4vp" firstAttribute="top" secondItem="A5P-Ta-uHC" secondAttribute="top" constant="4" id="DQL-yt-cr7"/>
-                                            <constraint firstItem="CLw-cV-6Mb" firstAttribute="leading" secondItem="tCm-Km-4vp" secondAttribute="trailing" constant="8" id="Enl-T3-P5g"/>
+                                            <constraint firstItem="CLw-cV-6Mb" firstAttribute="leading" secondItem="tCm-Km-4vp" secondAttribute="trailing" constant="-17" id="Enl-T3-P5g"/>
                                             <constraint firstItem="4sR-ST-fKE" firstAttribute="leading" secondItem="yTk-yI-jnz" secondAttribute="trailing" constant="8" id="IYy-h4-5UI"/>
                                             <constraint firstItem="4sR-ST-fKE" firstAttribute="top" secondItem="A5P-Ta-uHC" secondAttribute="top" id="aEy-vC-1Pt"/>
                                             <constraint firstItem="tCm-Km-4vp" firstAttribute="leading" secondItem="4sR-ST-fKE" secondAttribute="trailing" constant="8" id="hb8-mn-4mD"/>

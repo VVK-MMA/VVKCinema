@@ -141,4 +141,10 @@
     [parseInfoClass sendSignUpRequestToParseWithName:self.nameTextField.text password:self.passwordTextField.text andEmail:self.emailTextField.text];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 @end

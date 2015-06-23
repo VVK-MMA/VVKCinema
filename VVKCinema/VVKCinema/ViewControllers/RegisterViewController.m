@@ -31,6 +31,8 @@
     self.avatarButton.layer.cornerRadius = self.avatarButton.frame.size.height /2;
     self.avatarButton.layer.masksToBounds = YES;
     self.avatarButton.layer.borderWidth = 0;
+    
+    self.passwordTextField.secureTextEntry = YES;
 }
 
 - (void)putImageToButton {

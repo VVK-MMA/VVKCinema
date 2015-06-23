@@ -47,6 +47,8 @@
     if ( [[VVKCinemaInfo sharedVVKCinemaInfo] currentUser] ) {
         [self dismissViewControllerAnimated:NO completion:nil];
     }
+    
+    self.passwordTextField.secureTextEntry = YES;
 }
 
 - (IBAction)loginButtonClicked:(id)sender {

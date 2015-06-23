@@ -23,9 +23,27 @@
 
 @property (strong, nonatomic) NSDictionary *responseDictionary;
 
+/**
+ *  ParseInfo
+ *
+ *  @return singleton instance of type ParseInfo
+ */
 + (id)sharedParse;
 
+/**
+ *  Fill Core Data with objects from server (only if they don't exist)
+ *
+ *  @param type is the name of the class in parse.com
+ */
 - (void)transferFromServerToCoreDataAllObjectsWithType:(NSString *)type;
+
+/**
+ *  Send sign up request (register)
+ *
+ *  @param name     name of the new User
+ *  @param password password of the new User ()
+ *  @param email    <#email description#>
+ */
 - (void)sendSignUpRequestToParseWithName:(NSString *)name password:(NSString *)password andEmail:(NSString *)email;
 - (void)bookNewSeatToParseWithColumn:(NSNumber *)column row:(NSNumber *)row andProjectionId:(NSString *)projectionId;
 - (void)bookNewTicketToParseWithSeat:(NSString *)seat ticketType:(NSString *)ticketType andUserId:(NSString *)userId;

@@ -255,7 +255,7 @@
         if ( [httpResponse statusCode] == 201 ) {
             NSLog(@"bookNewTicketToParseWithSeat successful!");
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
         } else {
             NSLog(@"bookNewTicketToParseWithSeat failed!");
             NSLog(@"%@", response);

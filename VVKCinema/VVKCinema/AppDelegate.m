@@ -30,7 +30,7 @@
     
     // Subscribe For Notifications For Transfering Data Between Server And Core Data
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferProjectionsFromServerToCoreData) name:@"MoviesAddedToCoreData" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferTicketsFromServerToCoreData) name:@"UserLoggedIn" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transferTicketsFromServerToCoreData) name:@"ReadyForTicketsTransfer" object:nil];
     
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];

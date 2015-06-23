@@ -66,7 +66,7 @@
         }
     }];
     
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
 }
 
 - (void)userDidPostSuccessfully:(BOOL)isSuccessful {
@@ -86,10 +86,10 @@
         
         [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
         
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -164,10 +164,10 @@
         
         [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
         
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
     
     [self dismissViewControllerAnimated:NO completion:nil];
 }

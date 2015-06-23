@@ -84,10 +84,10 @@
             
             [[VVKCinemaInfo sharedVVKCinemaInfo] setCurrentUser:newUser];
             
-            //        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+            //        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
         
         [self showAccountVC];
     } else {

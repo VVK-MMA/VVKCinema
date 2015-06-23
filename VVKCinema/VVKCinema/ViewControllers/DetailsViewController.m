@@ -122,10 +122,6 @@
     }
     
     [cinemaPicker reloadData];
-    
-    if ( [timesArray count] == 0 ) {
-        self.bookButton.hidden = YES;
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -341,20 +337,19 @@
 }
 
 - (IBAction)book:(id)sender {
-//    NSString *dateString = [NSString stringWithFormat:@"%@ %@", selectedDate, selectedTime];
-//    
-//    // Convert string to date object
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//    [dateFormat setDateFormat:@"d.MM HH:mm"];
-//    [dateFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-//    NSDate *date = [dateFormat dateFromString:dateString];
-//    
-//    NSLog(@"%@", dateString);
-//    NSLog(@"%@", date);
+    if ( [timesArray count] != 0 ) {
+        [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedProjection:projectionsArray[selectedProjectionIndex]];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ( [timesArray count] == 0 ) {
+        return NO;
+    }
     
-    [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedProjection:projectionsArray[selectedProjectionIndex]];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+    return YES;
 }
 
 @end

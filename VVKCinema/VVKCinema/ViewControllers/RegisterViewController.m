@@ -89,7 +89,7 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ReadyForTicketsTransfer" object:nil];
         
-        [self showAccountVC];
+        [[[self presentingViewController] presentingViewController] dismissViewControllerAnimated:YES completion:nil];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"Invalid register parameters!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         

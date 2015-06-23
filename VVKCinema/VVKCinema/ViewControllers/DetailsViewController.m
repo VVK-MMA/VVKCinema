@@ -341,6 +341,10 @@
         [[VVKCinemaInfo sharedVVKCinemaInfo] setSelectedProjection:projectionsArray[selectedProjectionIndex]];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLoggedIn" object:nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING!" message:@"There are no Existing Projections!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alert show];
     }
 }
 

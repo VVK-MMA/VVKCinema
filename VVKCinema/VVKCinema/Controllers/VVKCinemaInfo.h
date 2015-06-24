@@ -33,6 +33,11 @@
 @property (strong, nonatomic) Projection *selectedProjection;
 @property (strong, nonatomic) User *currentUser;
 
+/**
+ *  VVKCinemaInfo
+ *
+ *  @return singleton instance of type VVKCinemaInfo
+ */
 + (id)sharedVVKCinemaInfo;
 
 @end

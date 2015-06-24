@@ -114,11 +114,17 @@
     
     if ( self.regularStepper.value + self.studentStepper.value < 6 ) {
         if ( sender.tag == 0 ) {
-            regularCount = value;
+            if ( totalCount <= 5 ) {
+                regularCount = value;
+            }
+//            regularCount = value;
             
             self.regularCountLabel.text = [NSString stringWithFormat:@"%.f", regularCount];
         } else {
-            studentCount = value;
+            if ( totalCount <= 5 ) {
+                studentCount = value;
+            }
+//            studentCount = value;
             
             self.studentCountLabel.text = [NSString stringWithFormat:@"%.f", studentCount];
         }

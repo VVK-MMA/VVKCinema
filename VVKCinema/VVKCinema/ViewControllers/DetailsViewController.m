@@ -99,7 +99,7 @@
     
     NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
     [dateformat setDateFormat:@"dd.MM.yy"]; // Date formater
-    NSString *date = [dateformat stringFromDate:[NSDate date]]; // Convert date to string
+    NSString *date = [dateformat stringFromDate:[[[VVKCinemaInfo sharedVVKCinemaInfo] selectedMovie] releaseDate]]; // Convert date to string
 
     self.releaseDateLabel.text = [NSString stringWithFormat:@"%@ min * %@", selectedMovie.duration, date];
     

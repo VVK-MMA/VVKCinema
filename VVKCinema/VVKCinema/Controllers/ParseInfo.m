@@ -548,7 +548,8 @@
                 newTicket.parseId = ticketObjectId;
                 
                 //
-                NSString *createdAtIso = [ticketDictionary objectForKey:@"createdAt"];
+//                NSString *createdAtIso = [ticketDictionary objectForKey:@"createdAt"];
+                NSString *createdAtIso = [ticketDictionary objectForKey:@"releaseDate"];
 //                NSString *createdAtIso = [createdAtDictionary objectForKey:@"iso"];
                 
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

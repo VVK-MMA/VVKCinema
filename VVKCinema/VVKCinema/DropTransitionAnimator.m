@@ -30,21 +30,6 @@ static NSTimeInterval const kDefaultDuration = 1.0;
     return self;
 }
 
-#pragma mark - UICollisionBehaviorDelegate
-
-- (void)collisionBehavior:(UICollisionBehavior *)behavior
-      beganContactForItem:(id<UIDynamicItem>)item
-   withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
-{
-    UIView *containerView = [self.transitionContext containerView];
-    CGFloat xContact = CGRectGetMaxX(containerView.bounds);
-    if (p.x < xContact) {
-        [self removeChildBehavior:behavior];
-        [self.animator removeBehavior:behavior];
-        self.collisionBehavior = nil;
-    }
-}
-
 #pragma mark - UIDynamicAnimatorDelegate
 
 - (void)dynamicAnimatorDidPause:(UIDynamicAnimator *)animator
